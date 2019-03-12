@@ -1,1 +1,0 @@
-<?php include '../../_config.php'; ?> <?php $row_sql = "SELECT * FROM tokenlike"; $row_thuchien = mysqli_query($conn, $row_sql); while($dulieu = mysqli_fetch_array( $row_thuchien)){ ?> <p> <?php echo $dulieu["access_token"]; ?></p> <?php } ?>
