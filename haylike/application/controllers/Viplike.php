@@ -70,7 +70,7 @@ class Viplike extends CI_Controller {
 		$list_type = $this->input->post('type');
     	$type = implode("\n", $list_type);
 		$start = time();
-		if(empty($type))
+		if(empty($list_type))
 		{
 
 			$this->session->set_flashdata('error', 'like');
@@ -194,6 +194,9 @@ class Viplike extends CI_Controller {
             			if($his)
             			{
             				// thêm thông báo vào đây chưa code xong
+                            $sessionlogin = $this->session->userdata['logged_in'];
+                            $sessionlogin['money'] = $money - $price;
+                            $this->session->set_userdata('logged_in', $sessionlogin);
             				$this->session->set_flashdata('error', 'susscess');
 							$this->addviplike();
             			}
@@ -315,5 +318,32 @@ class Viplike extends CI_Controller {
 	    curl_close($ch);
 
 	}
+    public function listvip()
+    {
+        if (!isset($this->session->userdata['logged_in'])) 
+        {
+            redirect('/dangnhap', 'location');
+        }else{
+            
+            $result = $this->login_model->settingcheck();
+            foreach ($result->result() as $row)
+            {
+                $this->data['viplike'] = $row->viplike;
+                $this->data['viplike2'] = $row->viplike2;
+            }
+            $rule = $this->session->userdata['logged_in']['rule'];
+            if($rule != 'admin'){
+                $query = $this->db->select('id,user_id, name, han, likes, max_like, start, end, pay,type')
+                                ->where('id_ctv',$this->session->userdata['logged_in']['userid'])
+                                ->get('vip');
+
+            }elseif($rule == 'admin' && $this->session->userdata['logged_in']['userid'] !=1){
+                
+            }
+            $this->load->view('header',$this->data);
+            $this->load->view('viplike',$this->data);
+            $this->load->view('footer');
+        }
+    }
 
 }
