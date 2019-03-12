@@ -25,7 +25,7 @@
                                     </div>
                                     <div class="panel-footer">
                                              <a href="addviplike" class="btn btn-success"><i class="fa fa-plus-circle" aria-hidden="true"></i> MUA</a>
-                                            <a href="index.php?vip=Manager_VIP_Like_SV1" class="btn btn-danger"><i class="fa fa-tasks"></i> QUẢN LÍ</a>
+                                            <a href="danhsachlikes1" class="btn btn-danger"><i class="fa fa-tasks"></i> QUẢN LÍ</a>
        
                                     </div>
                             </div>

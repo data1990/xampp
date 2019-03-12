@@ -62,3 +62,5 @@ $route['addviplike'] = 'viplike/addviplike';
 $route['getuidfb'] = 'viplike/checkid';
 $route['getmoney'] = 'viplike/changemoneylike';
 $route['addviplikes1'] = 'viplike/addlikedb';
+$route['danhsachlikes1'] = 'viplike/listvip';
+

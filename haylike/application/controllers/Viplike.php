@@ -338,10 +338,13 @@ class Viplike extends CI_Controller {
                                 ->get('vip');
 
             }elseif($rule == 'admin' && $this->session->userdata['logged_in']['userid'] !=1){
-                
+                $query = $this->db->join('member','vip.id_ctv = member.id_ctv')->where('vip.id_ctv' > 0);
+            }else{
+                $query = $this->db->join('member','vip.id_ctv = member.id_ctv');
             }
+            $this->data['dulieu'] = $query;
             $this->load->view('header',$this->data);
-            $this->load->view('viplike',$this->data);
+            $this->load->view('listvip',$this->data);
             $this->load->view('footer');
         }
     }
