@@ -194,7 +194,7 @@
                                       </span>
                                   </a>
           <ul class="treeview-menu">
-              <li><a href="index.php?vip=Add_VIP_CMT"><i class="glyphicon glyphicon-asterisk"></i> Thêm VIP CMT</a>
+              <li><a href="addcmt"><i class="glyphicon glyphicon-asterisk"></i> Thêm VIP CMT</a>
               </li>
               <li><a href="index.php?vip=Manager_VIP_CMT"><i class="glyphicon glyphicon-asterisk"></i> Quản Lí VIP CMT</a>
               </li>
@@ -266,7 +266,7 @@
                                               </span>
                                           </a>
                   <ul class="treeview-menu">
-                      <li><a href="index.php?vip=Add_VIP_CMT"><i class="glyphicon glyphicon-asterisk"></i> Thêm VIP CMT</a>
+                      <li><a href="addcmt"><i class="glyphicon glyphicon-asterisk"></i> Thêm VIP CMT</a>
                       </li>
                       <li><a href="index.php?vip=Manager_VIP_CMT"><i class="glyphicon glyphicon-asterisk"></i> Quản Lí VIP CMT</a>
                       </li>
@@ -359,7 +359,7 @@
                       </span>
                   </a>
                   <ul class="treeview-menu">
-                      <li><a href="index.php?vip=Add_VIP_CMT"><i class="glyphicon glyphicon-asterisk"></i> Thêm VIP CMT</a></li>
+                      <li><a href="addcmt"><i class="glyphicon glyphicon-asterisk"></i> Thêm VIP CMT</a></li>
                       <li><a href="index.php?vip=Manager_VIP_CMT"><i class="glyphicon glyphicon-asterisk"></i> Quản Lí VIP CMT</a></li>
                   </ul>
               </li>

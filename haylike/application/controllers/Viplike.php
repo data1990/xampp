@@ -154,6 +154,15 @@ class Viplike extends CI_Controller {
             	}
             } 
            // echo $this->session->userdata['logged_in']['userid'];
+            $mlike = $this->login_model->pakagechecklike($goi);
+
+           // print_r($mlike->result());
+            foreach($mlike->result() as $row)
+            {
+                $maxlike = $row->max;
+            }
+            
+
             if($money - $price >=0)
             {
             	$data = array(
@@ -163,13 +172,13 @@ class Viplike extends CI_Controller {
             				'start'		=>	$start, 
             				'end'		=>	$end, 
             				'likes'		=>	$like, 
-            				'max_like'	=>	$like, 
+            				'max_like'	=>	$maxlike, 
             				'id_ctv'	=>	$this->session->userdata['logged_in']['userid'], 
             				'pay'		=>	$price,
             				'type'		=>	$type, 
             				'limitpost'	=>	$limitpost,
             				);
-            	$query = $this->login_model->insertdb('vip',$data);echo 'ok';
+            	$query = $this->login_model->insertdb('vip',$data);
             	if($query)
             	{
             		$xdata = array('num_id' => 'num_id+1','payment' =>$payment +$price,'bill' => $money - $price);
@@ -338,11 +347,29 @@ class Viplike extends CI_Controller {
                                 ->get('vip');
 
             }elseif($rule == 'admin' && $this->session->userdata['logged_in']['userid'] !=1){
-                $query = $this->db->join('member','vip.id_ctv = member.id_ctv')->where('vip.id_ctv' > 0);
+                $query = $this->db->from('vip')->join('member','vip.id_ctv = member.id_ctv')->where('vip.id_ctv' > 0)->get();
             }else{
-                $query = $this->db->join('member','vip.id_ctv = member.id_ctv');
+                $query = $this->db->from('vip')->join('member','vip.id_ctv = member.id_ctv')->get();
             }
-            $this->data['dulieu'] = $query;
+            //print_r($query->result());
+            foreach($query->result() as $row)
+            {
+                $dulieu[] = array(
+                                    'id'    => $row->id,
+                                    'start' => $row->start,
+                                    'han'   => $row->han,
+                                    'type'  => $row->type,
+                                    'end'   => $row->end,
+                                    'pay'   => $row->pay,
+                                    'ctv_name'  => $row->name,
+                                    'likes' => $row->likes,
+                                    'max_like'  => $row->max_like,
+                                    'name'  => $row->name,
+                                    'user_name' => $row->user_name,
+                                    'user_id'   => $row->user_id,
+                                );
+            }
+            $this->data['dulieu'] = $dulieu;
             $this->load->view('header',$this->data);
             $this->load->view('listvip',$this->data);
             $this->load->view('footer');

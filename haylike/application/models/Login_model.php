@@ -101,6 +101,19 @@ class Login_model extends CI_Model
 	{
 		return $this->db->select('max, price') ->where('type','LIKE')->order_by('price ASC')->get('package');
 	}
+	function pakagechecklike($price)
+	{
+		$query = $this->db->select('max') ->where(array('type'=>'LIKE','price'=>$price))->get('package');
+		return $query;
+	}
+	function cmtpakagecheck()
+	{
+		return $this->db->select('max, price') ->where('type','CMT')->order_by('price ASC')->get('package');
+	}
+	function pakagecheckcmt($price)
+	{
+		return $this->db->select('max, price') ->where('type','CMT')->where('price',$price)->limit(1)->get('package');
+	}
 	function couponcheck($giftcode)
 	{
 		$query= $this->db->select('sale_off, code, min_price')->where('code',$giftcode)->group_by('sale_off,code,min_price')->get('coupon');
@@ -114,6 +127,16 @@ class Login_model extends CI_Model
 	function checkfbidlike($fbid,$svlike)
 	{
 		$query = $this->db->where('user_id',$fbid)->get($svlike);
+		if($query->num_rows() ==1)
+		{
+			return $query;
+		}else{
+			return false;
+		}
+	}
+	function checkcmtid($fbid)
+	{
+		$query = $this->db->where('user_id',$fbid)->get('vipcmt');
 		if($query->num_rows() ==1)
 		{
 			return $query;
