@@ -66,3 +66,5 @@ $route['danhsachlikes1'] = 'viplike/listvip';
 $route['addcmt'] = 'comment/addcmt';
 $route['giamgia'] = 'comment/changemoneylike';
 $route['addcmtsv'] = 'comment/addcmntdb';
+$route['listcmt'] = 'comment/listcmt';
+$route['hethan'] = 'exp';

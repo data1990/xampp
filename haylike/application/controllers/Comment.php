@@ -246,4 +246,46 @@ class Comment extends CI_Controller {
         	
 		}
 	}
+	public function listcmt()
+	{
+		if (!isset($this->session->userdata['logged_in'])) 
+        {
+            redirect('/dangnhap', 'location');
+        }else{
+            $rule = $this->session->userdata['logged_in']['rule'];
+            if($rule != 'admin'){
+                $query = $this->db->select('id,user_id, name, han, cmts, max_cmt, start, end, pay,gender')
+                                ->where('id_ctv',$this->session->userdata['logged_in']['userid'])
+                                ->get('vipcmt');
+
+            }elseif($rule == 'admin' && $this->session->userdata['logged_in']['userid'] !=1){
+                $query = $this->db->from('vipcmt')->join('member','vipcmt.id_ctv = member.id_ctv')->where('vipcmt.id_ctv' > 0)->get();
+            }else{
+                $query = $this->db->from('vipcmt')->join('member','vipcmt.id_ctv = member.id_ctv')->get();
+            }
+            //print_r($query->result());
+            foreach($query->result() as $row)
+            {
+                $dulieu[] = array(
+                                    'id'    => $row->id,
+                                    'start' => $row->start,
+                                    'han'   => $row->han,
+                                    'end'   => $row->end,
+                                    'pay'   => $row->pay,
+                                    'cmts'	=> $row->cmts,
+                                    'max_cmt'	=> $row->max_cmt,
+                                    'ctv_name'  => $row->name,  
+                                    'gender'	=> $row->gender,
+                                    'name'  => $row->name,
+                                    'user_name' => $row->user_name,
+                                    'user_id'   => $row->user_id,
+                                    'rule'	=> $row->rule,
+                                );
+            }
+            $this->data['dulieu'] = $dulieu;
+            $this->load->view('header',$this->data);
+            $this->load->view('listcmt',$this->data);
+            $this->load->view('footer');
+        }
+	}
 }

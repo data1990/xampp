@@ -196,7 +196,7 @@
           <ul class="treeview-menu">
               <li><a href="addcmt"><i class="glyphicon glyphicon-asterisk"></i> Thêm VIP CMT</a>
               </li>
-              <li><a href="index.php?vip=Manager_VIP_CMT"><i class="glyphicon glyphicon-asterisk"></i> Quản Lí VIP CMT</a>
+              <li><a href="listcmt"><i class="glyphicon glyphicon-asterisk"></i> Quản Lí VIP CMT</a>
               </li>
           </ul>
       </li>
@@ -207,13 +207,13 @@
                                       </span>
                                   </a>
           <ul class="treeview-menu">
-              <li><a href="//mualike.pro"><i class="glyphicon glyphicon-asterisk"></i> Thêm VIP REACTION</a>
+              <li><a href=""><i class="glyphicon glyphicon-asterisk"></i> Thêm VIP REACTION</a>
               </li>
               <li><a href="index.php?vip=Manager_VIP_Reaction"><i class="glyphicon glyphicon-asterisk"></i> Quản Lí VIP REACTION</a>
               </li>
           </ul>
       </li>
-      <li><a href="index.php?vip=Expires"><i class="glyphicon glyphicon-off"></i> <span>VIP ID Sắp Hết Hạn</span><span class="pull-right-container"> <span class="label label-danger"><?php echo $count_expires; ?></span></span></a>
+      <li><a href="hethan"><i class="glyphicon glyphicon-off"></i> <span>VIP ID Sắp Hết Hạn</span><span class="pull-right-container"> <span class="label label-danger"><?php echo $count_expires; ?></span></span></a>
       </li>
       <li class="header">#MEMBER PANEL</li>
       <li><a href="index.php?vip=Nap_The"><i class="glyphicon glyphicon-gift"></i> <span>Nạp Tiền</span></a>
@@ -268,7 +268,7 @@
                   <ul class="treeview-menu">
                       <li><a href="addcmt"><i class="glyphicon glyphicon-asterisk"></i> Thêm VIP CMT</a>
                       </li>
-                      <li><a href="index.php?vip=Manager_VIP_CMT"><i class="glyphicon glyphicon-asterisk"></i> Quản Lí VIP CMT</a>
+                      <li><a href="listcmt"><i class="glyphicon glyphicon-asterisk"></i> Quản Lí VIP CMT</a>
                       </li>
                   </ul>
               </li>
@@ -279,13 +279,13 @@
                                               </span>
                                           </a>
                   <ul class="treeview-menu">
-                      <li><a href="//mualike.pro"><i class="glyphicon glyphicon-asterisk"></i> Thêm VIP REACTION</a>
+                      <li><a href=""><i class="glyphicon glyphicon-asterisk"></i> Thêm VIP REACTION</a>
                       </li>
                       <li><a href="index.php?vip=Manager_VIP_Reaction"><i class="glyphicon glyphicon-asterisk"></i> Quản Lí VIP REACTION</a>
                       </li>
                   </ul>
               </li>
-              <li><a href="index.php?vip=Expires"><i class="glyphicon glyphicon-off"></i> <span>VIP ID Sắp Hết Hạn</span><span class="pull-right-container"> <span class="label label-danger"><?php echo $count_expires; ?></span></span></a>
+              <li><a href="hethan"><i class="glyphicon glyphicon-off"></i> <span>VIP ID Sắp Hết Hạn</span><span class="pull-right-container"> <span class="label label-danger"><?php echo $count_expires; ?></span></span></a>
               </li>
               <li class="header">#AGENCY PANEL</li>
               <li class="treeview">
@@ -360,7 +360,7 @@
                   </a>
                   <ul class="treeview-menu">
                       <li><a href="addcmt"><i class="glyphicon glyphicon-asterisk"></i> Thêm VIP CMT</a></li>
-                      <li><a href="index.php?vip=Manager_VIP_CMT"><i class="glyphicon glyphicon-asterisk"></i> Quản Lí VIP CMT</a></li>
+                      <li><a href="listcmt"><i class="glyphicon glyphicon-asterisk"></i> Quản Lí VIP CMT</a></li>
                   </ul>
               </li>
               <li class="treeview">
@@ -370,7 +370,7 @@
                       </span>
                   </a>
                   <ul class="treeview-menu">
-                      <li><a href="//mualike.pro"><i class="glyphicon glyphicon-asterisk"></i> Thêm VIP REACTION</a></li>
+                      <li><a href=""><i class="glyphicon glyphicon-asterisk"></i> Thêm VIP REACTION</a></li>
                       <li><a href="index.php?vip=Manager_VIP_Reaction"><i class="glyphicon glyphicon-asterisk"></i> Quản Lí VIP REACTION</a></li>
                   </ul>
               </li>
@@ -381,7 +381,7 @@
                       </span>
                   </a>
                   <ul class="treeview-menu">
-                      <li><a href="index.php?vip=Expires"><i class="glyphicon glyphicon-asterisk"></i> Danh sách</a></li>
+                      <li><a href="hethan"><i class="glyphicon glyphicon-asterisk"></i> Danh sách</a></li>
                       <?php if ($idctv == 1) { ?>
                           <li><a href="index.php?vip=Del_Expires"><i class="glyphicon glyphicon-asterisk"></i> Xóa VIP ID Hết Hạn</a></li>
                       <?php } ?>
