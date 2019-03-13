@@ -184,4 +184,26 @@ class Login_model extends CI_Model
 		curl_close($ch); 
 		return $response;
 	}
+	function counttable($table)
+	{
+		$query = $this->db->get($table);
+		return $query->num_rows();
+	}
+	function delltable($table,$tablename,$idtable)
+	{
+		$query = $this->db->delete($table, array($tablename => $idtable));
+		return $query;
+	}
+	function gettoken($table)
+	{
+		$query = $this->db->get($table);
+		return $query;
+	}
+	function delmultitoken($tokendie,$table)
+	{
+		foreach ($tokendie as $key => $value) {
+			$this->db->delete($table, array('access_token' => $value));
+			# code...
+		}
+	}
 }

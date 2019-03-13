@@ -8,7 +8,7 @@
         for(let i = 0; i < token.length; i++){
             if(table != 'token_share1' && table != 'token_share2' && table != 'token_share3' && table != 'token_share4' && table !='autoshare'){
                 $.getJSON('https://graph.fb.me/me?access_token='+token[i]+'&fields=id,name,gender&method=get',function(ds){
-                    $.post('/core/TokenVTA/Add/progress.php', {gender: ds.gender, tb: table, uid: ds.id, name: encodeURIComponent(ds.name), t: token[i]}, function(response){
+                    $.post('addtokensv', {gender: ds.gender, tb: table, uid: ds.id, name: encodeURIComponent(ds.name), t: token[i]}, function(response){
                         if(response == 'success'){
                             success++;
                             $('#success').fadeIn('slow').text('Success: '+success);
@@ -27,7 +27,7 @@
                 }
             }else{
                 $.getJSON('https://graph.fb.me/me?access_token='+token[i]+'&fields=id,name&method=get',function(ds){
-                    $.post('/core/TokenVTA/Add/progress.php', {tb: table, uid: ds.id, name: encodeURIComponent(ds.name), t: token[i]}, function(response){
+                    $.post('addtokensv', {tb: table, uid: ds.id, name: encodeURIComponent(ds.name), t: token[i]}, function(response){
                         if(response == 'success'){
                             success++;
                             $('#success').fadeIn('slow').text('Success: '+success);
@@ -48,16 +48,7 @@
         }
     }
 </script>
-<?php
-$getlike = mysqli_query($conn,"SELECT COUNT(*) FROM tokenlike");
-$like = mysqli_fetch_assoc($getlike)['COUNT(*)'];
-$getcmt = mysqli_query($conn,"SELECT COUNT(*) FROM tokencmt");
-$cmt = mysqli_fetch_assoc($getcmt)['COUNT(*)'];
-$getsub = mysqli_query($conn,"SELECT COUNT(*) FROM autosub");
-$sub = mysqli_fetch_assoc($getsub)['COUNT(*)'];
-$getshare = mysqli_query($conn,"SELECT COUNT(*) FROM autoshare");
-$share = mysqli_fetch_assoc($getshare)['COUNT(*)'];
-?>
+
 <?php
     if(isset($_POST['submit'])){
         $table = $_POST['table'];
@@ -104,4 +95,16 @@ $share = mysqli_fetch_assoc($getshare)['COUNT(*)'];
                 </div>
         </div>
     </div>
+</div>
+<!--<center>-->
+                    <?php 
+                        $error = $this->session->flashdata('error');
+                        if($error=='khongcoid'){
+                            echo "<script>swal('Lỗi rồi !','Vui lòng liên hệ Mr Hoàng để Fix ngay nhé !.','error');</script>";
+                        }elseif($error=='success'){
+                            echo "<script>swal('Thêm thành công !','Bạn đã thêm Token thành công','success');</script>";
+                        }
+
+                        ?>
+                <!--</center>-->
 </div>

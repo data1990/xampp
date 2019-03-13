@@ -564,9 +564,9 @@
                                                       </span>
                                                   </a>
                       <ul class="treeview-menu">
-                          <li><a href="index.php?vip=Add_Token_VTA"><i class="glyphicon glyphicon-asterisk"></i> Thêm token</a>
+                          <li><a href="addtoken"><i class="glyphicon glyphicon-asterisk"></i> Thêm token</a>
                           </li>
-                          <li><a href="index.php?vip=Del_Token_VTA"><i class="glyphicon glyphicon-asterisk"></i> Xóa token die</a>
+                          <li><a href="deltoken"><i class="glyphicon glyphicon-asterisk"></i> Xóa token die</a>
                           </li>
 
                       </ul>
