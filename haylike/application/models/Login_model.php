@@ -201,9 +201,11 @@ class Login_model extends CI_Model
 	}
 	function delmultitoken($tokendie,$table)
 	{
-		foreach ($tokendie as $key => $value) {
-			$this->db->delete($table, array('access_token' => $value));
+		print_r($tokendie);
+	//	foreach ($tokendie as $key => $value) {
+	//		$this->db->delete($table, array('access_token' => $value));
 			# code...
-		}
+	//	}
+		return true;
 	}
 }

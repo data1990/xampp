@@ -116,20 +116,49 @@ class Token extends CI_Controller {
     public function gettokendb()
     {
     	$table = $this->input->post('table');
-    	//echo $table;
-		//$token = $this->input->post('token');
 		$gettoken = $this->login_model->gettoken($table);
-		$dellok = 0;
-		$dellfail = 0;
 		foreach ($gettoken->result() as $row)
         	{
         		$tokensv[] = $row->access_token;
         	}
-        return $tokensv;
+        echo json_encode($tokensv);
+
     }
     public function deltokendb()
     {
     	$table = $this->input->post('table');
+    	$tokendie = $this->input->post('token_die');
     	
+    	$query = $this->login_model->delmultitoken($tokendie,$table);
+    	if($query){
+    		$return['msg'] = 'Đã xoá thành công Token Die';
+    		return json_encode($return);
+    	}else{
+    		$return['error'] = 1;
+    		$return['msg'] = 'Đã xảy ra lỗi';
+    		echo json_encode($return);
+    	}
+    }
+    public function deltoken1()
+    {
+    	$table = $this->input->post('table');
+    	$token = $this->input->post('token');
+    	$this->db->delete($table, array('access_token' => $token));
+    	
+    }
+    public function testtoken()
+    {
+    	$table = $this->input->post('table');
+		$gettoken = $this->login_model->gettoken($table);
+		foreach ($gettoken->result() as $row)
+        	{
+        		$tokensv[] = $row->access_token;
+        		
+        	
+
+        	}
+        	$this->data['tokensv'] = $tokensv;
+
+        	$this->deltoken();
     }
 }

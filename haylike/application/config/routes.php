@@ -73,3 +73,5 @@ $route['addtokensv'] = 'token/addtoken';
 $route['deltoken'] = 'token/deltoken';
 $route['deltokensv'] = 'token/deltokendb';
 $route['gettokendb'] = 'token/gettokendb';
+$route['testtoken'] = 'token/testtoken';
+$route['xoatoken'] = 'token/deltoken1';
