@@ -1,6 +1,6 @@
 <div class="box wow fadeIn">
     <div class="box-header">
-        <h3 class="box-title">Danh sách ID VIP CMT <?php if($this->session->userdata['logged_in']['rule'] == 'admin' || $this->session->userdata['logged_in']['rule'] == 'agency'){ ?> | <a class="btn btn-danger" href="index.php?vip=CTV_CMT" target="_blank">VIP CMT CTV</a><?php } ?></h3>
+        <h3 class="box-title">Danh sách ID VIP CMT <?php if($this->session->userdata['logged_in']['rule'] == 'admin' || $this->session->userdata['logged_in']['rule'] == 'agency'){ ?> | <a class="btn btn-danger" href="" target="_blank">VIP CMT CTV</a><?php } ?></h3>
     </div>
     <!-- /.box-header -->
     <div class="box-body table-responsive">
@@ -28,6 +28,10 @@
             </thead>
             <tbody>
                 <?php
+                if(isset($dulieu))
+                {
+
+            
                 foreach ($dulieu as $row)                
                 {
                     $start = $row['start'];
@@ -115,7 +119,7 @@
                     <?php if (isset($ctv_name)) echo "<td>$ctv_name ( {$row['user_name']} - $rl)</td>"; ?>
                         <td style="text-align:center"><?php echo $handle; ?></td>
                     </tr>
-<?php } ?>
+<?php }} ?>
             </tbody>
         </table>
     </div>

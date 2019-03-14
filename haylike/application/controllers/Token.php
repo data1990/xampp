@@ -116,7 +116,9 @@ class Token extends CI_Controller {
     public function gettokendb()
     {
     	$table = $this->input->post('table');
-		$gettoken = $this->login_model->gettoken($table);
+		//$gettoken = $this->login_model->gettoken($table);
+		$gettoken = $this->db->select('access_token')->get($table);
+		$tokensv = array();
 		foreach ($gettoken->result() as $row)
         	{
         		$tokensv[] = $row->access_token;
@@ -132,7 +134,8 @@ class Token extends CI_Controller {
     	$query = $this->login_model->delmultitoken($tokendie,$table);
     	if($query){
     		$return['msg'] = 'Đã xoá thành công Token Die';
-    		return json_encode($return);
+    		$return['soluong'] = $query;
+    		echo json_encode($return);
     	}else{
     		$return['error'] = 1;
     		$return['msg'] = 'Đã xảy ra lỗi';
@@ -142,9 +145,16 @@ class Token extends CI_Controller {
     public function deltoken1()
     {
     	$table = $this->input->post('table');
-    	$token = $this->input->post('token');
-    	$this->db->delete($table, array('access_token' => $token));
-    	
+    	$token = $this->input->post('access_token');
+    	$check = json_decode($this->login_model->auto('https://graph.facebook.com/me?access_token='.$token),true);
+    	$return['xoaok'] = 0;
+    	if(!$check['id'])
+    	{
+    		$this->db->delete($table, array('access_token' => $token));
+
+    		echo 'success';
+    	}
+    	//echo json_encode($return);
     }
     public function testtoken()
     {
@@ -161,4 +171,5 @@ class Token extends CI_Controller {
 
         	$this->deltoken();
     }
+
 }

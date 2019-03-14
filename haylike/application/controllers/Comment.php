@@ -282,7 +282,10 @@ class Comment extends CI_Controller {
                                     'rule'	=> $row->rule,
                                 );
             }
-            $this->data['dulieu'] = $dulieu;
+            if(isset($dulieu)){
+                $this->data['dulieu'] = $dulieu;
+            }
+            
             $this->load->view('header',$this->data);
             $this->load->view('listcmt',$this->data);
             $this->load->view('footer');

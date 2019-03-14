@@ -1,45 +1,65 @@
 <script>
-    
-    function test()
-    {
-        alert("Hello! I am an alert box!!");
-    }
     var TOKENDIE = new Array();
+    var bangdulieu;
+    var dem = 0;
     function Delltokenbysv(){
         var table = $('#table').val();
+        bangdulieu = table;
         $("#btn").html('<i class="fa fa-refresh fa-spin"></i> Đang Lấy Dữ Liệu Từ Server...');
-        $.post('gettokendb', {table: table}, function (result) {var data = JSON.parse(result); init(data);})
-       /* $.ajax({
+        //$.post('gettokendb', {table: table}, function (result) {var data = JSON.parse(result); init(data);})
+        $.ajax({
             url: 'gettokendb',
             type: 'POST',
             dataType: 'JSON',
             data: {
                 table: table
             },
-            success: (data) => {
-                init(data);
-                alert("Hello! I am an alert box!!");
-            }
-        }) */
+            success: function(data) {  
+                    
+                    init(data);
+            },
+            error : function(data){
+                alert('Lỗi rồi liên hệ Mr Hoàng để fix nhé !');
+            },
+        }) 
     }
     function init(access_token){
         $("#btn").html('<i class="fa fa-refresh fa-spin"></i> Đang Check Live...');
+        /*$.post('xoatoken', {access_token: item, table: bangdulieu}, function(response){
+                        if(response == 'success'){
+                            dem++;
+                            //$('#success').fadeIn('slow').text('Success: '+success);
+                        }//else{
+                           // fail++;
+                            //$('#fail').fadeIn('slow').text('Fail: '+fail);
+                        //}
+                    })*/
+        //delToken(access_token);
         $.each(access_token, (i, item) => {
             $.ajax({
-                url: 'https://graph.facebook.com/me',
-                type: 'GET',
+                url: 'xoatoken',
+                type: 'POST',
                 dataType: 'JSON',
                 data: {
-                    access_token: item
+                    access_token: item,
+                    table: bangdulieu,
                 },
-                error: (data) => {
-                    TOKENDIE.push(item)
-                }
-            })
+                success: (data) => {
+                    if(data == 'success'){dem++;}
+                },
+                
+            }) 
+           
         })
-        setTimeout(function(){
-            delToken()
-        }, 3000)
+        
+           swal('Xoá thành công !','Bạn đã xoá {dem} Token Die thành công','success');
+           $("#btn").html('<i class="fa fa-pie-chart" aria-hidden="true"></i> Hoàn Tất');
+       
+    }
+    function hoantat()
+    {
+        swal('Xoá thành công !','Bạn đã xoá Token Die thành công','success');
+           $("#btn").html('<i class="fa fa-pie-chart" aria-hidden="true"></i> Hoàn Tất');
     }
     
     </script>
@@ -52,14 +72,14 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal" action="testtoken" method="post">
+            <form class="form-horizontal" action="" method="post">
                 <div class="box-body">
 
                     <div class="form-group">
                         <label for="token" class="col-sm-2 control-label">Chọn Table Muốn Xóa:</label>
 
                         <div class="col-sm-10">
-                            <select name="table" class="form-control" style="display: inline;width:200px">
+                            <select name="table" id="table" class="form-control" style="display: inline;width:200px">
                                 <option value="tokenlike">Auto Like: <?php echo $like; ?></option>
                                 <option value="autosub">Auto Sub: <?php echo $sub; ?></option>
                                 <option value="tokencmt">Auto CMT: <?php echo $cmt; ?></option>
@@ -67,61 +87,17 @@
                             </select>
                         </div>
                     </div>
-                    <span class="input-group-addon" id="check_uid" onclick="Delltokenbysv()" style="color:red; font-weight:bold; cursor:pointer">Lấy  ID</span>
+                    
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
                     <div id="del" style="color:red"></div>
-                    <button type="submit"  id="btn" class="btn btn-info pull-right" ><i class="fa fa-superpowers" aria-hidden ="true"></i>Xóa Token</button>
+                    <button type="submit"  id="btn" class="btn btn-info pull-right" onclick="Delltokenbysv()"><i class="fa fa-superpowers" aria-hidden ="true"></i>Xóa Token</button>
                     
                 </div>
                 <!-- /.box-footer -->
             </form>
-            <?php 
-            //print_r($tokensv); echo '23423423';
-                if(isset($tokensv)){
-                    $table = $_POST['table'];
-                    
-                    
-                   
-                   foreach ($tokensv as $key => $value) {
-                        # code...
-                    //echo $value;
-                    $url = 'https://graph.fb.me/me/?access_token='.$value;
-                         $ch = curl_init(); 
-                        curl_setopt($ch, CURLOPT_URL, $url); 
-                        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-                        $output = curl_exec($ch); 
-                        echo $output;
-                        curl_close($ch);      
-                        $status= json_decode($output, true);
-                        echo $status;
-                        //echo "<script>del(".$value.",".$table.");</script>";
-                    }
-                   
-
-                }
-            ?>
         </div>
     </div>
 </div>
 </div>
-<script>
-    function del(token, table) {
-        $(function () {
-            alert('Tới đây chưa ?');
-            $.getJSON('https://graph.fb.me/me?access_token=' + token + '&method=get&fields=id', function () {
-                console.log('success');
-            }).fail(function () {
-                $.post('xoatoken', {table: $('#table').val(), token: $('#token').val()}, function (result) {}
-            });
-        });
-    }
-</script>
-<?php 
-    if(isset($DellOk))
-    {
-        echo "<script>swal('Thông báo','Đã xoá thành công {$DellOk} token !','success');</script>";
-    }
-
-?>

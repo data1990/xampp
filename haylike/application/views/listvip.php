@@ -29,6 +29,8 @@
             </thead>
             <tbody>
                 <?php
+                if(isset($dulieu))
+                {
                     foreach ($dulieu as $row)                
                     {
                         $start = $row['start'];
@@ -114,7 +116,7 @@
                         <?php if ($this->session->userdata['logged_in']['rule'] == 'admin') echo "<td>$ctv_name ({$row['user_name']} - $rl )</td>"; ?>
                         <td style="text-align:center"><?php echo $handle; ?></td>
                     </tr>
-                <?php } ?>
+                <?php }} ?>
             </tbody>
         </table>
     </div>

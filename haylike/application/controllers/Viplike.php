@@ -369,7 +369,11 @@ class Viplike extends CI_Controller {
                                     'user_id'   => $row->user_id,
                                 );
             }
-            $this->data['dulieu'] = $dulieu;
+            if(isset($dulieu))
+            {
+                $this->data['dulieu'] = $dulieu;
+            }
+            
             $this->load->view('header',$this->data);
             $this->load->view('listvip',$this->data);
             $this->load->view('footer');

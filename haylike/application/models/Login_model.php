@@ -201,11 +201,31 @@ class Login_model extends CI_Model
 	}
 	function delmultitoken($tokendie,$table)
 	{
-		print_r($tokendie);
-	//	foreach ($tokendie as $key => $value) {
-	//		$this->db->delete($table, array('access_token' => $value));
+		$dem = 0;
+		foreach ($tokendie as $key => $value) {
+			$check = json_decode($this->login_model->auto('https://graph.facebook.com/me?access_token='.$value),true);
+	    	
+	    	if(!$check['id'])
+	    	{
+	    		$query = $this->db->delete($table, array('access_token' => $value));
+	    		if($query){ $dem++;}
+	    	}
+			//$this->db->delete($table, array('access_token' => $value));
 			# code...
-	//	}
-		return true;
+		}
+		return $dem;
+	}
+	function auto($url)
+	{
+		$ch = curl_init();
+		curl_setopt_array($ch, array(
+		      CURLOPT_CONNECTTIMEOUT => 5,
+		      CURLOPT_RETURNTRANSFER => true,
+		      CURLOPT_URL            => $url,
+		      )
+		   );
+		$result = curl_exec($ch);
+		curl_close($ch);
+		return $result;
 	}
 }
