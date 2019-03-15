@@ -60,6 +60,11 @@ class Login_model extends CI_Model
 		$query = $this->db->get_where('history',array('id_ctv' =>$userid));
 		return $query->num_rows();
 	}
+	function countgift($userid)
+	{
+		$query = $this->db->get_where('gift',array('id_ctv' =>$userid));
+		return $query->num_rows();
+	}
 	// Lấy ngày của từng userid
 	function countlikeexp($userid)
 	{

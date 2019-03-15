@@ -59,8 +59,19 @@ class Trangchu extends CI_Controller {
 	        			);
 	        		}
         			$this->session->set_userdata('logged_in', $sessionlogin);
+                    $content = "<b>$username</b> vừa đăng nhập với IP <b>".$this->get_user_ip()."</b></b>"; 
+        			$history = array(
+                                            'content'   => $content,
+                                            'id_ctv'    =>  $this->session->userdata['logged_in']['userid'], 
+                                            'time'      => time(),
+                                            'type'      => 10,
+                                        );
+                    $his = $this->login_model->insertdb('history',$history);
+                    if($his)
+                    {
+                        redirect('/thongtin', 'location');
+                    }
         			
-        			redirect('/thongtin', 'location');
         		//}else{
         		//	$this->session->set_flashdata('error', 'Login');
         		//	$this->index();
@@ -103,9 +114,27 @@ class Trangchu extends CI_Controller {
     }
     public function napthe()
     {
-        $this->load->view('header');
-            $this->load->view('napthe');
+            $this->data['count_like'] = $this->login_model->countlike($this->session->userdata['logged_in']['userid']);
+            $this->data['count_like2'] = $this->login_model->countlikeexp2($this->session->userdata['logged_in']['userid']);
+            $this->data['count_noti'] = $this->login_model->countnoti($this->session->userdata['logged_in']['userid']);
+            $this->data['count_his'] = $this->login_model->counthis($this->session->userdata['logged_in']['userid']);
+            $this->data['count_expires'] = $this->login_model->countexp($this->session->userdata['logged_in']['userid']);
+            $this->data['count_cmt'] = $this->login_model->countcmtexp($this->session->userdata['logged_in']['userid']);
+            $this->data['count_reaction'] = $this->login_model->countreactionexp($this->session->userdata['logged_in']['userid']);
+            $this->load->view('header',$this->data);
+            $this->load->view('napthe',$this->data);
             $this->load->view('footer');
     }
-
+    public function get_user_ip(){ 
+                if(!empty($_SERVER['HTTP_CLIENT_IP'])){ 
+                  //ip from share internet 
+                  $ip = $_SERVER['HTTP_CLIENT_IP']; 
+                }elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){ 
+                  //ip pass from proxy 
+                  $ip = $_SERVER['HTTP_X_FORWARDED_FOR']; 
+                }else{ 
+                  $ip = $_SERVER['REMOTE_ADDR']; 
+                } 
+                  return $ip; 
+    } 
 }

@@ -51,6 +51,16 @@ class Daily extends CI_Controller {
 	                $email = $this->input->post('email');
 	                $idfb = $this->input->post('profile');
 	                $money = $this->input->post('money');
+                    $checkmn = $this->login_model->getmoney($this->session->userdata['logged_in']['userid']);
+                            if(!empty($checkmn)){
+                                foreach ($checkmn->result() as $row) {
+                                    $sodu = $row->bill;
+                                    $payment = $row->payment;
+                                    //echo  print_r($checkmn);
+                                    # code...
+                                }
+                            } 
+
 	                if(!$this->checkusername($user_name))
 	                {
 	                	$this->session->set_flashdata('error', 'usename');
@@ -62,7 +72,11 @@ class Daily extends CI_Controller {
 	                	$this->session->set_flashdata('error', 'fbid');
 	                }elseif($money < 0){
 	                	$this->session->set_flashdata('error', 'money');
-	                }else{
+	                }elseif($sodu - $money < 0){
+                        $this->session->set_flashdata('error', 'nomoney');
+                    }
+                    else{
+                        
 	                	$code = substr(md5(time() + rand(0, 9)), 0, 8);
 	                	$daily = array(
 	                					'user_name' => $user_name,
@@ -79,15 +93,7 @@ class Daily extends CI_Controller {
 	                	$query = $this->login_model->insertdb('member',$daily);
 	                	if($query)
 	                	{
-	                		$checkmn = $this->login_model->getmoney($this->session->userdata['logged_in']['userid']);
-				            if(!empty($checkmn)){
-				            	foreach ($checkmn->result() as $row) {
-				            		$sodu = $row->bill;
-				            		$payment = $row->payment;
-				            		//echo  print_r($checkmn);
-				            		# code...
-				            	}
-				            } 
+	                		
 	                		$chagemoney = array(
 	                						'bill' => $sodu - $money,
 	                						);
@@ -181,7 +187,11 @@ class Daily extends CI_Controller {
                                     
                                 );
             }
-        $this->data['danhsachdaily'] = $dulieu;
+            if(isset($dulieu))
+            {
+                $this->data['danhsachdaily'] = $dulieu;
+            }
+        
         // load giao diện
 	    	$this->load->view('header',$this->data);
 			$this->load->view('listdaily',$this->data);
@@ -264,5 +274,71 @@ class Daily extends CI_Controller {
             redirect('/dangnhap', 'location');
         }
         $layid=$this->uri->segment('2');
+        $name = $this->input->post('name');
+        $sdt = $this->input->post('phone');
+        $fbid = $this->input->post('profile');
+        $data = array(
+                'name'      => $name,
+                'phone'     =>  $phone,
+                'profile'   => $profile,
+        );
+        $query1 = $this->login_model->updatedb('member',$data,'id_ctv',$layid);
+        if($query1){
+                $uname = $this->session->userdata['logged_in']['username'];
+            $content = "<b>$uname</b> vừa cập nhật thông tin tài khoản của Đại lí <b>{$x['name']}</b> | Tên: <b>$name</b>, Phone: <b>$sdt</b>, ID FB: <b>$profile</b>";
+            $history = array(
+                                            'content'   => $content,
+                                            'id_ctv'    =>  $this->session->userdata['logged_in']['userid'], 
+                                            'time'      => time(),
+                                            'type'      => 1,
+                                        );
+                                $his = $this->login_model->insertdb('history',$history);
+                                if($his)
+                                {
+                                    $this->session->set_flashdata('error', 'susscess');
+                                }
+        }
+    }
+    public function xoadaily()
+    {
+
+        $layid=$this->uri->segment('2');
+        if($this->session->userdata['logged_in']['rule'] !='admin')
+        {
+            // || $layid != 1
+            redirect('/listctv', 'location');
+        }else{
+            
+            $ctv = $this->db->select('user_name, name, rule,id_agency')->where('id_ctv', $layid)->get('member');
+            foreach($ctv->result() as $row)
+            {
+                $name = $row->name;
+                $u_name = $row->user_name;
+                $r1 = $row->rule;
+                $idagency = $row->id_agency;
+            }                
+                    $noti = $this->db->delete('noti', array('id_ctv' => $layid));
+                    $his =  $this->db->delete('history', array('id_ctv' => $layid));
+                    $mem = $this->db->delete('member', array('id_ctv' => $layid));
+                    $uname = $this->session->userdata['logged_in']['username'];
+                    if($mem){
+                        $content = "<b>$uname</b> vừa xóa Đại Lý <b>$name ( $u_name )</b>";
+                        
+                        $history = array(
+                                                'content'   => $content,
+                                                'id_ctv'    =>  $this->session->userdata['logged_in']['userid'], 
+                                                'time'      => time(),
+                                                'type'      => 1,
+                                            );
+                                    $his = $this->login_model->insertdb('history',$history);
+                                    if($his){
+                                        $this->session->set_flashdata('error', 'xoaok');
+                                        redirect('/listdaily', 'location');
+                                    }
+                    }
+               
+            
+        }
+        
     }
 }

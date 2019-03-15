@@ -76,6 +76,13 @@
                                                                 <br> - Tên : <font color="red">LUU NGOC HOANG</font>
                                                                 <br> - Nội Dung Chuyển Khoản: <font color="red"><b><?php echo $this->session->userdata['logged_in']['username']; ?> Nap Tien Mua Vip</b></font ></br> 
                               </td>
+                              <td>
+                                <b>- Tài khoản: <font color="red">0975842946</font>
+                                                                </b>
+                                                                <br> - Tên : <font color="red">NGUYEN QUANG TINH</font>
+                                                                <br> - Nội Dung Chuyển Khoản: <font color="red"><b><?php echo $this->session->userdata['logged_in']['username']; ?> Nap Tien Mua Vip</b></font ></br> 
+                              </td>
+                              
                             </tr> 
 
 </tbody> 
@@ -89,4 +96,4 @@
     </div> 
     </div> 
     </div> 
-  </div>
+ 

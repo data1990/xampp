@@ -3,7 +3,7 @@
         <!-- Horizontal Form -->
         <div class="box box-info wow fadeIn">
             <div class="box-header with-border">
-                <h3 class="box-title">Tạo tài khoản Đại Lí</h3>
+                <h3 class="box-title">Tạo tài khoản cho Cộng tác viên</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -62,16 +62,25 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="profile" class="col-sm-2 control-label">Số tiền (trừ vào số dư của bạn):</label>
+                        <label for="profile" class="col-sm-2 control-label">Số tiền mặc định(trừ vào số dư của bạn):</label>
 
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" min="1" id="money" value="<?php echo set_value('money') ?>" name="money" placeholder="Nhập số dư của tài khoản sau khi tạo thành công" required>
+                            <input type="number" class="form-control" id="money" value="<?php echo set_value('money') ?>" min="1" name="money" placeholder="Nhập số dư của tài khoản sau khi tạo thành công" required>
                         </div>
                     </div>
+                    <?php if($this->session->userdata['logged_in']['rule'] == 'admin'){ ?>
+                    <div class="form-group">
+                        <label for="profile" class="col-sm-2 control-label"></label>
+
+                        <div class="col-sm-10">
+                            <input type="checkbox" name="freelancer" /> Không vốn
+                        </div>
+                    </div>
+                    <?php } ?>
+
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    
                     <button type="submit" name="submit" class="btn btn-info pull-right">Tạo tài khoản</button>
                 </div>
                 <!-- /.box-footer -->
@@ -79,15 +88,12 @@
         </div>
     </div>
 </div>
-</div>
-
-<!--<center>-->
-                    <?php 
+<?php 
                         $error = $this->session->flashdata('error');
                         if($error=='usename'){
                             echo "<script>swal('Tên đăng nhập đã tồn tại trong hệ thống','Vui lòng chọn tên khác.','error');</script>";
                         }elseif($error=='susscess'){
-                        echo "<script>swal('Đăng ký thành công !','Tài khoản chưa được kích hoạt, vui lòng kích hoạt tại mục Quản lý Đại lý !','success');</script>";
+                        echo "<script>swal('Đăng ký thành công !','Tài khoản chưa được kích hoạt, vui lòng kích hoạt tại mục Quản lý CTV !','success');</script>";
                         }elseif($error=='email'){
                             echo "<script>swal('Địa chỉ Email đã có người sử dụng','Vui lòng chọn Email khác','error');</script>";
                             
@@ -106,4 +112,3 @@
                         } 
 
                         ?>
-                <!--</center>-->

@@ -221,7 +221,7 @@
 
       <li><a href="index.php?vip=GiftCode"><i class="glyphicon glyphicon-gift"></i> <span>GIFT CODE</span></a>
       </li>
-      <li><a href="index.php?vip=History"><i class="glyphicon glyphicon-retweet"></i> <span>Lịch sử hoạt động</span> <span class="pull-right-container"><span class="label label-warning"><?php echo $count_his; ?></span></span></a>
+      <li><a href=""><i class="glyphicon glyphicon-retweet"></i> <span>Lịch sử hoạt động</span> <span class="pull-right-container"><span class="label label-warning"><?php echo $count_his; ?></span></span></a>
       </li>
       <li class="treeview">
           <a href="#"><i class="glyphicon glyphicon-wrench"></i> <span>Cá nhân </span>
@@ -295,9 +295,9 @@
                                               </span>
                                           </a>
                   <ul class="treeview-menu">
-                      <li><a href="index.php?vip=Add_CTV"><i class="glyphicon glyphicon-asterisk"></i> Tạo tài khoản CTV</a>
+                      <li><a href="themctv"><i class="glyphicon glyphicon-asterisk"></i> Tạo tài khoản CTV</a>
                       </li>
-                      <li><a href="index.php?vip=List_CTV"><i class="glyphicon glyphicon-asterisk"></i> Danh sách CTV</a>
+                      <li><a href="listctv"><i class="glyphicon glyphicon-asterisk"></i> Danh sách CTV</a>
                       </li>
                       <li><a href="index.php?vip=Transfer_Money"><i class="glyphicon glyphicon-asterisk"></i> Chuyển tiền</a>
                       </li>
@@ -310,9 +310,9 @@
                                               </span>
                                           </a>
                   <ul class="treeview-menu">
-                      <li><a href="index.php?vip=Add_GiftCode"><i class="glyphicon glyphicon-asterisk"></i> Thêm Gift Code</a>
+                      <li><a href="taogiftcode"><i class="glyphicon glyphicon-asterisk"></i> Thêm Gift Code</a>
                       </li>
-                      <li><a href="index.php?vip=Manager_GiftCode"><i class="glyphicon glyphicon-asterisk"></i> Quản Lí Gift Code</a>
+                      <li><a href="<?php echo base_url('listgiftcode'); ?>"><i class="glyphicon glyphicon-asterisk"></i> Quản Lí Gift Code</a>
                       </li>
                   </ul>
               </li>
@@ -320,7 +320,7 @@
               <li><a href="napthe"><i class="glyphicon glyphicon-gift"></i> <span>Nạp Tiền</span></a>
               </li>
 
-              <li><a href="index.php?vip=History"><i class="glyphicon glyphicon-retweet"></i> <span>Lịch sử hoạt động</span>
+              <li><a href=""><i class="glyphicon glyphicon-retweet"></i> <span>Lịch sử hoạt động</span>
                                               <span class="pull-right-container"><span class="label label-warning"><?php echo $count_his; ?>
                                                   </span></span></a>
               </li>
@@ -399,9 +399,9 @@
                                                 </span>
                                             </a>
                 <ul class="treeview-menu">
-                    <li><a href="index.php?vip=Add_GiftCode"><i class="glyphicon glyphicon-asterisk"></i> Thêm Gift Code</a>
+                    <li><a href="taogiftcode"><i class="glyphicon glyphicon-asterisk"></i> Thêm Gift Code</a>
                     </li>
-                    <li><a href="index.php?vip=Manager_GiftCode"><i class="glyphicon glyphicon-asterisk"></i> Quản Lí Gift Code</a>
+                    <li><a href="<?php echo base_url('listgiftcode'); ?>"><i class="glyphicon glyphicon-asterisk"></i> Quản Lí Gift Code</a>
                     </li>
                 </ul>
             </li>
@@ -418,7 +418,7 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="index.php?vip=History"><i class="glyphicon glyphicon-retweet"></i> <span>Quản lí Lịch sử </span> <span class="pull-right-container"><span class="label label-warning">13</span></span></a>
+            <li><a href="<?php echo base_url('history'); ?>"><i class="glyphicon glyphicon-retweet"></i> <span>Quản lí Lịch sử </span> <span class="pull-right-container"><span class="label label-warning"><?php echo $count_his; ?></span></span></a>
             </li>
 
             <li class="treeview">
@@ -441,9 +441,9 @@
                                                 </span>
                                             </a>
                 <ul class="treeview-menu">
-                    <li><a href="index.php?vip=Add_CTV"><i class="glyphicon glyphicon-asterisk"></i> Tạo tài khoản CTV</a>
+                    <li><a href="themctv"><i class="glyphicon glyphicon-asterisk"></i> Tạo tài khoản CTV</a>
                     </li>
-                    <li><a href="index.php?vip=List_CTV"><i class="glyphicon glyphicon-asterisk"></i> <span>Danh sách CTV</span></a>
+                    <li><a href="listctv"><i class="glyphicon glyphicon-asterisk"></i> <span>Danh sách CTV</span></a>
                     </li>
 
                 </ul>

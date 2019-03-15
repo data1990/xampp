@@ -76,7 +76,26 @@ $route['gettokendb'] = 'token/gettokendb';
 $route['testtoken'] = 'token/testtoken';
 $route['xoatoken'] = 'token/deltoken1';
 $route['napthe'] = 'trangchu/napthe';
+
 $route['themdaily'] = 'daily';
 $route['listdaily'] = 'daily/danhsachdaily';
 $route['kichhoat/(:num)'] = 'daily/kichhoat/$1';
+$route['khoa/(:num)'] = 'daily/khoaacc/$1';
+$route['mokhoa/(:num)'] = 'daily/mokhoa/$1';
+$route['xoadaily/(:num)'] = 'daily/xoadaily/$1';
 $route['capnhatdaily/(:num)'] = 'daily/capnhat/$1';
+$route['capnhat-daily/(:num)'] = 'daily/update/$1';
+
+$route['themctv'] = 'ctv';
+$route['listctv'] = 'ctv/danhsachctv';
+$route['kichhoatctv/(:num)'] = 'ctv/kichhoat/$1';
+$route['khoactv/(:num)'] = 'ctv/khoaacc/$1';
+$route['mokhoactv/(:num)'] = 'ctv/mokhoa/$1';
+$route['xoactv/(:num)'] = 'ctv/xoactv/$1';
+$route['capnhatctv/(:num)'] = 'ctv/capnhat/$1';
+$route['capnhat-ctv/(:num)'] = 'ctv/update/$1';
+
+$route['taogiftcode'] = 'giftcode';
+$route['listgiftcode'] = 'giftcode/listcode';
+
+$route['history'] = 'history';

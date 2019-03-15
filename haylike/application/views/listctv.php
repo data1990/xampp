@@ -1,6 +1,6 @@
 <div class="box wow fadeIn">
     <div class="box-header">
-        <h3 class="box-title">Danh sách Đại Lí</h3>
+        <h3 class="box-title">Danh sách Cộng Tác Viên</h3>
     </div>
     <!-- /.box-header -->
     <div class="box-body">
@@ -35,15 +35,15 @@
                         //if($row['COUNT(member.user_name)'] ){
                          //   $ctv = $row['COUNT(member.user_name)'];
                         //}
-                        $z = "<a href='capnhatdaily/$id' class='btn btn-info'>Cập nhật</a><a href='khoa/$id' class='btn btn-danger'>Khóa</a>";
+                        $z = "<a href='capnhatctv/$id' class='btn btn-info'>Cập nhật</a><a href='khoactv/$id' class='btn btn-danger'>Khóa</a>";
                         $tt = '<font color="green">Đã kích hoạt</font>';
                         if ($row['status'] == 0) {
                             $tt = '<font color="red">Đang chờ</font>';
-                            $u = "<a href='kichhoat/$id' class='btn btn-success'> Kích hoạt</a>";
+                            $u = "<a href='kichhoatctv/$id' class='btn btn-success'> Kích hoạt</a>";
                             
                         } else if ($row['status'] == -1) {
                             $tt = '<font color="red">Khóa</font>';
-                            $z = "<a href='mokhoa/$id' class='btn btn-success'> Mở khóa</a>";
+                            $z = "<a href='mokhoactv/$id' class='btn btn-success'> Mở khóa</a>";
                         }
                         ?>
                         <tr style="font-weight: bold">
@@ -65,13 +65,24 @@
         </div>
     </div>
 </div>
-
+<script>
+    function check(id,num) {
+        if(num > 0){
+            alert('CTV này đang có '+num+' id vip trên hệ thống. Không thể xóa!');
+            return false;
+        }else{
+            if(confirm('Bạn có chắc chắc muốn xóa CTV này ?')== true){
+                window.location = 'xoactv/'+id;
+            }
+        }
+    }
+</script>
 <?php 
                         $error = $this->session->flashdata('error');
                         if($error=='usename'){
                             echo "<script>swal('Tên đăng nhập đã tồn tại trong hệ thống','Vui lòng chọn tên khác.','error');</script>";
                         }elseif($error=='kichhoatok'){
-                        echo "<script>swal('Kích hoạt thành công !','Bạn đã kích hoạt thành công tài khoản đại lý !','success');</script>";
+                        echo "<script>swal('Kích hoạt thành công !','Bạn đã kích hoạt thành công tài khoản CTV !','success');</script>";
                         }elseif($error=='kichhoatfail'){
                             echo "<script>swal('Xảy ra lỗi !','Vui lòng liên hệ Mr Hoàng để fix lỗi ngay nhé !','error');</script>";
                             
@@ -84,20 +95,12 @@
                         } elseif($error=='xoaok'){
                             echo "<script>swal('Thành công !','Xoá thành công !','success');</script>";
                             
-                        } elseif($error=='like'){
-                            echo "<script>swal('Chưa chọn cảm xúc !','Bạn hãy chọn ít nhất 1 cảm xúc nhé !','error');</script>";
+                        } elseif($error=='loi'){
+                            echo "<script>swal('Lỗi rồi !','Mò vào đó làm gì thế ????','error');</script>";
+                            
+                        } elseif($error=='susscess'){
+                            echo "<script>swal('Thành công !','Bạn hãy cập nhật thành công CTV !','success');</script>";
                             
                         } 
 
                         ?>
-<script>
-    function check(id,num,ctv) {
-        if(num >0 || ctv >0){
-            alert('Đại lí này đang có '+ctv+' CTV và '+num+' id trên hệ thống. Không thể xóa');
-            return false;
-        }
-        if(confirm('Bạn cũng sẽ xóa toàn bộ thông báo, lịch sử của Đại lí này, Bạn có chắc chắc muốn tiếp tục ?')== true){
-            window.location = 'xoadaily/'+id;
-        }
-    }
-</script>

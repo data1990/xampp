@@ -3,7 +3,7 @@
         <!-- Horizontal Form -->
         <div class="box box-info wow fadeIn">
             <div class="box-header with-border">
-                <h3 class="box-title">Cập nhật thông tin Đại Lý</h3>
+                <h3 class="box-title">Cập nhật thông tin CTV</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -12,7 +12,7 @@
                         foreach ($dulieu as $row)                
                         {
                 ?>
-            <form class="form-horizontal" action="<?php echo base_url('capnhat-daily/'.$row["id_ctv"])?>" method="post">
+            <form class="form-horizontal" action="<?php echo base_url('capnhat-ctv/'.$row["id_ctv"])?>" method="post">
                 
                 <div class="box-body">
                     <div class="form-group">
@@ -66,7 +66,7 @@
 <?php 
                         $error = $this->session->flashdata('error');
                         if($error=='susscess'){
-                        echo "<script>swal('Cập nhật thành công !','Cập nhật thành công đại lý !','success');</script>";
+                        echo "<script>swal('Cập nhật thành công !','Cập nhật thành công CTV !','success');</script>";
                         }
 
                         ?>
