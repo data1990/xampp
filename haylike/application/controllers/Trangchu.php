@@ -101,5 +101,11 @@ class Trangchu extends CI_Controller {
         $this->session->unset_userdata('logged_in', $sessionArray);
         redirect('');
     }
+    public function napthe()
+    {
+        $this->load->view('header');
+            $this->load->view('napthe');
+            $this->load->view('footer');
+    }
 
 }

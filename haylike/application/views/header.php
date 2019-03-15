@@ -18,32 +18,32 @@
         <meta name="description" content="KhienAvatar.TOP là 1 hệ thống quản lí VIP Facebook Auto chuyên nghiệp nhất hiện nay với những tính năng VIP Like, VIP CMT, VIP Share mạnh mẽ, tối ưu, mọi thứ đều được tự động hóa hiệu quả cao." />
         <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/D376D44F-6019-EA42-BB97-1F6814DFD476/main.js" charset="UTF-8"></script>
         <!--<script src="assets/js/deptrai.js"></script>-->
-        <link rel="stylesheet" href="assets/css/theme.css">
-        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="<?php echo base_url('assets/css/theme.css'); ?>">
+        <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css'); ?>">
         <script src="https://www.google.com/recaptcha/api.js"></script>
-        <link rel="stylesheet" href="assets/css/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap/css/bootstrap.min.css'); ?>">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-        <link rel="stylesheet" href="assets/css/dist/css/AdminLTE.min.css">
-        <link rel="stylesheet" href="assets/css/dist/css/skins/_all-skins.min.css">
-        <link rel="stylesheet" href="assets/css/plugins/datatables/dataTables.bootstrap.css">
-        <link href="assets/css/animate.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/vta2901.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/profile.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/bootstrap/fonts.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="<?php echo base_url('assets/css/dist/css/AdminLTE.min.css'); ?>">
+        <link rel="stylesheet" href="<?php echo base_url('assets/css/dist/css/skins/_all-skins.min.css'); ?>">
+        <link rel="stylesheet" href="<?php echo base_url('assets/css/plugins/datatables/dataTables.bootstrap.css'); ?>">
+        <link href="<?php echo base_url('assets/css/animate.css'); ?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url('assets/css/vta2901.css'); ?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url('assets/css/profile.css'); ?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url('assets/css/bootstrap/fonts.css'); ?>" rel="stylesheet" type="text/css" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.7/sweetalert2.min.css" rel="stylesheet" />
-        <script src="assets/css/plugins/jQuery/jquery-3.1.1.min.js"></script>
+        <script src="<?php echo base_url('assets/css/plugins/jQuery/jquery-3.1.1.min.js'); ?>"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.7/sweetalert2.min.js"></script>
-        <script src="assets/css/jCarouselLite/jquery-1.11.1.js"></script>
-        <script src="assets/css/bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/js/wow.js"></script>
-        <script src="assets/js/noti.js"></script>
-        <script src="assets/css/dist/js/adminlte.js"></script>
-        <script src="assets/css/plugins/datatables/jquery.dataTables.min.js"></script>
-        <script src="assets/css/plugins/datatables/dataTables.bootstrap.min.js"></script>
-        <script src="assets/css/plugins/ckeditor/ckeditor.js"></script>
+        <script src="<?php echo base_url('assets/css/jCarouselLite/jquery-1.11.1.js'); ?>"></script>
+        <script src="<?php echo base_url('assets/css/bootstrap/js/bootstrap.min.js'); ?>"></script>
+        <script src="<?php echo base_url('assets/js/wow.js'); ?>"></script>
+        <script src="<?php echo base_url('assets/js/noti.js'); ?>"></script>
+        <script src="<?php echo base_url('assets/css/dist/js/adminlte.js'); ?>"></script>
+        <script src="<?php echo base_url('assets/css/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
+        <script src="<?php echo base_url('assets/css/plugins/datatables/dataTables.bootstrap.min.js'); ?>"></script>
+        <script src="<?php echo base_url('assets/css/plugins/ckeditor/ckeditor.js'); ?>"></script>
         <script src='https://www.google.com/recaptcha/api.js'></script>
-        <!--<script src="inc/js/ext.js"></script>-->
+        <!--<script src="<?php echo base_url('inc/js/ext.js'); ?>"></script>-->
 <script>
   window.fbAsyncInit = function() {
     FB.init({
@@ -138,7 +138,7 @@
                 <img src="https://graph.facebook.com/<?php echo isset($this->session->userdata['logged_in']['fbid']) ? $this->session->userdata['logged_in']['fbid'] : '4'; ?>/picture?type=large" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p><span class="badge bg-teal"><?php echo isset($this->session->userdata['logged_in']['name']) ? $this->session->userdata['logged_in']['name'] : 'Mark Zuckerberg'; ?></span> <img src="assets/img/verify.png" alt="verify" style="width:16px;height:16px" /></p>
+                <p><span class="badge bg-teal"><?php echo isset($this->session->userdata['logged_in']['name']) ? $this->session->userdata['logged_in']['name'] : 'Mark Zuckerberg'; ?></span> <img src="<?php echo base_url('assets/img/verify.png'); ?>" alt="verify" style="width:16px;height:16px" /></p>
                 <!-- Status -->
                 <a href="">
                 <span class="badge bg-red"><?php echo number_format(isset($this->session->userdata['logged_in']['money']) ? $this->session->userdata['logged_in']['money'] : '10000000'); ?> VNĐ</span>
@@ -160,7 +160,7 @@
       </li>
       <li class="wow fadeInUp" data-wow-duration="2s"><a href="index.php?vip=Recover"><i class="glyphicon glyphicon-lock"></i> <span>Quên mật khẩu?</span></a>
       </li>
-      <li class="wow fadeInUp" data-wow-duration="2.5s"><a href="index.php?vip=Nap_The"><i class="glyphicon glyphicon-shopping-cart"></i> <span>Thanh toán</span></a>
+      <li class="wow fadeInUp" data-wow-duration="2.5s"><a href="napthe"><i class="glyphicon glyphicon-shopping-cart"></i> <span>Thanh toán</span></a>
       </li>
       <li class="wow fadeInUp" data-wow-duration="3s"><a data-toggle="modal" href="#price"><i class="glyphicon glyphicon-usd" id="showModal"></i> <span>Bảng giá</span></a>
       </li>
@@ -180,7 +180,7 @@
 
       <li class="header">DANH SÁCH MENU</li>
 
-      <li><a href="index.php?vip=Nap_The"><i class="glyphicon glyphicon-usd"></i> <span>Nạp tiền</span></a>
+      <li><a href="napthe"><i class="glyphicon glyphicon-usd"></i> <span>Nạp tiền</span></a>
       </li>
       <li class="bg-green"><a style="color: #fff;background-image: url('https://zmp3-static.zadn.vn/skins/zmp3-v5.1/images/tet/backgroud_tet.png'); background-repeat: no-repeat,repeat; background-position: center;" href="https://bit.ly/SupportVTASYSTEM" target="_blank"><i class="fa fa-life-ring" aria-hidden="true"></i> <span>Hỗ Trợ Thành Viên</span></a>
       </li>
@@ -216,7 +216,7 @@
       <li><a href="hethan"><i class="glyphicon glyphicon-off"></i> <span>VIP ID Sắp Hết Hạn</span><span class="pull-right-container"> <span class="label label-danger"><?php echo $count_expires; ?></span></span></a>
       </li>
       <li class="header">#MEMBER PANEL</li>
-      <li><a href="index.php?vip=Nap_The"><i class="glyphicon glyphicon-gift"></i> <span>Nạp Tiền</span></a>
+      <li><a href="napthe"><i class="glyphicon glyphicon-gift"></i> <span>Nạp Tiền</span></a>
       </li>
 
       <li><a href="index.php?vip=GiftCode"><i class="glyphicon glyphicon-gift"></i> <span>GIFT CODE</span></a>
@@ -234,7 +234,7 @@
               </li>
               <li><a href="index.php?vip=Change_Pass"><i class="glyphicon glyphicon-asterisk"></i> Đổi mật khẩu</a>
               </li>
-              <li><a href="index.php?vip=Nap_The"><i class="glyphicon glyphicon-asterisk"></i> Nạp tiền</a>
+              <li><a href="napthe"><i class="glyphicon glyphicon-asterisk"></i> Nạp tiền</a>
               </li>
           </ul>
       </li>
@@ -253,7 +253,7 @@
 
               <li class="header">DANH SÁCH MENU</li>
 
-              <li><a href="index.php?vip=Nap_The"><i class="glyphicon glyphicon-usd"></i> <span>Nạp tiền</span></a>
+              <li><a href="napthe"><i class="glyphicon glyphicon-usd"></i> <span>Nạp tiền</span></a>
               </li>
               <li class="bg-green"><a style="color: #fff;background-image: url('https://zmp3-static.zadn.vn/skins/zmp3-v5.1/images/tet/backgroud_tet.png'); background-repeat: no-repeat,repeat; background-position: center;" href="https://bit.ly/SupportVTASYSTEM" target="_blank"><i class="fa fa-life-ring" aria-hidden="true"></i> <span>Hỗ Trợ Thành Viên</span></a>
               </li>
@@ -317,7 +317,7 @@
                   </ul>
               </li>
               <li class="header">#MEMBER PANEL</li>
-              <li><a href="index.php?vip=Nap_The"><i class="glyphicon glyphicon-gift"></i> <span>Nạp Tiền</span></a>
+              <li><a href="napthe"><i class="glyphicon glyphicon-gift"></i> <span>Nạp Tiền</span></a>
               </li>
 
               <li><a href="index.php?vip=History"><i class="glyphicon glyphicon-retweet"></i> <span>Lịch sử hoạt động</span>
@@ -335,7 +335,7 @@
                       </li>
                       <li><a href="index.php?vip=Change_Pass"><i class="glyphicon glyphicon-asterisk"></i> Đổi mật khẩu</a>
                       </li>
-                      <li><a href="index.php?vip=Nap_The"><i class="glyphicon glyphicon-asterisk"></i> Nạp tiền</a>
+                      <li><a href="napthe"><i class="glyphicon glyphicon-asterisk"></i> Nạp tiền</a>
                       </li>
                   </ul>
               </li>
@@ -387,7 +387,11 @@
                       <?php } ?>
                   </ul>
               </li>
-            <li class="header">#ADMIN PANEL</li>
+              <li>
+                  <a href="napthe"><i class="glyphicon glyphicon-usd"></i> <span>Nạp tiền</span>
+                  </a>
+              </li>
+            <li class="header">ADMIN PANEL</li>
             <li class="treeview">
                 <a href="#"><i class="glyphicon glyphicon-gift"></i> <span>Quản Lí GIFT CODE</span>
                                                 <span class="pull-right-container">
@@ -424,9 +428,9 @@
                                                 </span>
                                             </a>
                 <ul class="treeview-menu">
-                    <li><a href="index.php?vip=Add_Agency"><i class="glyphicon glyphicon-asterisk"></i> Tạo tài khoản Đại Lí</a>
+                    <li><a href="themdaily"><i class="glyphicon glyphicon-asterisk"></i> Tạo tài khoản Đại Lí</a>
                     </li>
-                    <li><a href="index.php?vip=List_Agency"><i class="glyphicon glyphicon-asterisk"></i> <span>Danh sách Đại Lí</span></a>
+                    <li><a href="listdaily"><i class="glyphicon glyphicon-asterisk"></i> <span>Danh sách Đại Lí</span></a>
                     </li>
                 </ul>
             </li>

@@ -41,7 +41,7 @@ function thoat(){
         }
     </script>
     <?php } ?>
-    
+    </div>
 <footer class="main-footer">  
         <div class="col-md-3 hidden-xs"> 
           <i class="fa fa-home"></i> Liên Kết Trang 

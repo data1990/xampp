@@ -180,7 +180,7 @@
         </div>
     </div>
 </div>
-</div>
+
 
 <!--<div id="vtasystemnoti" class="modal fade" role="dialog">
     <div class="modal-dialog">

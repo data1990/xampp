@@ -180,7 +180,7 @@ if($vipcmt == 'on'){
         </div>
 
     </div>
-</div>
+
 <script>
     $('#help').click(function(){
         $('#hash').slideToggle();

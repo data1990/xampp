@@ -310,4 +310,3 @@
     </div><br />
     <p class="alert alert-danger" style="text-align:center"><span class="h4">Những VIP ID hết hạn sau 1 ngày không gia hạn sẽ bị xóa!!</span></p>
 </div>
-</div>

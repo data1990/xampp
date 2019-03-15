@@ -47,7 +47,7 @@
         </form>
     </div>
 </div>
-</div>        </div>
+     
 
 <!-- Control Sidebar -->
 <aside class="control-sidebar control-sidebar-dark" style="height: 100%;background-image: linear-gradient(rgb(53, 92, 125), rgb(108, 91, 123), rgb(192, 108, 132));">

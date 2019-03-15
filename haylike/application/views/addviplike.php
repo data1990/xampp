@@ -190,7 +190,7 @@
 <?php 
 }
 ?>
-</div>
+
 <!--<center>-->
                     <?php 
                         $error = $this->session->flashdata('error');
