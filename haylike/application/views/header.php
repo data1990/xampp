@@ -26,7 +26,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
         <link rel="stylesheet" href="<?php echo base_url('assets/css/dist/css/AdminLTE.min.css'); ?>">
         <link rel="stylesheet" href="<?php echo base_url('assets/css/dist/css/skins/_all-skins.min.css'); ?>">
-        <link rel="stylesheet" href="<?php echo base_url('assets/css/plugins/datatables/dataTables.bootstrap.css'); ?>">
+       <!-- <link rel="stylesheet" href="<?php echo base_url('assets/css/plugins/datatables/dataTables.bootstrap.css'); ?>"> -->
         <link href="<?php echo base_url('assets/css/animate.css'); ?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url('assets/css/vta2901.css'); ?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url('assets/css/profile.css'); ?>" rel="stylesheet" type="text/css" />
@@ -39,11 +39,12 @@
         <script src="<?php echo base_url('assets/js/wow.js'); ?>"></script>
         <script src="<?php echo base_url('assets/js/noti.js'); ?>"></script>
         <script src="<?php echo base_url('assets/css/dist/js/adminlte.js'); ?>"></script>
-        <script src="<?php echo base_url('assets/css/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
-        <script src="<?php echo base_url('assets/css/plugins/datatables/dataTables.bootstrap.min.js'); ?>"></script>
+       <!-- <script src="<?php echo base_url('assets/css/plugins/datatables/jquery.dataTables.min.js'); ?>"></script> -->
+       <!-- <script src="<?php echo base_url('assets/css/plugins/datatables/dataTables.bootstrap.min.js'); ?>"></script> -->
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
         <script src="<?php echo base_url('assets/css/plugins/ckeditor/ckeditor.js'); ?>"></script>
         <script src='https://www.google.com/recaptcha/api.js'></script>
-        <!--<script src="<?php echo base_url('inc/js/ext.js'); ?>"></script>-->
+        <script src="<?php echo base_url('assets/js/ext.js'); ?>"></script>
 <script>
   window.fbAsyncInit = function() {
     FB.init({
@@ -585,3 +586,41 @@
     </section>
 </aside>
 <div class="content-wrapper" style="padding:5px">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/plug-ins/1.10.15/api/row().show().js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#example1, #example2, #example3, #example4, #example5').DataTable( {
+        "order": [[ 0, "desc" ]],
+                "pageLength": 25,
+                "lengthMenu": [[5, 10, 25, 50, 100, 200, 500, 1000, -1], [5, 10, 25, 50, 100, 200, 500, 1000, "Tất cả"]],
+                "language": {
+                    "lengthMenu": "Hiển thị _MENU_ kết quả trên trang",
+                    "zeroRecords": "Không tìm thấy kết quả nào",
+                    "info": "Hiển thị trang _PAGE_ trong tổng số _PAGES_ trang",
+                    "infoEmpty": "Không tìm thấy kết quả nào phù hợp",
+                    "infoFiltered": "(lọc từ _MAX_ tổng số bản ghi)",
+                    "infoPostFix":    "",
+                    "thousands":      ",",
+                    "lengthMenu":     "Hiển thị _MENU_ kết quả",
+                    "loadingRecords": "Đang tải...",
+                    "processing":     "Đang xử lí...",
+                    "search":         "Tìm kiếm:",
+                    "zeroRecords":    "Không tìm thấy kết quả nào phù hợp",
+                    "searchPlaceholder": "Nhập nội dung...",
+                    "paginate": {
+                        "first":      "Trang đầu",
+                        "last":       "Trang cuối",
+                        "next":       "Tiếp",
+                        "previous":   "Trước"
+                    },
+                    "aria": {
+                        "sortAscending":  ": kích hoạt sắp xếp tăng dần",
+                        "sortDescending": ": kích hoạt sắp xếp giảm dần"
+                    }
+                }
+    } );
+} );
+  </script>
