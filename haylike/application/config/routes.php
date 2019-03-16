@@ -99,3 +99,8 @@ $route['taogiftcode'] = 'giftcode';
 $route['listgiftcode'] = 'giftcode/listcode';
 
 $route['history'] = 'history';
+$route['member'] = 'member';
+
+$route['congtien'] = 'giaodich';
+$route['capnhattien'] = 'giaodich/capnhattien';
+$route['chuyentien'] = 'giaodich/chuyentien';

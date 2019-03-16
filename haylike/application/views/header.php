@@ -449,7 +449,7 @@
                 </ul>
             </li>
 
-            <li><a href="index.php?vip=List_Member"><i class="glyphicon glyphicon-user"></i> <span>Quản lí Member</span> <span class="pull-right-container"><span class="label label-danger">0</span></span></a>
+            <li><a href="<?php echo base_url('member'); ?>"><i class="glyphicon glyphicon-user"></i> <span>Quản lí Member</span> <span class="pull-right-container"><span class="label label-danger">0</span></span></a>
             </li>
             <li class="treeview">
                 <a href="#"><i class="glyphicon glyphicon-random"></i> <span>Giao dịch </span>
@@ -458,11 +458,11 @@
                                                 </span>
                                             </a>
                 <ul class="treeview-menu">
-                    <li><a href="index.php?vip=Add_Money"><i class="glyphicon glyphicon-asterisk"></i> Cộng tiền</a>
+                    <li><a href="<?php echo base_url('congtien'); ?>"><i class="glyphicon glyphicon-asterisk"></i> Cộng tiền</a>
                     </li>
-                    <li><a href="index.php?vip=Change_Money"><i class="glyphicon glyphicon-asterisk"></i> Cập nhật tiền</a>
+                    <li><a href="<?php echo base_url('capnhattien'); ?>"><i class="glyphicon glyphicon-asterisk"></i> Cập nhật tiền</a>
                     </li>
-                    <li><a href="index.php?vip=Transfer_Money"><i class="glyphicon glyphicon-asterisk"></i> Chuyển tiền</a>
+                    <li><a href="<?php echo base_url('chuyentien'); ?>"><i class="glyphicon glyphicon-asterisk"></i> Chuyển tiền</a>
                     </li>
                 </ul>
             </li>

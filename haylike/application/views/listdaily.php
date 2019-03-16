@@ -24,8 +24,6 @@
                 <tbody>
                     <?php
                         if(isset($danhsachdaily)){
-
-
                        foreach ($danhsachdaily as $row)                
                         {
                         $id = $row['id_ctv'];
