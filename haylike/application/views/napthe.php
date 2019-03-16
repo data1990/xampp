@@ -75,14 +75,18 @@
                                                                 </b>
                                                                 <br> - Tên : <font color="red">LUU NGOC HOANG</font>
                                                                 <br> - Nội Dung Chuyển Khoản: <font color="red"><b><?php echo $this->session->userdata['logged_in']['username']; ?> Nap Tien Mua Vip</b></font ></br> 
-                              </td>
-                              <td>
+                              
+                              -------------------------------------------------------<br>
                                 <b>- Tài khoản: <font color="red">0975842946</font>
                                                                 </b>
                                                                 <br> - Tên : <font color="red">NGUYEN QUANG TINH</font>
+                                                                <br> - Nội Dung Chuyển Khoản: <font color="red"><b><?php echo $this->session->userdata['logged_in']['username']; ?> Nap Tien Mua Vip</b></font > </br> 
+                              -------------------------------------------------------<br>
+                                <b>- Tài khoản: <font color="red">0343096594</font>
+                                                                </b>
+                                                                <br> - Tên : <font color="red">LE VAN QUYNH</font>
                                                                 <br> - Nội Dung Chuyển Khoản: <font color="red"><b><?php echo $this->session->userdata['logged_in']['username']; ?> Nap Tien Mua Vip</b></font ></br> 
-                              </td>
-                              
+                                                                </td>
                             </tr> 
 
 </tbody> 

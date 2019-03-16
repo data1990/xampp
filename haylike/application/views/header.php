@@ -477,7 +477,7 @@
                 <ul class="treeview-menu">
                     <li><a href="index.php?vip=Send_Notify"><i class="glyphicon glyphicon-asterisk"></i> Gửi thông báo</a>
                     </li>
-                    <li><a href="index.php?vip=Notify"><i class="glyphicon glyphicon-asterisk"></i> Danh sách Thông báo</a>
+                    <li><a href="listthongbao"><i class="glyphicon glyphicon-asterisk"></i> Danh sách Thông báo</a>
                     </li>
                 </ul>
             </li>

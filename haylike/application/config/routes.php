@@ -104,3 +104,5 @@ $route['member'] = 'member';
 $route['congtien'] = 'giaodich';
 $route['capnhattien'] = 'giaodich/capnhattien';
 $route['chuyentien'] = 'giaodich/chuyentien';
+
+$route['listthongbao'] = 'thongbao';
