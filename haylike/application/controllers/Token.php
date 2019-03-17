@@ -163,9 +163,6 @@ class Token extends CI_Controller {
 		foreach ($gettoken->result() as $row)
         	{
         		$tokensv[] = $row->access_token;
-        		
-        	
-
         	}
         	$this->data['tokensv'] = $tokensv;
 

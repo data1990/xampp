@@ -26,23 +26,35 @@ class Thongbao extends CI_Controller {
     	{
 	    	redirect('/dangnhap', 'location');
 		}else{
-			if($this->session->userdata['logged_in']['rule'] == 'admin' || ($this->session->userdata['logged_in']['rule'] == 'admin' && $this->session->userdata['logged_in']['userid'] != 1))
+			if($this->session->userdata['logged_in']['rule'] == 'admin' && $this->session->userdata['logged_in']['userid'] != 1)
 			{
 				$query = $this->db->select('id, content, time, status')->where('id_ctv',$this->session->userdata['logged_in']['userid'])->get('noti');
+				foreach($query->result() as $row)
+	            {
+	            	$dulieu[] = array(
+	                                    'id'    => $row->id,
+	                                    'time' => $row->time,
+	                                    'status'   => $row->status,
+	                                    'content'   => $row->content,
+
+	                                );
+	            }
 			}else{
 				$query = $this->db->select('noti.id, noti.content, noti.time, noti.status, member.name,member.user_name')->from('noti')->join('member','noti.id_ctv = member.id_ctv')->get();
+				foreach($query->result() as $row)
+	            {
+	            	$dulieu[] = array(
+	                                    'id'    => $row->id,
+	                                    'time' => $row->time,
+	                                    'status'   => $row->status,
+	                                    'name'  => $row->name,
+	                                    'user_name'   => $row->user_name,
+	                                    'content'   => $row->content,
+
+	                                );
+	            }
 			}
-			foreach($query->result() as $row)
-            {
-            	$dulieu[] = array(
-                                    'id'    => $row->id,
-                                    'time' => $row->time,
-                                    'status'   => $row->status,
-                                    'name'  => $row->name,
-                                    'user_name'   => $row->user_name,
-                                    'content'   => $row->content,
-                                );
-            }
+			
             if(isset($dulieu))
             {
                 $this->data['dulieu'] = $dulieu;

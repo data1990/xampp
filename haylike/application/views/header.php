@@ -231,7 +231,7 @@
                                       </span>
                                   </a>
           <ul class="treeview-menu">
-              <li><a href="index.php?vip=Change_Info"><i class="glyphicon glyphicon-asterisk"></i> Cập nhật thông tin</a>
+              <li><a href="<?php echo base_url('updateinfo'); ?>"><i class="glyphicon glyphicon-asterisk"></i> Cập nhật thông tin</a>
               </li>
               <li><a href="index.php?vip=Change_Pass"><i class="glyphicon glyphicon-asterisk"></i> Đổi mật khẩu</a>
               </li>
@@ -332,7 +332,7 @@
                                               </span>
                                           </a>
                   <ul class="treeview-menu">
-                      <li><a href="index.php?vip=Change_Info"><i class="glyphicon glyphicon-asterisk"></i> Cập nhật thông tin</a>
+                      <li><a href="<?php echo base_url('updateinfo'); ?>"><i class="glyphicon glyphicon-asterisk"></i> Cập nhật thông tin</a>
                       </li>
                       <li><a href="index.php?vip=Change_Pass"><i class="glyphicon glyphicon-asterisk"></i> Đổi mật khẩu</a>
                       </li>
@@ -555,9 +555,9 @@
                                                       </span>
                                                   </a>
                       <ul class="treeview-menu">
-                          <li><a href="index.php?vip=Change_Info"><i class="glyphicon glyphicon-asterisk"></i> Cập nhật thông tin</a>
+                          <li><a href="<?php echo base_url('updateinfo'); ?>"><i class="glyphicon glyphicon-asterisk"></i> Cập nhật thông tin</a>
                           </li>
-                          <li><a href="index.php?vip=Change_Pass"><i class="glyphicon glyphicon-asterisk"></i> Đổi mật khẩu</a>
+                          <li><a href="<?php echo base_url('changepass'); ?>"><i class="glyphicon glyphicon-asterisk"></i> Đổi mật khẩu</a>
                           </li>
 
                       </ul>

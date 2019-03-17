@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'trangchu';
-$route['404_override'] = '';
+$route['404_override'] = 'my404';
 $route['translate_uri_dashes'] = FALSE;
 $route['dangnhap'] = 'trangchu/login';
 $route['dangky'] = 'trangchu/dangky';
@@ -106,3 +106,10 @@ $route['capnhattien'] = 'giaodich/capnhattien';
 $route['chuyentien'] = 'giaodich/chuyentien';
 
 $route['listthongbao'] = 'thongbao';
+
+$route['updateinfo'] = 'thongtin';
+$route['update-info'] = 'thongtin/updateinfo';
+$route['changepass'] = 'thongtin/changepass';
+$route['changepassok'] = 'thongtin/updatepass';
+
+$route['auto/like'] = 'Cron/viplike';

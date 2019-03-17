@@ -205,6 +205,21 @@ class Daily extends CI_Controller {
     	$query = $this->login_model->updatedb('member',$data,'id_ctv',$layid);
     	if($query)
     	{
+            $getinfo = $this->db->where('id_ctv',$layid)->get('member');
+                foreach($getinfo->result() as $row)
+                {
+                    $name = $row->id_ctv;
+                    $user_name = $row->user_name;
+                }
+                $uname = $this->session->userdata['logged_in']['username'];
+                $cnt = "CTV <b>{$name} ({$user_name})</b> vừa được <b>$uname</b> kích hoạt!!";
+                $noti = array(
+                                'content'   => $cnt,
+                                'time'      => time(),
+                                'id_ctv'    => $this->session->userdata['logged_in']['userid'],
+                                );
+                $not = $this->login_model->insertdb('noti',$noti);
+
     		$this->session->set_flashdata('error', 'kichhoatok');
     		redirect('/listdaily', 'location');
     	}else{
@@ -220,6 +235,21 @@ class Daily extends CI_Controller {
         $query = $this->login_model->updatedb('member',$data,'id_ctv',$layid);
         if($query)
         {
+            $getinfo = $this->db->where('id_ctv',$layid)->get('member');
+                foreach($getinfo->result() as $row)
+                {
+                    $name = $row->id_ctv;
+                    $user_name = $row->user_name;
+                }
+                $uname = $this->session->userdata['logged_in']['username'];
+                $cnt = "<b>$uname</b> đã <b>  Khóa</b> tài khoản của đại lý <b>{$name} ({$user_name})</b>";
+                $noti = array(
+                                'content'   => $cnt,
+                                'time'      => time(),
+                                'id_ctv'    => $this->session->userdata['logged_in']['userid'],
+                                );
+                $not = $this->login_model->insertdb('noti',$noti);
+
             $this->session->set_flashdata('error', 'khoaaccok');
             redirect('/listdaily', 'location');
         }else{
@@ -235,6 +265,20 @@ class Daily extends CI_Controller {
         $query = $this->login_model->updatedb('member',$data,'id_ctv',$layid);
         if($query)
         {
+            $getinfo = $this->db->where('id_ctv',$layid)->get('member');
+                foreach($getinfo->result() as $row)
+                {
+                    $name = $row->id_ctv;
+                    $user_name = $row->user_name;
+                }
+                $uname = $this->session->userdata['logged_in']['username'];
+                $cnt = "<b>$uname</b> đã <b> Mở Khóa</b> tài khoản của Đại lí <b>{$name} ({$user_name})</b>";
+                $noti = array(
+                                'content'   => $cnt,
+                                'time'      => time(),
+                                'id_ctv'    => $this->session->userdata['logged_in']['userid'],
+                                );
+                $not = $this->login_model->insertdb('noti',$noti);
             $this->session->set_flashdata('error', 'mokhoaok');
             redirect('/listdaily', 'location');
         }else{
@@ -259,6 +303,7 @@ class Daily extends CI_Controller {
                                     'email'  => $row->email,
                                     'bill' => $row->bill,
                                     'name'  => $row->name,
+                                    'id_ctv' => $layid,
                                     
                                 );
             }
@@ -332,6 +377,7 @@ class Daily extends CI_Controller {
                                             );
                                     $his = $this->login_model->insertdb('history',$history);
                                     if($his){
+
                                         $this->session->set_flashdata('error', 'xoaok');
                                         redirect('/listdaily', 'location');
                                     }

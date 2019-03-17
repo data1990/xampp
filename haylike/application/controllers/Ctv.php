@@ -263,6 +263,20 @@ class Ctv extends CI_Controller {
         $query = $this->login_model->updatedb('member',$data,'id_ctv',$layid);
         if($query)
         {
+        		$getinfo = $this->db->where('id_ctv',$layid)->get('member');
+                foreach($getinfo->result() as $row)
+                {
+                	$name = $row->id_ctv;
+                	$user_name = $row->user_name;
+                }
+                $uname = $this->session->userdata['logged_in']['username'];
+                $cnt = "<b>$uname</b> đã <b>  Khóa</b> tài khoản của CTV <b>{$name} ({$user_name})</b>";
+                $noti = array(
+                				'content' 	=> $cnt,
+                				'time'		=> time(),
+                				'id_ctv'	=> $this->session->userdata['logged_in']['userid'],
+                				);
+                $not = $this->login_model->insertdb('noti',$noti);
             $this->session->set_flashdata('error', 'khoaaccok');
             redirect('/listctv', 'location');
         }else{
@@ -278,7 +292,21 @@ class Ctv extends CI_Controller {
         $query = $this->login_model->updatedb('member',$data,'id_ctv',$layid);
         if($query)
         {
-            $this->session->set_flashdata('error', 'mokhoaok');
+        		$getinfo = $this->db->where('id_ctv',$layid)->get('member');
+                foreach($getinfo->result() as $row)
+                {
+                	$name = $row->id_ctv;
+                	$user_name = $row->user_name;
+                }
+                $uname = $this->session->userdata['logged_in']['username'];
+                $cnt = "CTV <b>{$name} ({$x['user_name']})</b> vừa được <b>$uname</b> mở khóa!!";
+                $noti = array(
+                				'content' 	=> $cnt,
+                				'time'		=> time(),
+                				'id_ctv'	=> $this->session->userdata['logged_in']['userid'],
+                				);
+                $not = $this->login_model->insertdb('noti',$noti);
+            	$this->session->set_flashdata('error', 'mokhoaok');
             redirect('/listctv', 'location');
         }else{
             $this->session->set_flashdata('error', 'mokhoafail');
@@ -329,7 +357,8 @@ class Ctv extends CI_Controller {
         $query1 = $this->login_model->updatedb('member',$data,'id_ctv',$layid);
         if($query1){
                 $uname = $this->session->userdata['logged_in']['username'];
-            $content = "<b>$uname</b> vừa cập nhật thông tin tài khoản của CTV <b>{$x['name']}</b> | Tên: <b>$name</b>, Phone: <b>$sdt</b>, ID FB: <b>$profile</b>";
+                
+            $content = "<b>$uname</b> vừa cập nhật thông tin tài khoản của CTV <b>{$name}</b> | Tên: <b>$name</b>, Phone: <b>$sdt</b>, ID FB: <b>$profile</b>";
             $history = array(
                                             'content'   => $content,
                                             'id_ctv'    =>  $this->session->userdata['logged_in']['userid'], 
@@ -339,6 +368,7 @@ class Ctv extends CI_Controller {
                                 $his = $this->login_model->insertdb('history',$history);
                                 if($his)
                                 {
+                                	
                                     $this->session->set_flashdata('error', 'susscess');
                                     redirect('/listctv', 'location');
                                 }
