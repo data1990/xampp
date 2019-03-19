@@ -14,7 +14,7 @@ class Facebook_model extends CI_Model
 	}
 	function getpost($fbid, $token)
 	{
-		$start_day_time = $this->count_time_to_current_in_day(date("d/m/Y")) - 7200;
+		$start_day_time = $this->count_time_to_current_in_day(date("d/m/Y")) - 144000;//7200;
 	$link='https://graph.facebook.com/' . $fbid . '/feed?fields=id,likes,message&since=' . $start_day_time . '&until=' . time() . '&access_token=' . $token . '&limit=20';
 	$getPost = json_decode(file_get_contents('https://graph.facebook.com/' . $fbid . '/feed?fields=id,likes,message&since=' . $start_day_time . '&until=' . time() . '&access_token=' . $token . '&limit=20'));
 		if ($getPost->data[0]->id) {
@@ -36,23 +36,27 @@ class Facebook_model extends CI_Model
 		$sttID = $data['id'];
 		$camxuc=$data['typeReact'];
 		$tk=$data['access_token'];
-		
+		//print_r($tk);
 		foreach($tk as $tokenlike)
 		{
 			if(empty($camxuc)){
 				$action='LOVE';
 			}else
 			{
+				
 				$action=$camxuc[array_rand($camxuc,1)];
 			}
+			
 			$like = "https://graph.facebook.com/".$sttID."/reactions?type=".$action."&access_token=".$tokenlike."&method=post";
+			//echo $like;
+			//echo '<br>';
 			$ch = curl_init();
 			curl_setopt ($ch, CURLOPT_URL, $like);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER,false);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,false);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION,true);
-			$page = curl_exec($ch);
+			curl_exec($ch);
 			curl_close($ch);
 		}
 	}

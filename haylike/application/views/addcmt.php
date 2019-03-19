@@ -20,8 +20,7 @@ if($vipcmt == 'on'){
                             <div class="input-group">
                                 <input type="number" class="form-control" onchange="checkid()" onkeyup="checkid()" id="user_id" value="<?php echo isset($_POST['user_id']) ? $_POST['user_id'] : ''; ?>" name="user_id" placeholder="User ID" required>
                             <p id="duysex"></p>
-                            <?php echo isset($loi['err']) ? $loi['err'] : ''; ?>
-                            <?php echo isset($loi['exists']) ? $loi['exists'] : ''; ?>
+                            
                                 <span class="input-group-addon"><a href="#get_uid" data-toggle="modal" style="text-decoration:none; color:red;font-weight:bold; cursor:pointer">Lấy ID</a></span>
                             </div>
                         </div>

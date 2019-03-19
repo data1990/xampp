@@ -113,3 +113,4 @@ $route['changepass'] = 'thongtin/changepass';
 $route['changepassok'] = 'thongtin/updatepass';
 
 $route['auto/like'] = 'Cron/viplike';
+$route['auto/cmt'] = 'Cron/vipcmt';

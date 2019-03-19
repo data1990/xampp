@@ -112,7 +112,7 @@ class Comment extends CI_Controller {
 
             }
             $mlike = $this->login_model->pakagecheckcmt($goi);
-            echo 'OK';
+            
            // print_r($mlike->result());
             foreach($mlike->result() as $row)
             {
