@@ -18,6 +18,11 @@ class Giaodich extends CI_Controller {
 	    	$this->data['count_cmt'] = $this->login_model->countcmtexp($this->session->userdata['logged_in']['userid']);
 	    	$this->data['count_reaction'] = $this->login_model->countreactionexp($this->session->userdata['logged_in']['userid']);
 	    	$this->data['idctv'] = $this->session->userdata['logged_in']['userid'];
+	    	$this->data['count_gift'] = $this->login_model->countgift($this->session->userdata['logged_in']['rule'],$this->session->userdata['logged_in']['userid']);
+            $this->data['count_cou'] = $this->login_model->countcou();
+            $this->data['count_agency'] = $this->login_model->countagency($this->session->userdata['logged_in']['rule'],$this->session->userdata['logged_in']['userid']);
+            $this->data['count_ctv'] = $this->login_model->countctv($this->session->userdata['logged_in']['rule'],$this->session->userdata['logged_in']['userid']);
+            $this->data['count_member'] = $this->login_model->countmember();
     }
     public function index()
     {
@@ -68,6 +73,13 @@ class Giaodich extends CI_Controller {
 	                		if($query1){
 	                			$uname = $this->session->userdata['logged_in']['username'];
 	                			$content = "<b>$uname</b> vừa cộng <b>".number_format($money)." VNĐ</b> cho tài khoản <b>$user_name</b>";
+	                			$chuyentien = array(
+	                								'user_name' => $user_name,
+	                								'thoigian'	=> time(),
+	                								'money'		=> $money,
+	                								'id_ctv'	=> $uname,
+	                							);
+	                			$this->login_model->insertdb('chuyentien',$chuyentien);
 	                			$history = array(
             								'content'	=> $content,
             								'id_ctv'	=>	$this->session->userdata['logged_in']['userid'], 
@@ -140,6 +152,13 @@ class Giaodich extends CI_Controller {
             								'time'		=> time(),
             								'type'		=> 2,
             							);
+	                			$chuyentien = array(
+	                								'user_name' => $user_name,
+	                								'thoigian'	=> time(),
+	                								'money'		=> $money,
+	                								'id_ctv'	=> $uname,
+	                							);
+	                			$this->login_model->insertdb('chuyentien',$chuyentien);
             					$his = $this->login_model->insertdb('history',$history);
             					if($his)
             					{
@@ -236,6 +255,13 @@ class Giaodich extends CI_Controller {
             								'time'		=> time(),
             								'type'		=> 2,
             							);
+	                			$chuyentien = array(
+	                								'user_name' => $user_name,
+	                								'thoigian'	=> time(),
+	                								'money'		=> $money,
+	                								'id_ctv'	=> $uname,
+	                							);
+	                			$this->login_model->insertdb('chuyentien',$chuyentien);
             					$his = $this->login_model->insertdb('history',$history);
             					if($his)
             					{
@@ -268,5 +294,33 @@ class Giaodich extends CI_Controller {
 			}
 	    	
 		}
+    }
+    public function top10money()
+    {
+    	if (!isset($this->session->userdata['logged_in'])) 
+    	{
+	    	redirect('/dangnhap', 'location');
+		}else{
+				$query = $this->db->where('payment' != 0)
+									->where('user_name' != 'admin')
+									->order_by('payment DESC')
+									->limit(10)
+									->get('member');
+				foreach($query->result() as $row)
+				{
+					$dulieu[]= array(
+									'user_name' => $row->user_name,
+									'payment'	=> $row->payment,
+									);
+				}
+				if(isset($dulieu))
+	            {
+	                $this->data['doanhthu'] = $dulieu;
+	            }
+				
+    			$this->load->view('header',$this->data);
+				$this->load->view('topdoanhthu',$this->data);
+				$this->load->view('footer');
+			}
     }
 }

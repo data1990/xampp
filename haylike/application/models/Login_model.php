@@ -68,17 +68,56 @@ class Login_model extends CI_Model
 		$query = $this->db->get_where('history',array('id_ctv' =>$userid));
 		return $query->num_rows();
 	}
-	function countgift($userid)
+	function countcou()
 	{
-		$query = $this->db->get_where('gift',array('id_ctv' =>$userid));
+		$query = $this->db->get('coupon');
 		return $query->num_rows();
 	}
+	
 	// Lấy ngày của từng userid
 	function countlikeexp($userid)
 	{
 		$query = $this->db->select('end')
 							->where('id_ctv',$userid)
 							->get('vip');
+		return $query->num_rows();
+	}
+	function countgift($rule,$idctv)
+	{
+		if($rule =='admin')
+		{
+			$query = $this->db->where('status',0)->get('gift');
+		}elseif($rule == 'agency'){
+			$query = $this->db->where(array('status' =>0, 'id_ctv' => $idctv))->get('gift');
+		}
+		
+		return $query->num_rows();
+	}
+	function countagency($rule,$idctv)
+	{
+		if($rule =='admin')
+		{
+			$query = $this->db->where(array('status' =>1, 'rule' => 'agency'))->get('member');
+		}elseif($rule == 'agency'){
+			$query = $this->db->where(array('status' =>1, 'id_ctv' => $idctv))->get('member');
+		}
+		return $query->num_rows();
+	}
+	function countctv($rule,$idctv)
+	{
+		if($rule =='admin')
+		{
+			$query = $this->db->where(array('status' =>1, 'rule' => 'freelancer'))->get('member');
+		}elseif($rule == 'agency'){
+			$query = $this->db->where(array('status' =>1, 'id_ctv' => $idctv))->get('member');
+		}
+		return $query->num_rows();
+	}
+	function countmember()
+	{
+		
+			$query = $this->db->where( 'rule' ,'member')->get('member');
+		
 		return $query->num_rows();
 	}
 	function countlikeexp2($userid)

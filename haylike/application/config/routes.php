@@ -114,3 +114,9 @@ $route['changepassok'] = 'thongtin/updatepass';
 
 $route['auto/like'] = 'Cron/viplike';
 $route['auto/cmt'] = 'Cron/vipcmt';
+
+$route['topdoanhthu'] = 'giaodich/top10money';
+
+$route['listpakagelike'] = 'pakage';
+$route['listpakagecmt'] = 'pakage/listcmt';
+$route['listpakageshare'] = 'pakage/listshare';

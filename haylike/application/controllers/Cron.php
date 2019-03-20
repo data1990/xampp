@@ -167,4 +167,8 @@ class Cron extends CI_Controller {
 	    	} // end > time
     	} // foreach
     }
+    public function liveview()
+    {
+
+    }
 }

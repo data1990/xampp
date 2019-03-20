@@ -1,136 +1,3 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <!-- Meta Tag -->
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="theme-color" content="red" />
-        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
-        <title>HAYLIKE.ONLINE - Hệ thống VIP LIKE, VIP CMT, VIP Share tốt nhất</title>
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <meta name="author" content="Mr Hoàng">
-        <meta name="copyright" content="Mr Hoàng">
-        <meta name="keywords" content="VIP Like, VIP CMT, VIP Reaction, Auto Like, Auto Sub, Auto CMT, Auto Share, VTASYSTEM.COM, HETHONGSONGAO.COM, VTASYSTEM.COM, VTA">
-        <meta property="og:url" content="http://khienavatar.top" />
-        <meta property="og:type" content="website" />
-        <meta property="og:locale" content="vi_VN" />
-        <meta property="og:image" content="src/banner.jpg" />
-        <meta name="description" content="KhienAvatar.TOP là 1 hệ thống quản lí VIP Facebook Auto chuyên nghiệp nhất hiện nay với những tính năng VIP Like, VIP CMT, VIP Share mạnh mẽ, tối ưu, mọi thứ đều được tự động hóa hiệu quả cao." />
-        <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/D376D44F-6019-EA42-BB97-1F6814DFD476/main.js" charset="UTF-8"></script>
-        <!--<script src="assets/js/deptrai.js"></script>-->
-        <link rel="stylesheet" href="<?php echo base_url('assets/css/theme.css'); ?>">
-        <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css'); ?>">
-        <script src="https://www.google.com/recaptcha/api.js"></script>
-        <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap/css/bootstrap.min.css'); ?>">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-        <link rel="stylesheet" href="<?php echo base_url('assets/css/dist/css/AdminLTE.min.css'); ?>">
-        <link rel="stylesheet" href="<?php echo base_url('assets/css/dist/css/skins/_all-skins.min.css'); ?>">
-       <!-- <link rel="stylesheet" href="<?php echo base_url('assets/css/plugins/datatables/dataTables.bootstrap.css'); ?>"> -->
-        <link href="<?php echo base_url('assets/css/animate.css'); ?>" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url('assets/css/vta2901.css'); ?>" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url('assets/css/profile.css'); ?>" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url('assets/css/bootstrap/fonts.css'); ?>" rel="stylesheet" type="text/css" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.7/sweetalert2.min.css" rel="stylesheet" />
-        <script src="<?php echo base_url('assets/css/plugins/jQuery/jquery-3.1.1.min.js'); ?>"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.7/sweetalert2.min.js"></script>
-        <script src="<?php echo base_url('assets/css/jCarouselLite/jquery-1.11.1.js'); ?>"></script>
-        <script src="<?php echo base_url('assets/css/bootstrap/js/bootstrap.min.js'); ?>"></script>
-        <script src="<?php echo base_url('assets/js/wow.js'); ?>"></script>
-        <script src="<?php echo base_url('assets/js/noti.js'); ?>"></script>
-        <script src="<?php echo base_url('assets/css/dist/js/adminlte.js'); ?>"></script>
-       <!-- <script src="<?php echo base_url('assets/css/plugins/datatables/jquery.dataTables.min.js'); ?>"></script> -->
-       <!-- <script src="<?php echo base_url('assets/css/plugins/datatables/dataTables.bootstrap.min.js'); ?>"></script> -->
-        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-        <script src="<?php echo base_url('assets/css/plugins/ckeditor/ckeditor.js'); ?>"></script>
-        <script src='https://www.google.com/recaptcha/api.js'></script>
-        <!--<script src="<?php echo base_url('assets/js/ext.js'); ?>"></script>-->
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '594675477573359',
-      cookie     : true,
-      xfbml      : true,
-      version    : 'v2.9'
-    });
-      
-    FB.AppEvents.logPageView();   
-      
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
-</head> 
-
-
-<!-- layout-boxed -->
-<body class="layout-boxed skin-red-light sidebar-mini  pace-done">
-    <div class="wrapper">
-    <header class="main-header">
-        <a href="/" class="logo" style="border-radius: 0px;background: linear-gradient(to right, rgb(53, 92, 125), rgb(108, 91, 123));">
-            <span class="logo-mini"><b>Mr Hoàng</b></span>
-            <span class="logo-lg"><img src="https://i.imgur.com/Zg5SdPK.png" alt="HAYLIKE.ONLINE - Hệ thống VIP LIKE, VIP CMT, VIP Share tốt nhất"></span>
-        </a>
-        <nav class="navbar navbar-static-top" style="border-radius: 0px;background: linear-gradient(to right, rgb(53, 92, 125), rgb(108, 91, 123), rgb(192, 108, 132));" role="navigation">
-            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button" style="border-radius: 0px;background: linear-gradient(to right, rgb(53, 92, 125));">
-                <span class="sr-only">Toggle navigation</span>
-            </a>
-
-            <div class="navbar-custom-menu">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a class="dropdown-toggle" id="timer"></a>
-                    </li>
-                    <!-- User Account: style can be found in dropdown.less -->
-                <?php if(isset($this->session->userdata['logged_in'])){?>
-                  <ul class="nav navbar-nav">
-                          <li class="dropdown user user-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="control-sidebar">
-                              <img src="https://graph.facebook.com/<?php echo $this->session->userdata['logged_in']['fbid']; ?>/picture/picture?type=large" class="user-image" alt="User Image">
-                              <span class="hidden-xs"><b><?php echo $this->session->userdata['logged_in']['name']; ?></b>  <i class="fa fa-sort-desc" aria-hidden="true"></i></span>
-                            </a>
-                          </li>
-                         
-                    
-                </ul>
-                
-                      
-                <?php }else{?>
-                    <li class="dropdown user user-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="https://graph.facebook.com/4/picture/picture?type=large" class="user-image" alt="User Image">
-                            <span class="hidden-xs"><b>CHÀO KHÁCH</b>  <i class="fa fa-sort-desc" aria-hidden="true"></i></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <!-- User image -->
-                            <li class="user-header">
-                                <img src="https://graph.facebook.com/4/picture?type=large" class="img-circle" alt="User Image">
-
-                                <p>
-                                    VUI LÒNG ĐĂNG NHẬP</small>
-                                </p>
-                            </li>
-                            <!-- Menu Footer-->
-                            <li class="user-footer">
-                                <div class="pull-left">
-                                    <a href="https://facebook.com/" class="btn btn-default btn-flat">Profile</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- Control Sidebar Toggle Button -->
-                <?php }?>
-
-                </ul>
-            </div>
-        </nav>
-</header>
 <!-- Sidebar Menu -->
         <aside class="main-sidebar">
             <section class="sidebar">
@@ -410,7 +277,7 @@
                                     <?php if ($idctv == 1) { ?>
                                         <li><a href="<?php echo base_url('congtien'); ?>"><i class="glyphicon glyphicon-asterisk"></i> Cộng tiền</a></li> 
                                         <li><a href="<?php echo base_url('capnhattien'); ?>"><i class="glyphicon glyphicon-asterisk"></i> Cập nhật tiền</a></li><?php } ?>
-                                    <?php if ($idctv == 1 || $this->session->userdata['logged_in']['rule'] == 'admin') { ?><li><a href="<?php echo base_url('chuyentien'); ?>"><i class="glyphicon glyphicon-asterisk"></i> Chuyển tiền</a></li> <?php } ?>
+                                    <?php if ($idctv == 1 || $idctv == 359) { ?><li><a href="<?php echo base_url('chuyentien'); ?>"><i class="glyphicon glyphicon-asterisk"></i> Chuyển tiền</a></li> <?php } ?>
 
                                 </ul>
                             </li>
@@ -435,7 +302,7 @@
                                             </a>
                                             <ul class="treeview-menu">
                                                 <li><a href="index.php?vip=Add_Package_Like"><i class="glyphicon glyphicon-asterisk"></i> Thêm Package</a></li>
-                                                <li><a href="<?php echo base_url('listpakagelike'); ?>"><i class="glyphicon glyphicon-asterisk"></i> Danh sách Package</a></li>
+                                                <li><a href="index.php?vip=List_Package_Like"><i class="glyphicon glyphicon-asterisk"></i> Danh sách Package</a></li>
                                             </ul>
                                         </li>
 
@@ -447,7 +314,7 @@
                                             </a>
                                             <ul class="treeview-menu">
                                                 <li><a href="index.php?vip=Add_Package_CMT"><i class="glyphicon glyphicon-asterisk"></i> Thêm Package</a></li>
-                                                <li><a href="<?php echo base_url('listpakagecmt'); ?>"><i class="glyphicon glyphicon-asterisk"></i> Danh sách Package</a></li>
+                                                <li><a href="index.php?vip=List_Package_CMT"><i class="glyphicon glyphicon-asterisk"></i> Danh sách Package</a></li>
                                             </ul>
                                         </li>
 
@@ -459,7 +326,7 @@
                                             </a>
                                             <ul class="treeview-menu">
                                                 <li><a href="index.php?vip=Add_Package_Share"><i class="glyphicon glyphicon-asterisk"></i> Thêm Package</a></li>
-                                                <li><a href="<?php echo base_url('listpakageshare'); ?>"><i class="glyphicon glyphicon-asterisk"></i> Danh sách Package</a></li>
+                                                <li><a href="index.php?vip=List_Package_Share"><i class="glyphicon glyphicon-asterisk"></i> Danh sách Package</a></li>
                                             </ul>
                                         </li>
 
@@ -490,7 +357,7 @@
 
                                 </ul>
                             </li>
-                            <?php if ($idctv == 1 || $this->session->userdata['logged_in']['rule'] == 'admin') { ?>
+                            <?php if ($idctv == 1) { ?>
                             <li class="treeview">
                                 <a href="#"><i class="glyphicon glyphicon-wrench"></i> <span>Token Management</span>
                                     <span class="pull-right-container">
@@ -512,42 +379,3 @@
                 ?>
             </section>
         </aside>
-<div class="content-wrapper" style="padding:5px">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/plug-ins/1.10.15/api/row().show().js"></script>
-
-<script>
-$(document).ready(function() {
-    $('#example1, #example2, #example3, #example4, #example5').DataTable( {
-        "order": [[ 0, "desc" ]],
-                "pageLength": 25,
-                "lengthMenu": [[5, 10, 25, 50, 100, 200, 500, 1000, -1], [5, 10, 25, 50, 100, 200, 500, 1000, "Tất cả"]],
-                "language": {
-                    "lengthMenu": "Hiển thị _MENU_ kết quả trên trang",
-                    "zeroRecords": "Không tìm thấy kết quả nào",
-                    "info": "Hiển thị trang _PAGE_ trong tổng số _PAGES_ trang",
-                    "infoEmpty": "Không tìm thấy kết quả nào phù hợp",
-                    "infoFiltered": "(lọc từ _MAX_ tổng số bản ghi)",
-                    "infoPostFix":    "",
-                    "thousands":      ",",
-                    "lengthMenu":     "Hiển thị _MENU_ kết quả",
-                    "loadingRecords": "Đang tải...",
-                    "processing":     "Đang xử lí...",
-                    "search":         "Tìm kiếm:",
-                    "zeroRecords":    "Không tìm thấy kết quả nào phù hợp",
-                    "searchPlaceholder": "Nhập nội dung...",
-                    "paginate": {
-                        "first":      "Trang đầu",
-                        "last":       "Trang cuối",
-                        "next":       "Tiếp",
-                        "previous":   "Trước"
-                    },
-                    "aria": {
-                        "sortAscending":  ": kích hoạt sắp xếp tăng dần",
-                        "sortDescending": ": kích hoạt sắp xếp giảm dần"
-                    }
-                }
-    } );
-} );
-  </script>
