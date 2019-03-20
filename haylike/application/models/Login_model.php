@@ -36,14 +36,22 @@ class Login_model extends CI_Model
 		//$this->db->where('password',md5($password));
 		$query = $this->db->where('user_name',$username)
 							->where('password',md5($password))
+							->limit(1)
 							->get('member');
-							
+		
 		if($query->num_rows() ==1)
 		{
-			return $query;
+			
+				return $query;
+			
+			
 		}else{
 			return false;
 		}
+	}
+	function checkuser($username)
+	{
+		//$query = $this->db->select('status')->where('');
 	}
 	function countlike($userid)
 	{

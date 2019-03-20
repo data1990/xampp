@@ -1,4 +1,3 @@
-       
 <div class="row">
 <div class="col-md-12">
     <!-- Horizontal Form -->
@@ -33,8 +32,17 @@
                         if($error=='Login'){
                             echo "<script>swal('Đăng Nhập Không Thành Công!','Sai tên đăng nhập hoặc mật khẩu.','error');</script>";
                         }elseif($error=='CapchaError'){
-                        echo "<script>swal('Captcha không đúng!','Nhập captcha đê','error');</script>";
-                    } ?>
+                            echo "<script>swal('Captcha không đúng!','Nhập captcha đê','error');</script>";
+                        }elseif($error=='ActiveAcc'){
+                            echo "<script>swal('Lỗi tài khoản !','Tài khoản chưa được kích hoạt vui lòng liên hệ Admin để kích hoạt !','error');</script>";
+                        }elseif($error=='LockAcc'){
+                            echo "<script>swal('Lỗi tài khoản !','Tài khoản đang bị khoá !','error');</script>";
+                        }elseif($error=='LoginOk'){
+                            echo "<script>swal('Đăng Nhập Thành Công!','Hệ Thống Xử Lý Trong 5s...','success');</script>";
+                            die('<meta http-equiv=refresh content="5; URL=thongtin">'); 
+                        }
+
+                    ?>
                 <!--</center>-->
             </div>
             <div class="box-footer">
@@ -85,3 +93,4 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
+</div>

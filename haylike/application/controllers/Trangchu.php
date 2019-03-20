@@ -43,40 +43,56 @@ class Trangchu extends CI_Controller {
         		//$this->session->set_flashdata('error', 'Bạn đã xác nhận capcha Google');
         		//$checkcp=true;
         		$result=$this->login_model->userlogin($username,$password);
+                $check = $this->db->select('status')->where('user_name',$username)->limit(1)->get('member');
+                foreach($check->result() as $row)
+                {
+                    $status = $row->status;
+                }
+                //echo $result;
         		if(!empty($result))
         		{
-        			foreach ($result->result() as $row)
-                	{
-	        			$sessionlogin=array(
-	        				'userid' => $row->id_ctv,
-	        				'username' =>$row->user_name,
-	        				'name'	=> $row->name,
-	        				'name'	=> $row->name,
-	        				'fbid'	=>	$row->profile,
-	        				'rule'	=>	$row->rule,
-	        				'money'	=> $row->bill,
-	        				'payment' =>	$row->payment,
-	        			);
-	        		}
-        			$this->session->set_userdata('logged_in', $sessionlogin);
-                    $content = "<b>$username</b> vừa đăng nhập với IP <b>".$this->get_user_ip()."</b></b>"; 
-        			$history = array(
-                                            'content'   => $content,
-                                            'id_ctv'    =>  $this->session->userdata['logged_in']['userid'], 
-                                            'time'      => time(),
-                                            'type'      => 10,
-                                        );
-                    $his = $this->login_model->insertdb('history',$history);
-                    if($his)
+                    if($status == 0)
                     {
-                        redirect('/thongtin', 'location');
+                        $this->session->set_flashdata('error', 'ActiveAcc');  
+                        $this->index();
+                    }elseif($status == -1)
+                    {
+                        $this->session->set_flashdata('error', 'LockAcc');  
+                        $this->index();
+                    }else
+                    {
+                        foreach ($result->result() as $row)
+                        {
+                            $sessionlogin=array(
+                                'userid' => $row->id_ctv,
+                                'username' =>$row->user_name,
+                                'name'  => $row->name,
+                                'name'  => $row->name,
+                                'fbid'  =>  $row->profile,
+                                'rule'  =>  $row->rule,
+                                'money' => $row->bill,
+                                'payment' =>    $row->payment,
+                            );
+                        }
+                        $this->session->set_userdata('logged_in', $sessionlogin);
+                        $content = "<b>$username</b> vừa đăng nhập với IP <b>".$this->get_user_ip()."</b></b>"; 
+                        $history = array(
+                                                'content'   => $content,
+                                                'id_ctv'    =>  $this->session->userdata['logged_in']['userid'], 
+                                                'time'      => time(),
+                                                'type'      => 10,
+                                            );
+                        $his = $this->login_model->insertdb('history',$history);
+                        if($his)
+                        {
+                            //echo "<script>swal('Đăng Nhập Thành Công!','Hệ Thống Xử Lý Trong 5s...','success');</script>"; 
+                            $this->session->set_flashdata('error', 'LoginOk');
+                            $this->index();
+                            //die('<meta http-equiv=refresh content="5; URL=thongtin">'); 
+                            //redirect('/thongtin', 'location');
+                        }
                     }
-        			
-        		//}else{
-        		//	$this->session->set_flashdata('error', 'Login');
-        		//	$this->index();
-        		//}
-        		//$this->index();
+        		
         	}else
         	{
         		$this->session->set_flashdata('error', 'CapchaError');	

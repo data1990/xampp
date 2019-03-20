@@ -44,7 +44,7 @@
         <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
         <script src="<?php echo base_url('assets/css/plugins/ckeditor/ckeditor.js'); ?>"></script>
         <script src='https://www.google.com/recaptcha/api.js'></script>
-        <script src="<?php echo base_url('assets/js/ext.js'); ?>"></script>
+        <!--<script src="<?php echo base_url('assets/js/ext.js'); ?>"></script>-->
 <script>
   window.fbAsyncInit = function() {
     FB.init({
