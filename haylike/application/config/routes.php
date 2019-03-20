@@ -74,7 +74,7 @@ $route['deltoken'] = 'token/deltoken';
 $route['deltokensv'] = 'token/deltokendb';
 $route['gettokendb'] = 'token/gettokendb';
 $route['testtoken'] = 'token/testtoken';
-$route['xoatoken'] = 'token/deltoken1';
+$route['xoatoken'] = 'token/xoatokendie'; //';
 $route['napthe'] = 'trangchu/napthe';
 
 $route['themdaily'] = 'daily';

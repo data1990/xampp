@@ -72,7 +72,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal" action="" method="post">
+            <form class="form-horizontal" action="xoatoken" method="post">
                 <div class="box-body">
 
                     <div class="form-group">
@@ -92,12 +92,19 @@
                 <!-- /.box-body -->
                 <div class="box-footer">
                     <div id="del" style="color:red"></div>
-                    <button type="submit"  id="btn" class="btn btn-info pull-right" onclick="Delltokenbysv()"><i class="fa fa-superpowers" aria-hidden ="true"></i>Xóa Token</button>
-                    
+                    <button type="submit"  id="btn" class="btn btn-info pull-right" ><i class="fa fa-superpowers" aria-hidden ="true"></i>Xóa Token</button>
+                    <!--onclick="Delltokenbysv()"-->
                 </div>
                 <!-- /.box-footer -->
             </form>
         </div>
     </div>
 </div>
+<?php 
+                        $error = $this->session->flashdata('error');
+                        $dem = $this->session->flashdata('dem');
+                        if($error=='OK'){
+                            echo "<script>swal('Bạn đã xoá Thành Công!',{$dem} .' Token','error');</script>";
+                        }
 
+                    ?>

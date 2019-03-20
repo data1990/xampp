@@ -214,7 +214,7 @@
               </li>
           </ul>
       </li>
-      <li><a href="hethan"><i class="glyphicon glyphicon-off"></i> <span>VIP ID Sắp Hết Hạn</span><span class="pull-right-container"> <span class="label label-danger"><?php echo $count_expires; ?></span></span></a>
+      <li><a href="<?php echo base_url('hethan'); ?>"><i class="glyphicon glyphicon-off"></i> <span>VIP ID Sắp Hết Hạn</span><span class="pull-right-container"> <span class="label label-danger"><?php echo $count_expires; ?></span></span></a>
       </li>
       <li class="header">#MEMBER PANEL</li>
       <li><a href="napthe"><i class="glyphicon glyphicon-gift"></i> <span>Nạp Tiền</span></a>
@@ -286,7 +286,7 @@
                       </li>
                   </ul>
               </li>
-              <li><a href="hethan"><i class="glyphicon glyphicon-off"></i> <span>VIP ID Sắp Hết Hạn</span><span class="pull-right-container"> <span class="label label-danger"><?php echo $count_expires; ?></span></span></a>
+              <li><a href="<?php echo base_url('hethan'); ?>"><i class="glyphicon glyphicon-off"></i> <span>VIP ID Sắp Hết Hạn</span><span class="pull-right-container"> <span class="label label-danger"><?php echo $count_expires; ?></span></span></a>
               </li>
               <li class="header">#AGENCY PANEL</li>
               <li class="treeview">
@@ -382,7 +382,7 @@
                       </span>
                   </a>
                   <ul class="treeview-menu">
-                      <li><a href="hethan"><i class="glyphicon glyphicon-asterisk"></i> Danh sách</a></li>
+                      <li><a href="<?php echo base_url('hethan'); ?>"><i class="glyphicon glyphicon-asterisk"></i> Danh sách</a></li>
                       <?php if ($idctv == 1) { ?>
                           <li><a href="index.php?vip=Del_Expires"><i class="glyphicon glyphicon-asterisk"></i> Xóa VIP ID Hết Hạn</a></li>
                       <?php } ?>

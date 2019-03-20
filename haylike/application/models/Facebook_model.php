@@ -14,7 +14,7 @@ class Facebook_model extends CI_Model
 	}
 	function getpost($fbid, $token)
 	{
-		$start_day_time = $this->count_time_to_current_in_day(date("d/m/Y")) - 144000;//7200;
+		$start_day_time = $this->count_time_to_current_in_day(date("d/m/Y")) - 244000;//7200;
 	$link='https://graph.facebook.com/' . $fbid . '/feed?fields=id,likes,message&since=' . $start_day_time . '&until=' . time() . '&access_token=' . $token . '&limit=20';
 	$getPost = json_decode(file_get_contents('https://graph.facebook.com/' . $fbid . '/feed?fields=id,likes,message&since=' . $start_day_time . '&until=' . time() . '&access_token=' . $token . '&limit=20'));
 		if ($getPost->data[0]->id) {

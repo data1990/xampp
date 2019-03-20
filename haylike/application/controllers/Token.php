@@ -142,12 +142,38 @@ class Token extends CI_Controller {
     		echo json_encode($return);
     	}
     }
+    public function xoatokendie()
+    {
+    	$table = $this->input->post('table');
+    	$gettoken = $this->db->select('access_token')->get($table);
+    	$dem=0;
+		$tokensv = array();
+		foreach ($gettoken->result() as $row)
+        	{
+        		$check = json_decode($this->login_model->auto('https://graph.facebook.com/me?access_token='.$row->access_token),true);
+        		if(!$check['id'])
+		    	{
+		    		$xoa = $this->db->delete($table, array('access_token' => $row->access_token));
+		    		if($xoa)
+		    		{
+		    			$dem++;
+		    		}
+		    	}
+        	}
+        	
+        	$this->session->set_flashdata('error', 'Ok');
+        	$this->session->set_flashdata('dem', $dem);
+        	
+			$this->deltoken();
+        	//return $dem;
+    }
     public function deltoken1()
     {
     	$table = $this->input->post('table');
     	$token = $this->input->post('access_token');
     	$check = json_decode($this->login_model->auto('https://graph.facebook.com/me?access_token='.$token),true);
     	$return['xoaok'] = 0;
+    	echo $token;echo $table;
     	if(!$check['id'])
     	{
     		$this->db->delete($table, array('access_token' => $token));

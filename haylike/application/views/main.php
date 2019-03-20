@@ -53,7 +53,7 @@
                             </li>
                             <?php if ($this->session->userdata['logged_in']['rule']=='admin' ) { ?>
                             <li class="list-group-item">
-                                <a href="/index.php?vip=Notify"><b>Bạn có</b> <b class="pull-right"><?php echo $count_noti; ?> <sup>noti</sup></b></a>
+                                <a href="listthongbao"><b>Bạn có</b> <b class="pull-right"><?php echo $count_noti; ?> <sup>noti</sup></b></a>
                             </li>
                             <?php } else if ($this->session->userdata['logged_in']['rule']=='member' ) { ?>
 
@@ -79,7 +79,7 @@
             <div class="col-lg-8">
                 <div class="notice notice-danger">
                     <center>
-                        <b><a href="/index.php?vip=Notify">Bạn có <?php echo $count_noti; ?> thông báo chưa xem!</a></b>
+                        <b><a href="listthongbao">Bạn có <?php echo $count_noti; ?> thông báo chưa xem!</a></b>
                     </center>
                 </div>
                 <div class="box box-success">
@@ -92,7 +92,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <a href="index.php?vip=Add_VIP_Like" class="btn btn-block btn-success">MUA</a>
+                                    <a href="addviplike" class="btn btn-block btn-success">MUA</a>
                                 </div>
                             </div>
                         </div>
@@ -105,10 +105,10 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-xs-6">
-                                    <a href="index.php?vip=Add_VIP_CMT" class="btn btn-block btn-success">MUA</a>
+                                    <a href="addcmt" class="btn btn-block btn-success">MUA</a>
                                 </div>
                                 <div class="col-xs-6">
-                                    <a href="index.php?vip=Manager_VIP_CMT" class="btn btn-block btn-success">QUẢN LÍ</a>
+                                    <a href="listcmt" class="btn btn-block btn-success">QUẢN LÍ</a>
                                 </div>
                             </div>
                         </div>
@@ -136,15 +136,15 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <a href="index.php?vip=Notify" class="btn btn-app">
+                        <a href="listthongbao" class="btn btn-app">
                             <span class="badge bg-yellow"><?php echo $count_noti; ?></span>
                             <i class="fa fa-envelope"></i> Tin nhắn riêng
                         </a>
-                        <a href="index.php?vip=History" class="btn btn-app">
+                        <a href="history" class="btn btn-app">
                             <span class="badge bg-yellow"><?php echo $count_his; ?></span>
                             <i class="fa fa-inbox"></i> Lịch sử hoạt động
                         </a>
-                        <a href="index.php?vip=Expires" class="btn btn-app">
+                        <a href="hethan" class="btn btn-app">
                             <span class="badge bg-yellow"><?php echo $count_expires; ?></span>
                             <i class="fa fa-barcode"></i> Các Id sắp hết hạn
                         </a>
@@ -152,15 +152,15 @@
                             <span class="badge bg-yellow"></span>
                             <i class="fa fa-heart-o"></i> Gift Code
                         </a>
-                        <a href="index.php?vip=Change_Info" class="btn btn-app">
+                        <a href="updateinfoo" class="btn btn-app">
                             <span class="badge bg-yellow"></span>
                             <i class="fa fa-user"></i> Cá nhân
                         </a>
-                        <a href="index.php?vip=Change_Pass" class="btn btn-app">
+                        <a href="changepass" class="btn btn-app">
                             <span class="badge bg-yellow"></span>
                             <i class="fa fa-expeditedssl"></i> Đổi mật khẩu
                         </a>
-                        <a href="index.php?vip=Nap_The" class="btn btn-app">
+                        <a href="napthe" class="btn btn-app">
                             <span class="badge bg-yellow"></span>
                             <i class="fa fa-money"></i> Nạp tiền
                         </a>
