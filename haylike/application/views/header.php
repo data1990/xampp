@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="theme-color" content="red" />
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
-        <title>HAYLIKE.ONLINE - Hệ thống VIP LIKE, VIP CMT, VIP Share tốt nhất</title>
+        <title>HAYLIKE.INFO- Hệ thống VIP LIKE, VIP CMT, VIP Share tốt nhất</title>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <meta name="author" content="Mr Hoàng">
         <meta name="copyright" content="Mr Hoàng">
@@ -75,7 +75,7 @@
     <header class="main-header">
         <a href="/" class="logo" style="border-radius: 0px;background: linear-gradient(to right, rgb(53, 92, 125), rgb(108, 91, 123));">
             <span class="logo-mini"><b>Mr Hoàng</b></span>
-            <span class="logo-lg"><img src="https://i.imgur.com/Zg5SdPK.png" alt="HAYLIKE.ONLINE - Hệ thống VIP LIKE, VIP CMT, VIP Share tốt nhất"></span>
+            <span class="logo-lg"><img src="<?php echo base_url('assets/img/haylike.png') ?>" alt="HAYLIKE.INFO - Hệ thống VIP LIKE, VIP CMT, VIP Share tốt nhất"></span>
         </a>
         <nav class="navbar navbar-static-top" style="border-radius: 0px;background: linear-gradient(to right, rgb(53, 92, 125), rgb(108, 91, 123), rgb(192, 108, 132));" role="navigation">
             <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button" style="border-radius: 0px;background: linear-gradient(to right, rgb(53, 92, 125));">

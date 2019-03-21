@@ -71,7 +71,7 @@ function thoat(){
           <i class="fa fa-link"></i> Liên Kết Site 
           <ul> 
             <li><a href="https://www.facebook.com/100009580369715" target="_blank">Facebook</a></li> 
-            <li><center><a href="https://hethongsongao.com/"><img src="https://www.easycounter.com/counter.php?hethongsongao" border="0" alt="stats counter"></a></center></li> 
+            
           </ul> 
         </div> 
       </footer>
