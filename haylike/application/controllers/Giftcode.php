@@ -142,7 +142,7 @@ class Giftcode extends CI_Controller {
 	            	$this->data['dulieu'] = $dulieu;
 	            }
 				$this->load->view('header',$this->data);
-				$this->load->view('listgiftcode',$this->data);
+				$this->load->view('giftcode/listgiftcode',$this->data);
 				$this->load->view('footer');
 			}
     }
@@ -156,5 +156,9 @@ class Giftcode extends CI_Controller {
 	        $randomString .= $characters[rand(0, $charactersLength - 1)];
 	    }
 	    return $randomString;
+    }
+    public function xoagiftcode()
+    {
+
     }
 }

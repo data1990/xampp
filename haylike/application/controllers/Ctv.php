@@ -166,7 +166,7 @@ class Ctv extends CI_Controller {
 	       	
 	    	//$this->data['count_expires'] = 0;
 	    	$this->load->view('header',$this->data);
-			$this->load->view('addctv',$this->data);
+			$this->load->view('ctv/addctv',$this->data);
 			$this->load->view('footer');
 			
     }
@@ -242,7 +242,7 @@ class Ctv extends CI_Controller {
         
         // load giao diện
 	    	$this->load->view('header',$this->data);
-			$this->load->view('listctv',$this->data);
+			$this->load->view('ctv/listctv',$this->data);
 			$this->load->view('footer');
     }
     public function kichhoat()
@@ -341,7 +341,7 @@ class Ctv extends CI_Controller {
             }
             $this->data['dulieu'] = $dulieu;
             $this->load->view('header',$this->data);
-			$this->load->view('capnhatctv',$this->data);
+			$this->load->view('ctv/capnhatctv',$this->data);
 			$this->load->view('footer');
     }
     public function update()

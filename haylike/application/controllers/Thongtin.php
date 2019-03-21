@@ -52,7 +52,7 @@ class Thongtin extends CI_Controller {
             
 
             $this->load->view('header',$this->data);
-            $this->load->view('updateinfo',$this->data);
+            $this->load->view('info/updateinfo',$this->data);
             $this->load->view('footer');
         }
     }
@@ -102,7 +102,7 @@ class Thongtin extends CI_Controller {
             
            
             $this->load->view('header',$this->data);
-            $this->load->view('changepass',$this->data);
+            $this->load->view('info/changepass',$this->data);
             $this->load->view('footer');
         }
     }

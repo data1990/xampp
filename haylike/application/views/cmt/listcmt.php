@@ -124,3 +124,12 @@
         </table>
     </div>
 </div>
+<script>
+    function check(id) {
+        if (confirm('Bạn có chắc chắn muốn xóa VIP ID này ?') == true) {
+            window.location = 'xoacmt/' + id;
+        } else {
+            return false;
+        }
+    }
+</script>

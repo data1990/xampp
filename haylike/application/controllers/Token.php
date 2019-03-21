@@ -43,7 +43,7 @@ class Token extends CI_Controller {
 	        	$this->data['share'] = $this->login_model->counttable('autoshare');
 		    	//$this->data['count_expires'] = 0;
 		    	$this->load->view('header',$this->data);
-				$this->load->view('addtoken',$this->data);
+				$this->load->view('token/addtoken',$this->data);
 				$this->load->view('footer');
 			}else{
 				redirect('/thongtin', 'location');
@@ -109,7 +109,7 @@ class Token extends CI_Controller {
 	        	$this->data['share'] = $this->login_model->counttable('autoshare');
 		    	//$this->data['count_expires'] = 0;
 		    	$this->load->view('header',$this->data);
-				$this->load->view('delltoken',$this->data);
+				$this->load->view('token/delltoken',$this->data);
 				$this->load->view('footer');
 			}else{
 				redirect('/thongtin', 'location');

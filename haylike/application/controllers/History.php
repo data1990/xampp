@@ -92,13 +92,14 @@ class History extends CI_Controller {
                                 'time'  => $row->time,
                             );
         }
+        
 		if(isset($lichsu1)){$this->data['lichsu'] = $lichsu1;}
 		if(isset($taikhoan1)){$this->data['taikhoan'] = $taikhoan1;};
 		if(isset($sodu1)){$this->data['sodu'] = $sodu1;}
 		if(isset($gift1)){$this->data['gift'] = $gift1;}
 		if(isset($login1)){$this->data['login'] = $login1;}
 		$this->load->view('header',$this->data);
-		$this->load->view('history',$this->data);
+		$this->load->view('history/history',$this->data);
 		$this->load->view('footer');
 	}
 }

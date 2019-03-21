@@ -94,7 +94,7 @@ class Giaodich extends CI_Controller {
 	                		}
 	       		}
 				$this->load->view('header',$this->data);
-				$this->load->view('congtien',$this->data);
+				$this->load->view('money/congtien',$this->data);
 				$this->load->view('footer');
 			}else{
 				redirect('/thongtin', 'location');
@@ -167,7 +167,7 @@ class Giaodich extends CI_Controller {
 	                		}
 	       		}
 				$this->load->view('header',$this->data);
-				$this->load->view('capnhattien',$this->data);
+				$this->load->view('money/capnhattien',$this->data);
 				$this->load->view('footer');
 			}else{
 				redirect('/thongtin', 'location');
@@ -287,7 +287,7 @@ class Giaodich extends CI_Controller {
 	       		}
 
 	        	$this->load->view('header',$this->data);
-				$this->load->view('capnhattien',$this->data);
+				$this->load->view('money/capnhattien',$this->data);
 				$this->load->view('footer');
 			}else{
 				redirect('/thongtin', 'location');

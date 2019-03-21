@@ -63,10 +63,14 @@ $route['getuidfb'] = 'viplike/checkid';
 $route['getmoney'] = 'viplike/changemoneylike';
 $route['addviplikes1'] = 'viplike/addlikedb';
 $route['danhsachlikes1'] = 'viplike/listvip';
+$route['xoaviplike/(:num)'] = 'viplike/delviplike/$1';
+
 $route['addcmt'] = 'comment/addcmt';
 $route['giamgia'] = 'comment/changemoneylike';
 $route['addcmtsv'] = 'comment/addcmntdb';
 $route['listcmt'] = 'comment/listcmt';
+$route['xoacmt/(:num)'] = 'comment/delcmt/$1';
+
 $route['hethan'] = 'exp';
 $route['addtoken'] = 'token';
 $route['addtokensv'] = 'token/addtoken';
@@ -106,6 +110,7 @@ $route['capnhattien'] = 'giaodich/capnhattien';
 $route['chuyentien'] = 'giaodich/chuyentien';
 
 $route['listthongbao'] = 'thongbao';
+$route['xoathongbao/(:num)'] = 'thongbao/xoathongbao/$1';
 
 $route['updateinfo'] = 'thongtin';
 $route['update-info'] = 'thongtin/updateinfo';

@@ -2,11 +2,11 @@
     function check(id) {
     	if(id == 0){
     		if (confirm('Bạn có chắc chắn muốn xóa tất cả thông báo ?') == true) {
-                 window.location = 'index.php?vip=Delete_Noti';
+                 window.location = 'xoathongbao';
             }
         }else{
 	        if (confirm('Bạn có chắc chắn muốn xóa thông báo này ?') == true) {
-	            window.location = 'index.php?vip=Delete_Noti&id_noti=' + id;
+	            window.location = 'xoathongbao/' + id;
 	        } else {
 	            return false;
 	        }

@@ -52,7 +52,7 @@ class Member extends CI_Controller {
 	                $this->data['member'] = $dulieu;
 	            }
 				$this->load->view('header',$this->data);
-				$this->load->view('member',$this->data);
+				$this->load->view('member/member',$this->data);
 				$this->load->view('footer');
 			}else{
 				redirect('/thongtin', 'location');

@@ -129,7 +129,7 @@ class Daily extends CI_Controller {
 
 	       // load giao diện
 	    	$this->load->view('header',$this->data);
-			$this->load->view('themdaily',$this->data);
+			$this->load->view('daily/themdaily',$this->data);
 			$this->load->view('footer');
 		}
     }
@@ -199,7 +199,7 @@ class Daily extends CI_Controller {
         
         // load giao diện
 	    	$this->load->view('header',$this->data);
-			$this->load->view('listdaily',$this->data);
+			$this->load->view('daily/listdaily',$this->data);
 			$this->load->view('footer');
     }
     public function kichhoat()
@@ -314,7 +314,7 @@ class Daily extends CI_Controller {
             }
             $this->data['dulieu'] = $dulieu;
             $this->load->view('header',$this->data);
-			$this->load->view('capnhatdaily',$this->data);
+			$this->load->view('daily/capnhatdaily',$this->data);
 			$this->load->view('footer');
     }
     public function update()

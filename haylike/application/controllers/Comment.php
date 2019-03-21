@@ -58,7 +58,7 @@ class Comment extends CI_Controller {
 	    	$this->session->set_flashdata('error', '');
 	    	$this->data['cmtpakagecheck'] = $this->login_model->cmtpakagecheck();
 	    	$this->load->view('header',$this->data);
-			$this->load->view('addcmt',$this->data);
+			$this->load->view('cmt/addcmt',$this->data);
 			$this->load->view('footer');
 		}
     }
@@ -292,7 +292,7 @@ class Comment extends CI_Controller {
             }
             
             $this->load->view('header',$this->data);
-            $this->load->view('listcmt',$this->data);
+            $this->load->view('cmt/listcmt',$this->data);
             $this->load->view('footer');
         }
 	}

@@ -37,7 +37,7 @@ class Viplike extends CI_Controller {
         	}
 	    	//$this->data['count_expires'] = 0;
 	    	$this->load->view('header',$this->data);
-			$this->load->view('viplike',$this->data);
+			$this->load->view('like/viplike',$this->data);
 			$this->load->view('footer');
 		}
     }
@@ -55,7 +55,7 @@ class Viplike extends CI_Controller {
         	}
         	$this->data['pakagecheck']=$this->login_model->pakagecheck();
         	$this->load->view('header',$this->data);
-			$this->load->view('addviplike',$this->data);
+			$this->load->view('like/addviplike',$this->data);
 			$this->load->view('footer');
         	
 		}
@@ -380,7 +380,7 @@ class Viplike extends CI_Controller {
             }
             
             $this->load->view('header',$this->data);
-            $this->load->view('listvip',$this->data);
+            $this->load->view('like/listvip',$this->data);
             $this->load->view('footer');
         }
     }
