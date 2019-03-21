@@ -296,4 +296,70 @@ class Comment extends CI_Controller {
             $this->load->view('footer');
         }
 	}
+	public function delcmt()
+    {
+        $layid=$this->uri->segment('2');
+        $ctv = $this->db->select('id_ctv,user_id, end')->where('id', $layid)->get('vipcmt');
+            foreach($ctv->result() as $row)
+            {
+                $id_ctv = $row->id_ctv;
+                $user_id = $row->user_id;
+                $end = $row->end;
+               
+            } 
+        if($this->session->userdata['logged_in']['rule'] !='admin')
+        {
+            if($id_ctv != $this->session->userdata['logged_in']['userid']){
+                $this->session->set_flashdata('error', 'bug');
+                redirect('/listpakagelike', 'location');
+            }elseif($end > time()){
+                $this->session->set_flashdata('error', 'time');
+                redirect('/listpakagelike', 'location');
+            }else{
+                $noti = $this->db->delete('vipcmt', array('id' => $layid));
+                $xdata = array('num_id' => 'num_id-1');
+                    $query1 = $this->login_model->updatedb('member',$xdata,'id_ctv',$this->session->userdata['logged_in']['userid']);
+                    if($query)
+                    {
+                        $uname=$this->session->userdata['logged_in']['username'];
+                        $content = "<b>".$uname."</b> vừa xóa VIP CMT ID <b>".$user_id d."</b> tại sever 1.";
+                        
+                        $history = array(
+                                            'content'   => $content,
+                                            'id_ctv'    =>  $this->session->userdata['logged_in']['userid'], 
+                                            'time'      => time(),
+                                            'type'      => 0,
+                                        );
+                        $his = $this->login_model->insertdb('history',$history);
+                        if($his){
+                            $this->session->set_flashdata('error', 'delok');
+                            redirect('/listpakagelike', 'location');
+                        }
+                    }
+                
+            }
+            
+        }else{
+                $noti = $this->db->delete('vipcmt', array('id' => $layid));
+                $xdata = array('num_id' => 'num_id-1');
+                    $query1 = $this->login_model->updatedb('member',$xdata,'id_ctv',$this->session->userdata['logged_in']['userid']);
+                    if($query)
+                    {
+                        $uname=$this->session->userdata['logged_in']['username'];
+                        $content = "<b>".$uname."</b> vừa xóa VIP CMT ID <b>".$user_id d."</b> tại sever 1.";
+                        
+                        $history = array(
+                                            'content'   => $content,
+                                            'id_ctv'    =>  $this->session->userdata['logged_in']['userid'], 
+                                            'time'      => time(),
+                                            'type'      => 0,
+                                        );
+                        $his = $this->login_model->insertdb('history',$history);
+                        if($his){
+                            $this->session->set_flashdata('error', 'delok');
+                            redirect('/listpakagelike', 'location');
+                        }
+                    }
+        }
+    }
 }

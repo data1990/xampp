@@ -69,4 +69,42 @@ class Thongbao extends CI_Controller {
 			$this->load->view('footer');
 		}
 	}
+	public function xoathongbao()
+	{
+		$layid=$this->uri->segment('2');
+            $ctv = $this->db->select('id_ctv')->where('id', $layid)->get('noti');
+            foreach($ctv->result() as $row)
+            {
+                $id_ctv = $row->id_ctv;
+               
+            }        
+            if($this->session->userdata['logged_in']['rule'] !='admin')
+            {
+            	if($id_ctv != $this->session->userdata['logged_in']['userid'])
+            	{
+            		$this->session->set_flashdata('error', 'loixoa');
+            		redirect('/listthongbao', 'location');
+            	}else
+            	{
+            		$noti = $this->db->delete('noti', array('id' => $layid));
+            		if($noti){
+            			$this->session->set_flashdata('error', 'xoaok');
+            			redirect('/listthongbao', 'location');
+            		}
+            	}
+            }else{
+            	$noti = $this->db->delete('noti', array('id' => $layid));
+        		if($noti){
+        			$this->session->set_flashdata('error', 'xoaok');
+        			redirect('/listthongbao', 'location');
+        		}
+            }
+            if($this->session->userdata['logged_in']['rule'] =='admin' && $this->session->userdata['logged_in']['userid'] ==1){
+            	$noti = $this->db->delete('noti');
+        		if($noti){
+        			$this->session->set_flashdata('error', 'xoaok');
+        			redirect('/listthongbao', 'location');
+        		}
+            }
+	}
 }

@@ -127,4 +127,108 @@ class Pakage extends CI_Controller {
             }
         }
     }
+    public function dellikepak()
+    {
+        $layid=$this->uri->segment('2');
+        $ctv = $this->db->select('id_ctv')->where('id', $layid)->where('type', 'LIKE')->get('package');
+            foreach($ctv->result() as $row)
+            {
+                $id_ctv = $row->id_ctv;
+               
+            } 
+        if($this->session->userdata['logged_in']['rule'] !='admin')
+        {
+            if($id_ctv != $this->session->userdata['logged_in']['userid']){
+                $this->session->set_flashdata('error', 'bug');
+                redirect('/listpakagelike', 'location');
+            }else{
+                $noti = $this->db->delete('package', array('id' => $layid));
+                $this->session->set_flashdata('error', 'delok');
+                redirect('/listpakagelike', 'location');
+            }
+            
+        }else{
+                $noti = $this->db->delete('package', array('id' => $layid));
+                $this->session->set_flashdata('error', 'delok');
+                redirect('/listpakagelike', 'location');
+        }
+    }
+    public function delcmtpak()
+    {
+        $layid=$this->uri->segment('2');
+        $ctv = $this->db->select('id_ctv')->where('id', $layid)->where('type', 'CMT')->get('package');
+            foreach($ctv->result() as $row)
+            {
+                $id_ctv = $row->id_ctv;
+               
+            } 
+        if($this->session->userdata['logged_in']['rule'] !='admin')
+        {
+            if($id_ctv != $this->session->userdata['logged_in']['userid']){
+                $this->session->set_flashdata('error', 'bug');
+                redirect('/listpakagelike', 'location');
+            }else{
+                $noti = $this->db->delete('package', array('id' => $layid));
+                $this->session->set_flashdata('error', 'delok');
+                redirect('/listpakagelike', 'location');
+            }
+            
+        }else{
+                $noti = $this->db->delete('package', array('id' => $layid));
+                $this->session->set_flashdata('error', 'delok');
+                redirect('/listpakagelike', 'location');
+        }
+    }
+    public function delsharepak()
+    {
+        $layid=$this->uri->segment('2');
+        $ctv = $this->db->select('id_ctv')->where('id', $layid)->where('type', 'SHARE')->get('package');
+            foreach($ctv->result() as $row)
+            {
+                $id_ctv = $row->id_ctv;
+               
+            } 
+        if($this->session->userdata['logged_in']['rule'] !='admin')
+        {
+            if($id_ctv != $this->session->userdata['logged_in']['userid']){
+                $this->session->set_flashdata('error', 'bug');
+                redirect('/listpakagelike', 'location');
+            }else{
+                $noti = $this->db->delete('package', array('id' => $layid));
+                $this->session->set_flashdata('error', 'delok');
+                redirect('/listpakagelike', 'location');
+            }
+            
+        }else{
+                $noti = $this->db->delete('package', array('id' => $layid));
+                $this->session->set_flashdata('error', 'delok');
+                redirect('/listpakagelike', 'location');
+        }
+    }
+    public function delreacpak()
+    {
+        $layid=$this->uri->segment('2');
+        $ctv = $this->db->select('id_ctv')->where('id', $layid)->where('type', 'REACTION')->get('package');
+            foreach($ctv->result() as $row)
+            {
+                $id_ctv = $row->id_ctv;
+               
+            } 
+        if($this->session->userdata['logged_in']['rule'] !='admin')
+        {
+            if($id_ctv != $this->session->userdata['logged_in']['userid']){
+                $this->session->set_flashdata('error', 'bug');
+                redirect('/listpakagelike', 'location');
+            }else{
+                $noti = $this->db->delete('package', array('id' => $layid));
+                $this->session->set_flashdata('error', 'delok');
+                redirect('/listpakagelike', 'location');
+            }
+            
+        }else{
+                $noti = $this->db->delete('package', array('id' => $layid));
+                $this->session->set_flashdata('error', 'delok');
+                redirect('/listpakagelike', 'location');
+        }
+    }
 }
