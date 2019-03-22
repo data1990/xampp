@@ -36,8 +36,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.7/sweetalert2.min.js"></script>
         <script src="<?php echo base_url('assets/css/jCarouselLite/jquery-1.11.1.js'); ?>"></script>
         <script src="<?php echo base_url('assets/css/bootstrap/js/bootstrap.min.js'); ?>"></script>
-        <script src="<?php echo base_url('assets/js/wow.js'); ?>"></script>
-        <script src="<?php echo base_url('assets/js/noti.js'); ?>"></script>
+        <!--<script src="<?php echo base_url('assets/js/wow.js'); ?>"></script>
+        <script src="<?php echo base_url('assets/js/noti.js'); ?>"></script>-->
         <script src="<?php echo base_url('assets/css/dist/js/adminlte.js'); ?>"></script>
        <!-- <script src="<?php echo base_url('assets/css/plugins/datatables/jquery.dataTables.min.js'); ?>"></script> -->
        <!-- <script src="<?php echo base_url('assets/css/plugins/datatables/dataTables.bootstrap.min.js'); ?>"></script> -->

@@ -322,7 +322,7 @@ class Comment extends CI_Controller {
                     if($query)
                     {
                         $uname=$this->session->userdata['logged_in']['username'];
-                        $content = "<b>".$uname."</b> vừa xóa VIP CMT ID <b>".$user_id d."</b> tại sever 1.";
+                        $content = "<b>".$uname."</b> vừa xóa VIP CMT ID <b>".$user_id."</b> tại sever 1.";
                         
                         $history = array(
                                             'content'   => $content,
@@ -346,7 +346,7 @@ class Comment extends CI_Controller {
                     if($query)
                     {
                         $uname=$this->session->userdata['logged_in']['username'];
-                        $content = "<b>".$uname."</b> vừa xóa VIP CMT ID <b>".$user_id d."</b> tại sever 1.";
+                        $content = "<b>".$uname."</b> vừa xóa VIP CMT ID <b>".$user_id."</b> tại sever 1.";
                         
                         $history = array(
                                             'content'   => $content,
