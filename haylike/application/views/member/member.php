@@ -34,7 +34,7 @@
             return false;
             }else{
             if (confirm('Bạn có muốn khóa Member này?') == true) {
-                window.location = 'index.php?vip=Update_Member&id_ctv=' + id + '&type=lock';
+                window.location = 'lockmem/' + id;
             }
         }
     }
@@ -82,11 +82,11 @@
                         $active = '';
                         $tt = '<font color="green">Đã kích hoạt</font>';
                         if ($row['status'] == 0) {
-                            $active = "<a href='index.php?vip=Update_Member&id_ctv=$id&type=active' class='btn btn-success'> Kích hoạt</a>";
+                            $active = "<a href='actmem/$id' class='btn btn-success'> Kích hoạt</a>";
                             $tt = '<font color="red">Đang chờ</font>';
                         } else if ($row['status'] == -1) {
                             $tt = '<font color="red">Khóa</font>';
-                            $z = "<a href='index.php?vip=Update_Member&id_ctv=$id&type=unlock' class='btn btn-success'> Mở Khóa</a>";
+                            $z = "<a href='unlockmem/$id' class='btn btn-success'> Mở Khóa</a>";
                         }
                         $hi = '';
                         if($row['rule'] != 'admin' && $row['status'] == 1 && $row['baomat'] == 1){

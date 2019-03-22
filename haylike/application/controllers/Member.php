@@ -30,21 +30,22 @@ class Member extends CI_Controller {
 		}else{
 			if($this->session->userdata['logged_in']['rule'] == 'admin')
 			{
-				$query = $this->db->where('rule' !='agency')->get('member');
+				$query = $this->db->where('rule' , 'member')->get('member');
 				foreach($query->result() as $row)
 	            {
 	            	$dulieu[] = array(
 	                                    'id_ctv'    => $row->id_ctv,
-	                                    'num_id' => $row->num_id,
-	                                    'status'   => $row->status,
-	                                    'rule'  => $row->rule,
-	                                    'status'   => $row->status,
-	                                    'baomat'   => $row->baomat,
-	                                    'name'  => $row->name,
+	                                    'num_id' 	=> $row->num_id,
+	                                    'status'   	=> $row->status,
+	                                    'rule'  	=> $row->rule,
+	                                    'status'   	=> $row->status,
+	                                    'baomat'   	=> $row->baomat,
+	                                    'name'  	=> $row->name,
 	                                    'user_name' => $row->user_name,
-	                                    'profile'  => $row->profile,
-	                                    'bill'  => $row->bill,
-	                                    'payment'  => $row->payment,	                                    
+	                                    'profile'  	=> $row->profile,
+	                                    'bill'  	=> $row->bill,
+	                                    'payment'	=> $row->payment,	
+	                                    'email'		=> $row->email,
 	                                );
 	            }
 	            if(isset($dulieu))
@@ -59,5 +60,94 @@ class Member extends CI_Controller {
 			}
 	    	
 		}
+    }
+    public function kichhoat()
+    {
+    	$layid=$this->uri->segment('2');
+    	
+    	$data = array('status' => 1);
+    	$query = $this->login_model->updatedb('member',$data,'id_ctv',$layid);
+    	if($query)
+    	{
+            $getinfo = $this->db->where('id_ctv',$layid)->get('member');
+                foreach($getinfo->result() as $row)
+                {
+                    $name = $row->id_ctv;
+                    $user_name = $row->user_name;
+                }
+                $uname = $this->session->userdata['logged_in']['username'];
+                $cnt = "CTV <b>{$name} ({$user_name})</b> vừa được <b>$uname</b> kích hoạt!!";
+                $noti = array(
+                                'content'   => $cnt,
+                                'time'      => time(),
+                                'id_ctv'    => $this->session->userdata['logged_in']['userid'],
+                                );
+                $not = $this->login_model->insertdb('noti',$noti);
+
+    		$this->session->set_flashdata('error', 'kichhoatok');
+    		redirect('/member', 'location');
+    	}else{
+    		$this->session->set_flashdata('error', 'kichhoatfail');
+    		redirect('/member', 'location');
+    	}
+    }
+    public function khoaacc()
+    {
+        $layid=$this->uri->segment('2');
+        
+        $data = array('status' => -1);
+        $query = $this->login_model->updatedb('member',$data,'id_ctv',$layid);
+        if($query)
+        {
+            $getinfo = $this->db->where('id_ctv',$layid)->get('member');
+                foreach($getinfo->result() as $row)
+                {
+                    $name = $row->id_ctv;
+                    $user_name = $row->user_name;
+                }
+                $uname = $this->session->userdata['logged_in']['username'];
+                $cnt = "<b>$uname</b> đã <b>  Khóa</b> tài khoản của đại lý <b>{$name} ({$user_name})</b>";
+                $noti = array(
+                                'content'   => $cnt,
+                                'time'      => time(),
+                                'id_ctv'    => $this->session->userdata['logged_in']['userid'],
+                                );
+                $not = $this->login_model->insertdb('noti',$noti);
+
+            $this->session->set_flashdata('error', 'khoaaccok');
+            redirect('/member', 'location');
+        }else{
+            $this->session->set_flashdata('error', 'khoaaccfail');
+            redirect('/member', 'location');
+        }
+    }
+    public function mokhoa()
+    {
+        $layid=$this->uri->segment('2');
+        
+        $data = array('status' => 1);
+        $query = $this->login_model->updatedb('member',$data,'id_ctv',$layid);
+        if($query)
+        {
+            $getinfo = $this->db->where('id_ctv',$layid)->get('member');
+                foreach($getinfo->result() as $row)
+                {
+                    $name = $row->id_ctv;
+                    $user_name = $row->user_name;
+                }
+                $uname = $this->session->userdata['logged_in']['username'];
+                $cnt = "<b>$uname</b> đã <b> Mở Khóa</b> tài khoản của Đại lí <b>{$name} ({$user_name})</b>";
+                $noti = array(
+                                'content'   => $cnt,
+                                'time'      => time(),
+                                'id_ctv'    => $this->session->userdata['logged_in']['userid'],
+                                );
+                $not = $this->login_model->insertdb('noti',$noti);
+            $this->session->set_flashdata('error', 'mokhoaok');
+            redirect('/member', 'location');
+        }else{
+            $this->session->set_flashdata('error', 'mokhoafail');
+            redirect('/member', 'location');
+        }
     }
 }

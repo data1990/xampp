@@ -51,7 +51,7 @@ class Login_model extends CI_Model
 	}
 	function checkname($username)
     {
-        $query = $this->db->where('user_name', $username);
+        $query = $this->db->where('user_name', $username)->limit(1)->get('member');
         if($query->num_rows() == 1)
         {
             return true;
@@ -59,7 +59,7 @@ class Login_model extends CI_Model
     }
     function checkfbid($fbid)
     {
-        $query = $this->db->where('profile', $fbid);
+        $query = $this->db->where('profile', $fbid)->limit(1)->get('member');
         if($query->num_rows() == 1)
         {
             return true;
@@ -67,7 +67,7 @@ class Login_model extends CI_Model
     }
     function checkmail($email)
     {
-         $query = $this->db->where('email', $email);
+         $query = $this->db->where('email', $email)->limit(1)->get('member');
         if($query->num_rows() == 1)
         {
             return true;

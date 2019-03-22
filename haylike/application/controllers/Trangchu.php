@@ -126,7 +126,7 @@ class Trangchu extends CI_Controller {
         }
         else
         {
-            $usename = $this->input->post('user_name');
+            $username = $this->input->post('user_name');
             $fbid = $this->input->post('profile');
             $password = $this->input->post('password');
             $duoimail = $this->input->post('email_type');

@@ -104,6 +104,10 @@ $route['listgiftcode'] = 'giftcode/listcode';
 
 $route['history'] = 'history';
 $route['member'] = 'member';
+$route['actmem/(:num)'] = 'member/kichhoat/$1';
+$route['lockmem/(:num)'] = 'member/khoaacc/$1';
+$route['unlockmem/(:num)'] = 'member/mokhoa/$1';
+$route['delmem/(:num)'] = 'member/xoamem/$1';
 
 $route['congtien'] = 'giaodich';
 $route['capnhattien'] = 'giaodich/capnhattien';
