@@ -113,8 +113,65 @@ class Trangchu extends CI_Controller {
 	}
 	public function register()
 	{
-
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('name', 'name', 'required|max_length[128]|trim');
+        $this->form_validation->set_rules('sdt', 'Số điện thoại', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('user_name', 'user_name', 'required|max_length[128]|trim');
+        $this->form_validation->set_rules('password', 'password', 'required|max_length[32]|trim');
+        $this->form_validation->set_rules('profile','profile', 'required|max_length[32]|trim');
+        if($this->form_validation->run() == FALSE)
+        {
+            $this->dangky();
+            $this->session->set_flashdata('error', 'Test');
+        }
+        else
+        {
+            $usename = $this->input->post('user_name');
+            $fbid = $this->input->post('profile');
+            $password = $this->input->post('password');
+            $duoimail = $this->input->post('email_type');
+            $mail = $this->input->post('prefix');
+            $email = $mail . '@'. $duoimail;
+            $sdt = $this->input->post('sdt');
+            $name = $this->input->post('name');
+            $bill = '1000';
+            $status = '0';
+            $code = substr(md5(time() + rand(0, 9)), 0, 8);
+            if($this->login_model->checkname($username))
+            {
+                $this->dangky();
+                $this->session->set_flashdata('error', 'username');
+            }elseif($this->login_model->checkfbid($fbid))
+            {
+                $this->dangky();
+                $this->session->set_flashdata('error', 'facebook');
+            }elseif($this->login_model->checkmail($email)){
+                $this->dangky();
+                $this->session->set_flashdata('error', 'email');
+            }else{
+                $reg = array(
+                            'user_name'     => $username,
+                            'password'      => md5($password),
+                            'name'          => '',
+                            'phone'         => $sdt,
+                            'email'         => $email,
+                            'profile'       => $fbid,
+                            'bill'          => $bill,
+                            'status'        => 0,
+                            'code'          => $code,
+                            'rule'          => 'member',
+                            'num_id'        => 0,
+                            'baomat'        => 0,
+                            );
+                $query = $this->login_model->insertdb('member',$reg);
+                if($query){
+                    $this->session->set_flashdata('error', 'OK');
+                    $this->dangky();
+                }
+            }
+        }
 	}
+
 	public function thoat()
     {
         $sessionArray = array('userid' 	=> '',

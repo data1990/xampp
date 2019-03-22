@@ -49,6 +49,30 @@ class Login_model extends CI_Model
 			return false;
 		}
 	}
+	function checkname($username)
+    {
+        $query = $this->db->where('user_name', $username);
+        if($query->num_rows() == 1)
+        {
+            return true;
+        }else{return false;}
+    }
+    function checkfbid($fbid)
+    {
+        $query = $this->db->where('profile', $fbid);
+        if($query->num_rows() == 1)
+        {
+            return true;
+        }else{return false;}
+    }
+    function checkmail($email)
+    {
+         $query = $this->db->where('email', $email);
+        if($query->num_rows() == 1)
+        {
+            return true;
+        }else{return false;}
+    }
 	function checkuser($username)
 	{
 		//$query = $this->db->select('status')->where('');
