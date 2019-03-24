@@ -7,7 +7,7 @@
         <meta name="theme-color" content="red" />
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
         <title>HAYLIKE.INFO- Hệ thống VIP LIKE, VIP CMT, VIP Share tốt nhất</title>
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="https://static.xx.fbcdn.net/rsrc.php/yo/r/iRmz9lCMBD2.ico" type="image/x-icon">
         <meta name="author" content="Mr Hoàng">
         <meta name="copyright" content="Mr Hoàng">
         <meta name="keywords" content="VIP Like, VIP CMT, VIP Reaction, Auto Like, Auto Sub, Auto CMT, Auto Share, VTASYSTEM.COM, HETHONGSONGAO.COM, VTASYSTEM.COM, VTA">
@@ -199,8 +199,8 @@
                                     </span>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li><a href=""><i class="glyphicon glyphicon-asterisk"></i> Thêm VIP REACTION</a></li>
-                                    <li><a href="index.php?vip=Manager_VIP_Reaction"><i class="glyphicon glyphicon-asterisk"></i> Quản Lí VIP REACTION</a></li>
+                                    <li><a href="<?php echo base_url('adreaction'); ?>"><i class="glyphicon glyphicon-asterisk"></i> Thêm VIP REACTION</a></li>
+                                    <li><a href="<?php echo base_url('listreaction'); ?>"><i class="glyphicon glyphicon-asterisk"></i> Quản Lí VIP REACTION</a></li>
                                 </ul>
                             </li>
                             <li><a href="<?php echo base_url('hethan'); ?>"><i class="glyphicon glyphicon-off"></i> <span>VIP ID Sắp Hết Hạn</span><span class="pull-right-container"> <span class="label label-danger"><?php echo $count_expires; ?></span></span></a></li>
@@ -255,8 +255,8 @@
                                     </span>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li><a href=""><i class="glyphicon glyphicon-asterisk"></i> Thêm VIP REACTION</a></li>
-                                    <li><a href="index.php?vip=Manager_VIP_Reaction"><i class="glyphicon glyphicon-asterisk"></i> Quản Lí VIP REACTION</a></li>
+                                    <li><a href="<?php echo base_url('adreaction'); ?>"><i class="glyphicon glyphicon-asterisk"></i> Thêm VIP REACTION</a></li>
+                                    <li><a href="<?php echo base_url('listreaction'); ?>"><i class="glyphicon glyphicon-asterisk"></i> Quản Lí VIP REACTION</a></li>
                                 </ul>
                             </li>
                             <li><a href="<?php echo base_url('hethan'); ?>"><i class="glyphicon glyphicon-off"></i> <span>VIP ID Sắp Hết Hạn</span><span class="pull-right-container"> <span class="label label-danger"><?php echo $count_expires; ?></span></span></a></li>
@@ -332,8 +332,8 @@
                                     </span>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li><a href=""><i class="glyphicon glyphicon-asterisk"></i> Thêm VIP REACTION</a></li>
-                                    <li><a href="index.php?vip=Manager_VIP_Reaction"><i class="glyphicon glyphicon-asterisk"></i> Quản Lí VIP REACTION</a></li>
+                                    <li><a href="<?php echo base_url('adreaction'); ?>"><i class="glyphicon glyphicon-asterisk"></i> Thêm VIP REACTION</a></li>
+                                    <li><a href="<?php echo base_url('listreaction'); ?>"><i class="glyphicon glyphicon-asterisk"></i> Quản Lí VIP REACTION</a></li>
                                 </ul>
                             </li>
                             <li class="treeview">

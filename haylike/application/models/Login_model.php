@@ -182,6 +182,11 @@ class Login_model extends CI_Model
 		$query = $this->db->select('max') ->where(array('type'=>'LIKE','price'=>$price))->get('package');
 		return $query;
 	}
+	function pakagecheckreaction($price)
+	{
+		$query = $this->db->select('max') ->where(array('type'=>'REACTION','price'=>$price))->get('package');
+		return $query;
+	}
 	function cmtpakagecheck()
 	{
 		return $this->db->select('max, price') ->where('type','CMT')->order_by('price ASC')->get('package');

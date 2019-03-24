@@ -129,3 +129,9 @@ $route['topdoanhthu'] = 'giaodich/top10money';
 $route['listpakagelike'] = 'pakage';
 $route['listpakagecmt'] = 'pakage/listcmt';
 $route['listpakageshare'] = 'pakage/listshare';
+
+$route['adreaction'] = 'reaction';
+$route['adreactiondb'] = 'reaction/addreaction';
+$route['getmoneyre'] = 'reaction/changemoneylike';
+$route['checktoken'] = 'reaction/check';
+$route['listreaction'] = 'reaction/listreaction';

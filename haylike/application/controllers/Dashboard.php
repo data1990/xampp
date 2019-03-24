@@ -8,11 +8,14 @@ class Dashboard extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('login_model');
-        $this->data['count_gift'] = $this->login_model->countgift($this->session->userdata['logged_in']['rule'],$this->session->userdata['logged_in']['userid']);
+        if(isset($this->session->userdata['logged_in']))
+        {
+        	$this->data['count_gift'] = $this->login_model->countgift($this->session->userdata['logged_in']['rule'],$this->session->userdata['logged_in']['userid']);
             $this->data['count_cou'] = $this->login_model->countcou();
             $this->data['count_agency'] = $this->login_model->countagency($this->session->userdata['logged_in']['rule'],$this->session->userdata['logged_in']['userid']);
             $this->data['count_ctv'] = $this->login_model->countctv($this->session->userdata['logged_in']['rule'],$this->session->userdata['logged_in']['userid']);
             $this->data['count_member'] = $this->login_model->countmember();
+        }
     }
     public function index()
     {

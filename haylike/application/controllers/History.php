@@ -10,8 +10,10 @@ class History extends CI_Controller {
         $this->load->model('login_model');
         $this->load->model('facebook_model');
         $this->load->library('form_validation');
-       $this->load->helper('form');
-        $this->data['count_like'] = $this->login_model->countlike($this->session->userdata['logged_in']['userid']);
+        $this->load->helper('form');
+       if(isset($this->session->userdata['logged_in']))
+        {
+            $this->data['count_like'] = $this->login_model->countlike($this->session->userdata['logged_in']['userid']);
 			$this->data['count_like2'] = $this->login_model->countlikeexp2($this->session->userdata['logged_in']['userid']);
 	    	$this->data['count_noti'] = $this->login_model->countnoti($this->session->userdata['logged_in']['userid']);
 	    	$this->data['count_his'] = $this->login_model->counthis($this->session->userdata['logged_in']['userid']);
@@ -24,6 +26,7 @@ class History extends CI_Controller {
             $this->data['count_agency'] = $this->login_model->countagency($this->session->userdata['logged_in']['rule'],$this->session->userdata['logged_in']['userid']);
             $this->data['count_ctv'] = $this->login_model->countctv($this->session->userdata['logged_in']['rule'],$this->session->userdata['logged_in']['userid']);
             $this->data['count_member'] = $this->login_model->countmember();
+        }
     }
     public function index()
     {

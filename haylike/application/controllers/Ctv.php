@@ -8,7 +8,9 @@ class Ctv extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('login_model');
-        $this->data['count_like'] = $this->login_model->countlike($this->session->userdata['logged_in']['userid']);
+        if(isset($this->session->userdata['logged_in']))
+        {
+            $this->data['count_like'] = $this->login_model->countlike($this->session->userdata['logged_in']['userid']);
 			$this->data['count_like2'] = $this->login_model->countlikeexp2($this->session->userdata['logged_in']['userid']);
 	    	$this->data['count_noti'] = $this->login_model->countnoti($this->session->userdata['logged_in']['userid']);
 	    	$this->data['count_his'] = $this->login_model->counthis($this->session->userdata['logged_in']['userid']);
@@ -22,7 +24,8 @@ class Ctv extends CI_Controller {
             $this->data['count_ctv'] = $this->login_model->countctv($this->session->userdata['logged_in']['rule'],$this->session->userdata['logged_in']['userid']);
             $this->data['count_member'] = $this->login_model->countmember();
 	    	$this->load->library('form_validation');
-       $this->load->helper('form');
+            $this->load->helper('form');
+        }
     }
     public function index()
     {
