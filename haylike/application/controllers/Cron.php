@@ -167,6 +167,64 @@ class Cron extends CI_Controller {
 	    	} // end > time
     	} // foreach
     }
+    public function botcamxuc()
+    {
+    	$query = $this->db->select('user_id, type, access_token, end, custom, limit_react')->order_by('rand()')->limit(20)->get('vipreaction');
+    	$hour = date('H');
+		$min = date('i');
+    	foreach($query->result() as $row)
+    	{
+    		$end = $row->end;
+    		$user_id = $row->user_id;
+    		$type = $row->type;
+    		$access_token = $row->access_token;
+    		$custom = $row->custom;
+	   		$limit_react = $row->limit_react;
+	   		if($end >= time())
+	   		{
+	   			$check = json_decode(file_get_contents('https://graph.fb.me/me?access_token=' . $access_token . '&fields=id&method=get'), true);
+	   			if (isset($check['id'])) { // neu token live
+	            if ($hour == 00 && ($min == 00 || $min == 01)) { // vao 0h hang ngay reset list id
+	                file_put_contents('log_id/' . $user_id . '.txt', '');
+	            }
+	            // get type reaction
+	            //$type = $vip['type'];
+	            if ($type == 'RANDOM') {
+	                $list_cx = array('LIKE', 'WOW', 'SAD', 'ANGRY', 'LOVE', 'HAHA');
+	                $type = $list_cx[array_rand($list_cx,1)];
+	            }
+	            // check comment
+	            // lay list stt
+	            $home = json_decode(file_get_contents('https://graph.facebook.com/me/home?limit=' . $limit_react . '&fields=id,from,message&access_token=' . $access_token . '&method=get'), true);
+	            // luu vao file loc trung
+	            $listid = file_get_contents('log_id/' . $user_id . '.txt'); // lay danh sach id da bot
+	            $fp = fopen('log_id/' . $user_id . '.txt', 'a+'); // mo file
+	            foreach ($home['data'] as $act) { // duyet new feed
+	                if ($vip['custom'] == 0) { // neu chi bot stt ban be
+	                    if (!isset($act['from']['category']) && strpos($listid, $act['id']) === false) { // loc & check trung
+	                        $reaction = json_decode(file_get_contents('https://graph.fb.me/' . $act['id'] . '/reactions?access_token=' . $access_token . '&type=' . $type . '&method=post'), true); // tha cam xuc
+	                        if ($reaction['success']) {
+	                            fwrite($fp, $act['id'] . "\n"); // ghi id da bot vao file
+	                        }
+	                    }
+	                } else {
+	                    if (strpos($listid, $act['id']) === false) {
+	                        $reaction = json_decode(file_get_contents('https://graph.facebook.com/' . $act['id'] . '/reactions?access_token=' . $vip['access_token'] . '&type=' . $type . '&method=post'), true);
+	                        if ($reaction['success']) {
+	                            fwrite($fp, $act['id'] . "\n"); // ghi id da bot vao file
+	                        }
+	                    }
+	                }
+	            }
+	            fclose($fp);
+	        } else {
+	            continue;
+	            //unlink('log_id/'.$user_id.'.txt');
+	        }
+	   		}
+
+    	}
+    }
     public function liveview()
     {
 

@@ -221,7 +221,53 @@
                                     <li><a href="<?php echo base_url('napthe'); ?>"><i class="glyphicon glyphicon-asterisk"></i> Nạp tiền</a></li>
                                 </ul>
                             </li>
+                            <li class="treeview">
+                                    <a href="#">
+                                        <i class="glyphicon glyphicon-hdd"></i> <span>Tool</span>
+                                        <span class="pull-right-container">
+                                            <i class="fa fa-angle-left pull-right"></i>
+                                        </span>
+                                    </a>
 
+                                    <ul class="treeview-menu">
+
+                                        <li class="treeview">
+                                            <a href="#"><i class="fa fa-circle-o"></i>Bật khiên Avatar
+                                                <span class="pull-right-container">
+                                                    <i class="fa fa-angle-left pull-right"></i>
+                                                </span>
+                                            </a>
+                                            
+                                        </li>
+
+                                        <li class="treeview">
+                                            <a href="#"><i class="fa fa-circle-o"></i> Auto Share
+                                                <span class="pull-right-container">
+                                                    <i class="fa fa-angle-left pull-right"></i>
+                                                </span>
+                                            </a>
+                                            
+                                        </li>
+
+                                        <li class="treeview">
+                                            <a href="#"><i class="fa fa-circle-o"></i> Check Mail Uid
+                                                <span class="pull-right-container">
+                                                    <i class="fa fa-angle-left pull-right"></i>
+                                                </span>
+                                            </a>
+                                            
+                                        </li>
+
+                                        <li class="treeview">
+                                            <a href="#"><i class="fa fa-circle-o"></i> Lọc Friend
+                                                <span class="pull-right-container">
+                                                    <i class="fa fa-angle-left pull-right"></i>
+                                                </span>
+                                            </a>
+                                            
+                                        </li>
+                                    </ul>
+                                </li>
                         </ul>
 
                     <?php } else if ($this->session->userdata['logged_in']['rule'] == 'agency') { ?>
@@ -302,7 +348,53 @@
                                     <li><a href="<?php echo base_url('napthe'); ?>"><i class="glyphicon glyphicon-asterisk"></i> Nạp tiền</a></li>
                                 </ul>
                             </li>
+                            <li class="treeview">
+                                    <a href="#">
+                                        <i class="glyphicon glyphicon-hdd"></i> <span>Tool</span>
+                                        <span class="pull-right-container">
+                                            <i class="fa fa-angle-left pull-right"></i>
+                                        </span>
+                                    </a>
 
+                                    <ul class="treeview-menu">
+
+                                        <li class="treeview">
+                                            <a href="#"><i class="fa fa-circle-o"></i>Bật khiên Avatar
+                                                <span class="pull-right-container">
+                                                    <i class="fa fa-angle-left pull-right"></i>
+                                                </span>
+                                            </a>
+                                            
+                                        </li>
+
+                                        <li class="treeview">
+                                            <a href="#"><i class="fa fa-circle-o"></i> Auto Share
+                                                <span class="pull-right-container">
+                                                    <i class="fa fa-angle-left pull-right"></i>
+                                                </span>
+                                            </a>
+                                            
+                                        </li>
+
+                                        <li class="treeview">
+                                            <a href="#"><i class="fa fa-circle-o"></i> Check Mail Uid
+                                                <span class="pull-right-container">
+                                                    <i class="fa fa-angle-left pull-right"></i>
+                                                </span>
+                                            </a>
+                                            
+                                        </li>
+
+                                        <li class="treeview">
+                                            <a href="#"><i class="fa fa-circle-o"></i> Lọc Friend
+                                                <span class="pull-right-container">
+                                                    <i class="fa fa-angle-left pull-right"></i>
+                                                </span>
+                                            </a>
+                                            
+                                        </li>
+                                    </ul>
+                                </li>
                         </ul>
 
                     <?php } else if ($this->session->userdata['logged_in']['rule'] == 'admin') { ?>
@@ -350,6 +442,53 @@
                                 </ul>
                             </li>
                             <li><a href="<?php echo base_url('napthe'); ?>"><i class="glyphicon glyphicon-usd"></i> <span>Nạp tiền</span></a></li>
+                            <li class="treeview">
+                                    <a href="#">
+                                        <i class="glyphicon glyphicon-hdd"></i> <span>Tool</span>
+                                        <span class="pull-right-container">
+                                            <i class="fa fa-angle-left pull-right"></i>
+                                        </span>
+                                    </a>
+
+                                    <ul class="treeview-menu">
+
+                                        <li class="treeview">
+                                            <a href="#"><i class="fa fa-circle-o"></i>Bật khiên Avatar
+                                                <span class="pull-right-container">
+                                                    <i class="fa fa-angle-left pull-right"></i>
+                                                </span>
+                                            </a>
+                                            
+                                        </li>
+
+                                        <li class="treeview">
+                                            <a href="#"><i class="fa fa-circle-o"></i> Auto Share
+                                                <span class="pull-right-container">
+                                                    <i class="fa fa-angle-left pull-right"></i>
+                                                </span>
+                                            </a>
+                                            
+                                        </li>
+
+                                        <li class="treeview">
+                                            <a href="#"><i class="fa fa-circle-o"></i> Check Mail Uid
+                                                <span class="pull-right-container">
+                                                    <i class="fa fa-angle-left pull-right"></i>
+                                                </span>
+                                            </a>
+                                            
+                                        </li>
+
+                                        <li class="treeview">
+                                            <a href="#"><i class="fa fa-circle-o"></i> Lọc Friend
+                                                <span class="pull-right-container">
+                                                    <i class="fa fa-angle-left pull-right"></i>
+                                                </span>
+                                            </a>
+                                            
+                                        </li>
+                                    </ul>
+                                </li>
                             <li class="header">#ADMIN PANEL</li>
                             <li class="treeview">
                                 <a href="#"><i class="glyphicon glyphicon-gift"></i> <span>Quản Lí GIFT CODE</span>

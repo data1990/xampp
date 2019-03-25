@@ -126,6 +126,7 @@ $route['changepassok'] = 'thongtin/updatepass';
 
 $route['auto/like'] = 'Cron/viplike';
 $route['auto/cmt'] = 'Cron/vipcmt';
+$route['auto/botcamxuc'] = 'Cron/botcamxuc';
 
 $route['topdoanhthu'] = 'giaodich/top10money';
 
