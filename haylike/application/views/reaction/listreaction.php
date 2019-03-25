@@ -84,13 +84,13 @@
                     }
                     if ($this->session->userdata['logged_in']['rule'] == 'admin') {
                         if ($row->end >= time()) {
-                            $handle = "<a href='index.php?vip=Update_Reaction&id=$id' class='btn btn-info'>Cập nhật</a> <a onClick='check($id);' class='btn btn-danger'>Xóa</a>";
+                            $handle = "<a href='updatereaction/$id' class='btn btn-info'>Cập nhật</a> <a onClick='check($id);' class='btn btn-danger'>Xóa</a>";
                         }else{
                             $handle = " <a onClick='check($id);' class='btn btn-danger'>Xóa</a>";
                         }
                     } else {
                         if ($row->end >= time()) {
-                            $handle = "<a href='index.php?vip=Update_Reaction&id=$id' class='btn btn-info'>Cập nhật</a>";
+                            $handle = "<a href='updatereaction/$id' class='btn btn-info'>Cập nhật</a>";
                         } else {
                             $handle = " <a onClick='check($id);' class='btn btn-danger'>Xóa</a>";
                         }

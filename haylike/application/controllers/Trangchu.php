@@ -187,6 +187,10 @@ class Trangchu extends CI_Controller {
     }
     public function napthe()
     {
+        if (!isset($this->session->userdata['logged_in'])) 
+        {
+            redirect('/dangnhap', 'location');
+        }
             $this->data['count_like'] = $this->login_model->countlike($this->session->userdata['logged_in']['userid']);
             $this->data['count_like2'] = $this->login_model->countlikeexp2($this->session->userdata['logged_in']['userid']);
             $this->data['count_noti'] = $this->login_model->countnoti($this->session->userdata['logged_in']['userid']);

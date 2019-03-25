@@ -8,6 +8,8 @@ class Viplike extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('login_model');
+        $this->load->library('form_validation');
+        $this->load->helper('form');
         if(isset($this->session->userdata['logged_in']))
         {
             $this->data['count_like'] = $this->login_model->countlike($this->session->userdata['logged_in']['userid']);
@@ -453,5 +455,152 @@ class Viplike extends CI_Controller {
                     }
         }
     }
+    public function update()
+    {
+        if (!isset($this->session->userdata['logged_in'])) 
+        {
+            redirect('/dangnhap', 'location');
+        }
+        $layid=$this->uri->segment('2');
+        $query = $this->db->where('id',$layid)->get('vip');
+        foreach($query->result() as $row)
+            {
+                $dulieu[] = array(
+                                    'id'    => $row->id,
+                                    'start' => $row->start,
+                                    'han'   => $row->han,
+                                    'type'  => $row->type,
+                                    'end'   => $row->end,
+                                    'pay'   => $row->pay,
+                                    'ctv_name'  => $row->name,
+                                    'likes' => $row->likes,
+                                    'max_like'  => $row->max_like,
+                                    'name'  => $row->name,
+                                    'user_id'   => $row->user_id,
+                                );
+            }
 
+        $this->data['dulieu'] = $dulieu;
+        $this->data['pakagecheck']=$this->login_model->pakagecheck();
+        $this->form_validation->set_rules('user_id', 'ID Facebook', 'trim|required|min_length[4]|xss_clean');
+        $this->form_validation->set_rules('type[]', 'Cảm xúc', 'trim|required|xss_clean');
+        
+        $this->form_validation->set_rules('name', 'Họ Tên', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('likes', 'Số CX/Cron', 'trim|required|xss_clean');
+        //$this->form_validation->set_rules('max_like', 'Gói cảm xúc', 'trim|required|xss_clean');
+        //$this->form_validation->set_rules('max_like', 'Email', 'trim|required|xss_clean');
+        
+        if($this->form_validation->run())
+        {
+            $changemoney = 0;
+            $user_id = $this->input->post('user_id');
+            $list_type = $this->input->post('type');
+            $type = implode("\n", $list_type);
+            $name = $this->input->post('name');
+            $likes = $this->input->post('likes'); 
+            $max_like = $this->input->post('max_like');
+            $query = $this->db->where('id',$layid)->get('vip');
+            $uname=$this->session->userdata['logged_in']['username'];
+            foreach($query->result() as $row)
+                {
+                    $maxlike = $row->max_like;
+                    $pay = $row->pay;
+                }
+                $getmoney = $this->db->where('max', $max_like) ->get('package');
+                foreach($getmoney->result() as $mn)
+                {
+                    $checkmoney = $mn->price;
+                }
+               // echo $maxlike;
+            switch ($likes) {
+                    case 1:
+                        # code...
+                        $like = 10;
+                        break;
+                    case 2:
+                        # code...
+                        $like = 30;
+                        break;
+                    case 3:
+                        # code...
+                        $like = 50;
+                        break;
+                    case 4:
+                        # code...
+                        $like = 100;
+                        break;
+                    
+                    default:
+                        $like = 0;
+                        # code...
+                        break;
+                } 
+            if($like <= $maxlike)
+            {
+                $checkmn = $this->login_model->getmoney($this->session->userdata['logged_in']['userid']);
+                if(!empty($checkmn)){
+                    foreach ($checkmn->result() as $row) {
+                        $money = $row->bill;
+                        $payment = $row->payment;
+                        //echo  print_r($checkmn);
+                        # code...
+                    }
+                } 
+                if($pay < $checkmoney && $money - ($checkmoney-$pay) >=0)
+                    {
+                        $changemoney = 1;
+                        $upmoney = array('payment' =>$payment +($checkmoney-$pay),'bill' => $money - ($checkmoney-$pay));
+                        $query = $this->login_model->updatedb('member',$upmoney,'id_ctv',$this->session->userdata['logged_in']['userid']);
+                        $sessionlogin = $this->session->userdata['logged_in'];
+                        $sessionlogin['money'] = $money - ($checkmoney-$pay);
+                        $this->session->set_userdata('logged_in', $sessionlogin);
+                    }else{
+                        $this->session->set_flashdata('error', 'money');
+                    }
+                if($this->session->userdata['logged_in']['rule'] != 'admin' || $this->session->userdata['logged_in']['userid'] != 1)
+                {
+                    if($changemoney == 1){
+                        $xdata = array('user_id' => $user_id,'name' =>$name,'likes' => $like, 'type'=>$type,'pay' =>$checkmoney);
+                    }else{
+                        $xdata = array('user_id' => $user_id,'name' =>$name,'likes' => $like, 'type'=>$type);
+                    }
+                    
+                    $content = "<b>$uname</b> vừa cập nhật VIP Cảm Xúc ID <b>$layid</b>, Tên: <b>$name</b>, Số CX / Cron: <b>$likes</b> CX, Loại CX: <b>$type</b>";
+                    $query1 = $this->login_model->updatedb('vip',$xdata,'id',$this->session->userdata['logged_in']['userid']);
+                }else{
+                    if($changemoney == 1){
+                        $xdata = array('user_id' => $user_id,'name' =>$name,'likes' => $like, 'max_like'=>$max_like, 'type'=>$type, 'pay' =>$checkmoney);
+                    }else{
+                        $xdata = array('user_id' => $user_id,'name' =>$name,'likes' => $like, 'max_like'=>$max_like, 'type'=>$type);
+                    }
+                    
+                    $content = "<b>$uname</b> vừa cập nhật VIP Cảm Xúc ID <b>$layid</b> = > <b>$user_id</b>, Tên: <b>$name</b>, Số CX / Cron: <b>$likes</b> CX, Max CX: <b>$max_like</b> CX, Loại CX: <b>$type</b> tại sever <b>1</b>";
+                    $query1 = $this->login_model->updatedb('vip',$xdata,'id',$this->session->userdata['logged_in']['userid']);
+                }
+                if($query1){
+
+                    $history = array(
+                                                'content'   => $content,
+                                                'id_ctv'    =>  $this->session->userdata['logged_in']['userid'], 
+                                                'time'      => time(),
+                                                'type'      => 0,
+                                            );
+                    $his = $this->login_model->insertdb('history',$history);
+                    if($his){
+                                $this->session->set_flashdata('error', 'updateok');
+                                redirect('/danhsachlikes1', 'location');
+                            }
+                }
+            }else{
+                $this->session->set_flashdata('error', 'errorupdate');
+            }
+        }
+
+
+
+        $this->load->view('header',$this->data);
+        $this->load->view('like/update',$this->data);
+        $this->load->view('footer');
+    }
+    
 }

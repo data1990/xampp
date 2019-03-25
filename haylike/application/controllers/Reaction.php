@@ -309,4 +309,48 @@ class Reaction extends CI_Controller {
         $this->load->view('reaction/listreaction',$this->data);
         $this->load->view('footer');
     }
+    public function update()
+    {
+        if (!isset($this->session->userdata['logged_in'])) 
+        {
+            redirect('/dangnhap', 'location');
+        }
+        $layid=$this->uri->segment('2');
+        $query = $this->db->where('id',$layid)->get('vipreaction');
+        foreach($query->result() as $row)
+            {
+                $user_id= $row->user_id;
+                $token =  $row->access_token;
+                $dulieu[] = array(
+                                    'access_token'    => $row->access_token,
+                                    'user_id' => $row->user_id,
+                                    'name'   => $row->name,
+                                    'type'  => $row->type,
+                                    'custom'   => $row->custom,
+                                    'noidung'   => $row->noidung,
+                                    
+                                );
+            }
+        $me = json_decode(file_get_contents('https://graph.fb.me/me?access_token='.$token.'&fields=id&method=get'),true);
+        $tokenstt = '';
+        if(isset($me['id']) && $me['id'] == $user_id){
+            $this->data['tokenstt'] = '<font color="green">Token Live</font>';
+        }else if(!isset($me['id'])){
+            $this->data['tokenstt'] = '<font color="red">Token DIE</font>';
+        }else if(isset($me['id']) && $me['id'] != $user_id){
+            $this->data['tokenstt'] = '<font color="blue">Token Live nhưng không khớp với VIP ID</font>';
+        }
+        $this->data['dulieu'] = $dulieu;
+        $this->data['pakagecheck']=$this->login_model->pkgcheck('REACTION');
+        /*$this->form_validation->set_rules('access_token', 'Access Token', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('user_id', 'User ID', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('name', 'Họ tên', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('custom', 'Đối tượng thả cảm xúc', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('type[]', 'Cảm xúc', 'trim|required|xss_clean');
+        */
+
+        $this->load->view('header',$this->data);
+        $this->load->view('reaction/update',$this->data);
+        $this->load->view('footer');
+    }
 }

@@ -64,12 +64,15 @@ $route['getmoney'] = 'viplike/changemoneylike';
 $route['addviplikes1'] = 'viplike/addlikedb';
 $route['danhsachlikes1'] = 'viplike/listvip';
 $route['xoaviplike/(:num)'] = 'viplike/delviplike/$1';
+$route['updatelike/(:num)'] = 'viplike/update/$1';
 
 $route['addcmt'] = 'comment/addcmt';
 $route['giamgia'] = 'comment/changemoneylike';
 $route['addcmtsv'] = 'comment/addcmntdb';
 $route['listcmt'] = 'comment/listcmt';
 $route['xoacmt/(:num)'] = 'comment/delcmt/$1';
+$route['updatecmt/(:num)'] = 'comment/update/$1';
+
 
 $route['hethan'] = 'exp';
 $route['addtoken'] = 'token';
@@ -135,3 +138,4 @@ $route['adreactiondb'] = 'reaction/addreaction';
 $route['getmoneyre'] = 'reaction/changemoneylike';
 $route['checktoken'] = 'reaction/check';
 $route['listreaction'] = 'reaction/listreaction';
+$route['updatereaction/(:num)'] = 'reaction/update/$1';

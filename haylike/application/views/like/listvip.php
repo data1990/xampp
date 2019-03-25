@@ -89,13 +89,13 @@
                         }
                         if ($this->session->userdata['logged_in']['rule'] == 'admin') {
                              if ($row['end'] >= time()) {
-                               $handle = "<a href='index.php?vip=Update_Like_SV1&id=$id' class='btn btn-info'>Cập nhật</a> <a onClick='check($id);' class='btn btn-danger'>Xóa</a>";
+                               $handle = "<a href='updatelike/$id' class='btn btn-info'>Cập nhật</a> <a onClick='check($id);' class='btn btn-danger'>Xóa</a>";
                             } else {
                                $handle = " <a onClick='check($id);' class='btn btn-danger'>Xóa</a>";
                              }
                         } else {
                             if ($row['end'] >= time()) {
-                                $handle = "<a href='index.php?vip=Update_Like_SV1&id=$id' class='btn btn-info'>Cập nhật</a> <a onClick='check($id);' class='btn btn-danger'>Xóa</a>";
+                                $handle = "<a href='updatelike/$id' class='btn btn-info'>Cập nhật</a> <a onClick='check($id);' class='btn btn-danger'>Xóa</a>";
                             } else {
                                 $handle = "<a onClick='check($id);' class='btn btn-danger'>Xóa</a>";
                             }
@@ -130,3 +130,29 @@
         }
     }
 </script>
+<!--<center>-->
+<?php 
+    $error = $this->session->flashdata('error');
+    if($error=='money'){
+        echo "<script>swal('Số tiền trong tài khoản bạn còn thiếu!','Vui lòng nạp thêm để mua.','error');</script>";
+    }elseif($error=='updateok'){
+    echo "<script>swal('Thành công !','Bạn đã cập nhật thành công','success');</script>";
+    }elseif($error=='bug'){
+        echo "<script>swal('Bug','Không hợp lệ, chú định bug à, quên mẹ cái mùa xuân ấy đê :)))','error');</script>";
+        
+    }elseif($error=='tontai1'){
+        echo "<script>swal('Xảy ra lỗi !','User ID này đã tồn tại trên hệ thống tại sever 1','error');</script>";
+        
+    }elseif($error=='tontai2'){
+        echo "<script>swal('Xảy ra lỗi !','User ID này đã tồn tại trên hệ thống tại sever 2','error');</script>";
+        
+    } elseif($error=='OK'){
+        echo "<script>swal('Thành công !','Thêm thành công !','success');</script>";
+        
+    } elseif($error=='like'){
+        echo "<script>swal('Chưa chọn cảm xúc !','Bạn hãy chọn ít nhất 1 cảm xúc nhé !','error');</script>";
+        
+    } 
+
+    ?>
+<!--</center>-->

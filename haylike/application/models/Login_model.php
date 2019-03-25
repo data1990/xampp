@@ -177,6 +177,10 @@ class Login_model extends CI_Model
 	{
 		return $this->db->select('max, price') ->where('type','LIKE')->order_by('price ASC')->get('package');
 	}
+	function pkgcheck($type)
+	{
+		return $this->db->select('max, price') ->where('type',$type)->order_by('price ASC')->get('package');
+	}
 	function pakagechecklike($price)
 	{
 		$query = $this->db->select('max') ->where(array('type'=>'LIKE','price'=>$price))->get('package');

@@ -8,6 +8,8 @@ class Comment extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('login_model');
+        $this->load->library('form_validation');
+        $this->load->helper('form');
         if(isset($this->session->userdata['logged_in']))
         {
             $this->data['count_like'] = $this->login_model->countlike($this->session->userdata['logged_in']['userid']);
@@ -364,5 +366,126 @@ class Comment extends CI_Controller {
                         }
                     }
         }
+    }
+    public function update()
+    {
+        if (!isset($this->session->userdata['logged_in'])) 
+        {
+            redirect('/dangnhap', 'location');
+        }
+        $layid=$this->uri->segment('2');
+        $query = $this->db->where('id',$layid)->get('vipcmt');
+        foreach($query->result() as $row)
+            {
+                $dulieu[] = array(
+                                    'id_ctv'    => $row->id_ctv,
+                                    'noi_dung' => $row->noi_dung,
+                                    'max_cmt'   => $row->max_cmt,
+                                    'gender'  => $row->gender,
+                                    'hash_tag'   => $row->hash_tag,
+                                    'cmts' => $row->cmts,
+                                    'sticker'=>$row->sticker,
+                                    'name'  => $row->name,
+                                    'user_id'   => $row->user_id,
+                                );
+
+            }
+        $this->data['dulieu'] = $dulieu;
+        $this->data['pakagecheck']=$this->login_model->pkgcheck('CMT');
+
+        $this->form_validation->set_rules('gender', 'Giới tính', 'trim|required|min_length[4]|xss_clean');
+        $this->form_validation->set_rules('hashtag', 'Hashtag', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('name', 'Họ Tên', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('cmt', 'Số CMT', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('noi_dung', 'Nội dung', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('user_id', 'User ID', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('max_cmt', 'Max CMT', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('sticker', 'Sticker', 'trim|required|xss_clean');
+        if($this->form_validation->run())
+        {
+            $changemoney = 0;
+            $gender = $this->input->post('gender');
+            $hashtag = '#'.$this->input->post('hashtag');
+            $name = $this->input->post('name');
+            $cmt = $this->input->post('cmt');
+            $noidung = $this->input->post('noi_dung');
+            $user_id = $this->input->post('user_id');
+            $max_cmt = $this->input->post('max_cmt');
+            $sticker = $this->input->post('sticker');
+            $uname=$this->session->userdata['logged_in']['username'];
+            $query = $this->db->where('id',$layid)->get('vipcmt');
+            foreach($query->result() as $row)
+                {
+                    $maxcmt = $row->max_cmt;
+                    $pay = $row->pay;
+                }
+                $getmoney = $this->db->where('max', $max_cmt) ->get('package');
+                foreach($getmoney->result() as $mn)
+                {
+                    $checkmoney = $mn->price;
+                }
+            if( $cmt <= $maxcmt)
+            {
+                $checkmn = $this->login_model->getmoney($this->session->userdata['logged_in']['userid']);
+                if(!empty($checkmn)){
+                    foreach ($checkmn->result() as $row) {
+                        $money = $row->bill;
+                        $payment = $row->payment;
+                        //echo  print_r($checkmn);
+                        # code...
+                    }
+                } 
+                if($pay < $checkmoney && $money - ($checkmoney-$pay) >=0)
+                    {
+                        $changemoney = 1;
+                        $upmoney = array('payment' =>$payment +($checkmoney-$pay),'bill' => $money - ($checkmoney-$pay));
+                        $query = $this->login_model->updatedb('member',$upmoney,'id_ctv',$this->session->userdata['logged_in']['userid']);
+                        $sessionlogin = $this->session->userdata['logged_in'];
+                        $sessionlogin['money'] = $money - ($checkmoney-$pay);
+                        $this->session->set_userdata('logged_in', $sessionlogin);
+                    }else{
+                        $this->session->set_flashdata('error', 'money');
+                    }
+                if($this->session->userdata['logged_in']['rule'] != 'admin' || $this->session->userdata['logged_in']['userid'] != 1)
+                {
+                    if($changemoney == 1){
+                        $xdata = array('user_id' => $user_id,'name' =>$name,'cmts' => $cmt, 'noi_dung'=>$noidung,'gender'=>$gender,'hash_tag'=>$hashtag,'sticker'=>$sticker,'pay' =>$checkmoney);
+                    }else{
+                        $xdata = array('user_id' => $user_id,'name' =>$name,'cmts' => $cmt, 'noi_dung'=>$noidung,'gender'=>$gender,'hash_tag'=>$hashtag,'sticker'=>$sticker);
+                    }
+                    
+                    $content = "<b>$uname</b> vừa cập nhật VIP CMT ID <b>$layid</b>, Tên: <b>$name</b>, Số CMT / Cron: <b>$cmt</b> CMTs, Giới tính: <b>$gender</b>, Hashtag: <b>$hashtag</b>";
+                    $query1 = $this->login_model->updatedb('vip',$xdata,'id',$this->session->userdata['logged_in']['userid']);
+                }else{
+                    if($changemoney == 1){
+                        $xdata = array('user_id' => $user_id,'name' =>$name,'cmts' => $cmt, 'noi_dung'=>$noidung,'gender'=>$gender,'hash_tag'=>$hashtag,'sticker'=>$sticker, 'max_cmt'=>$max_cmt ,'pay' =>$checkmoney);
+                    }else{
+                        $xdata = array('user_id' => $user_id,'name' =>$name,'cmts' => $cmt, 'noi_dung'=>$noidung,'gender'=>$gender,'hash_tag'=>$hashtag,'sticker'=>$sticker, 'max_cmt'=>$max_cmt);
+                    }
+                    
+                    $content = "<b>$uname</b> vừa cập nhật VIP CMT ID <b>$layid</b> = > <b> $user_id</b>, Tên: <b>$name</b>, Số CMT / Cron: <b>$cmt</b> CMTs,  Giới tính: <b>$gender</b>, Hashtag: <b>$hashtag</b>";
+                    $query1 = $this->login_model->updatedb('vipcmt',$xdata,'id',$this->session->userdata['logged_in']['userid']);
+                }
+                if($query1){
+
+                    $history = array(
+                                                'content'   => $content,
+                                                'id_ctv'    =>  $this->session->userdata['logged_in']['userid'], 
+                                                'time'      => time(),
+                                                'type'      => 0,
+                                            );
+                    $his = $this->login_model->insertdb('history',$history);
+                    if($his){
+                                $this->session->set_flashdata('error', 'updateok');
+                                redirect('/listcmt', 'location');
+                            }
+                }
+            }
+        }
+
+
+        $this->load->view('header',$this->data);
+        $this->load->view('cmt/update',$this->data);
+        $this->load->view('footer');
     }
 }
