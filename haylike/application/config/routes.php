@@ -83,6 +83,7 @@ $route['gettokendb'] = 'token/gettokendb';
 $route['testtoken'] = 'token/testtoken';
 $route['xoatoken'] = 'token/xoatokendie'; //';
 $route['napthe'] = 'trangchu/napthe';
+$route['banggia'] = 'trangchu/banggia';
 
 $route['themdaily'] = 'daily';
 $route['listdaily'] = 'daily/danhsachdaily';
@@ -104,6 +105,7 @@ $route['capnhat-ctv/(:num)'] = 'ctv/update/$1';
 
 $route['taogiftcode'] = 'giftcode';
 $route['listgiftcode'] = 'giftcode/listcode';
+$route['giftcode'] = 'giftcode/sudunggiftcode';
 
 $route['history'] = 'history';
 $route['member'] = 'member';

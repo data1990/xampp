@@ -21,6 +21,8 @@ class Giftcode extends CI_Controller {
 	    	$this->data['count_cmt'] = $this->login_model->countcmtexp($this->session->userdata['logged_in']['userid']);
 	    	$this->data['count_reaction'] = $this->login_model->countreactionexp($this->session->userdata['logged_in']['userid']);
 	    	$this->data['idctv'] = $this->session->userdata['logged_in']['userid'];
+	    }
+	    if(isset($this->session->userdata['logged_in']) && $this->session->userdata['logged_in']['rule'] =='admin'){
 	    	$this->data['count_gift'] = $this->login_model->countgift($this->session->userdata['logged_in']['rule'],$this->session->userdata['logged_in']['userid']);
             $this->data['count_cou'] = $this->login_model->countcou();
             $this->data['count_agency'] = $this->login_model->countagency($this->session->userdata['logged_in']['rule'],$this->session->userdata['logged_in']['userid']);
@@ -163,5 +165,61 @@ class Giftcode extends CI_Controller {
     public function xoagiftcode()
     {
 
+    }
+    public function sudunggiftcode()
+    {
+    	if (!isset($this->session->userdata['logged_in'])) 
+    	{
+	    	redirect('/dangnhap', 'location');
+		}
+		$this->form_validation->set_rules('gift_code', 'Gift Code', 'trim|required|xss_clean');
+		if($this->form_validation->run())
+        {
+        	$id_ctv = $this->session->userdata['logged_in']['userid'];
+        	$uname = $this->session->userdata['logged_in']['username'];
+        	$rule = $this->session->userdata['logged_in']['rule'];
+        	$gift = $this->input->post('gift_code');
+        	$query = $this->db->select('billing, status,id_ctv,id_use')->where('code', $gift)->group_by('billing, status, id_ctv, id_use')->get('gift');
+        	$check = $this->db->where('id_use',$id_ctv)->get('gift');
+        	if($check->num_rows() == 1)
+        	{
+        		$this->session->set_flashdata('error', 'dasudung');
+                //$this->sudunggiftcode();
+        	}elseif($query->num_rows() == 1)
+        	{
+        		foreach($query->result() as $row)
+        		{
+        			$billing = $row->billing;
+        		}
+        		$q = $this->db->set('bill',"`bill` + $billing", FALSE)->where('id_ctv',$id_ctv)->update('member');
+        		$data = array('status' => 1, 'id_use' => $id_ctv, 'uname'=> $uname,'rule' => $rule);
+        		$query1 = $this->login_model->updatedb('gift',$data,'code',$gift);
+        		if($q && $query1)
+        		{
+        			$content = "<b>$uname</b> đã sử dụng Gift Code <b> $gift</b> và được cộng <b>" . number_format($billing) . "</b> VNĐ vào tài khoản";
+        			 $history = array(
+                                                'content'   => $content,
+                                                'id_ctv'    =>  $this->session->userdata['logged_in']['userid'], 
+                                                'time'      => time(),
+                                                'type'      => 0,
+                                            );
+                    $his = $this->login_model->insertdb('history',$history);
+                    if($his){
+                    			$sessionlogin = $this->session->userdata['logged_in'];
+                    			$money = $sessionlogin['money'];
+                            	$sessionlogin['money'] = $money - $price;
+                            	$this->session->set_userdata('logged_in', $sessionlogin);
+                                $this->session->set_flashdata('error', 'useok');
+                                //$this->sudunggiftcode();
+                            }
+        		}
+        	}else{
+        		$this->session->set_flashdata('error', 'khongtontai');
+                //$this->sudunggiftcode();
+        	}
+        }
+		$this->load->view('header',$this->data);
+		$this->load->view('giftcode/sudung',$this->data);
+		$this->load->view('footer');
     }
 }

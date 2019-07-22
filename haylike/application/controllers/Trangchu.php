@@ -200,12 +200,13 @@ class Trangchu extends CI_Controller {
             $this->data['count_reaction'] = $this->login_model->countreactionexp($this->session->userdata['logged_in']['userid']);
             $this->data['idctv'] = $this->session->userdata['logged_in']['userid'];
 
-
-            $this->data['count_gift'] = $this->login_model->countgift($this->session->userdata['logged_in']['rule'],$this->session->userdata['logged_in']['userid']);
-            $this->data['count_cou'] = $this->login_model->countcou();
-            $this->data['count_agency'] = $this->login_model->countagency($this->session->userdata['logged_in']['rule'],$this->session->userdata['logged_in']['userid']);
-            $this->data['count_ctv'] = $this->login_model->countctv($this->session->userdata['logged_in']['rule'],$this->session->userdata['logged_in']['userid']);
-            $this->data['count_member'] = $this->login_model->countmember();
+            if(isset($this->session->userdata['logged_in']) && $this->session->userdata['logged_in']['rule'] =='admin'){
+                $this->data['count_gift'] = $this->login_model->countgift($this->session->userdata['logged_in']['rule'],$this->session->userdata['logged_in']['userid']);
+                $this->data['count_cou'] = $this->login_model->countcou();
+                $this->data['count_agency'] = $this->login_model->countagency($this->session->userdata['logged_in']['rule'],$this->session->userdata['logged_in']['userid']);
+                $this->data['count_ctv'] = $this->login_model->countctv($this->session->userdata['logged_in']['rule'],$this->session->userdata['logged_in']['userid']);
+                $this->data['count_member'] = $this->login_model->countmember();
+            }
             $this->load->view('header',$this->data);
             $this->load->view('napthe',$this->data);
             $this->load->view('footer');
@@ -221,5 +222,73 @@ class Trangchu extends CI_Controller {
                   $ip = $_SERVER['REMOTE_ADDR']; 
                 } 
                   return $ip; 
-    } 
+    }
+    public function banggia()
+    {
+            if(isset($this->session->userdata['logged_in']))
+            {
+                $this->data['count_like'] = $this->login_model->countlike($this->session->userdata['logged_in']['userid']);
+                $this->data['count_like2'] = $this->login_model->countlikeexp2($this->session->userdata['logged_in']['userid']);
+                $this->data['count_noti'] = $this->login_model->countnoti($this->session->userdata['logged_in']['userid']);
+                $this->data['count_his'] = $this->login_model->counthis($this->session->userdata['logged_in']['userid']);
+                $this->data['count_expires'] = $this->login_model->countexp($this->session->userdata['logged_in']['userid']);
+                $this->data['count_cmt'] = $this->login_model->countcmtexp($this->session->userdata['logged_in']['userid']);
+                $this->data['count_reaction'] = $this->login_model->countreactionexp($this->session->userdata['logged_in']['userid']);
+                $this->data['idctv'] = $this->session->userdata['logged_in']['userid'];
+            }
+            
+
+            if(isset($this->session->userdata['logged_in']) && $this->session->userdata['logged_in']['rule'] =='admin'){
+                $this->data['count_gift'] = $this->login_model->countgift($this->session->userdata['logged_in']['rule'],$this->session->userdata['logged_in']['userid']);
+                $this->data['count_cou'] = $this->login_model->countcou();
+                $this->data['count_agency'] = $this->login_model->countagency($this->session->userdata['logged_in']['rule'],$this->session->userdata['logged_in']['userid']);
+                $this->data['count_ctv'] = $this->login_model->countctv($this->session->userdata['logged_in']['rule'],$this->session->userdata['logged_in']['userid']);
+                $this->data['count_member'] = $this->login_model->countmember();
+            }
+            $query = $this->db->where('type','LIKE')->order_by('id ASC')->get('package');
+            $query1 = $this->db->where('type','CMT')->order_by('id ASC')->get('package');
+            $query2 = $this->db->where('type','REACTION')->order_by('id ASC')->get('package');
+            foreach($query->result() as $row)
+                {
+
+                    $dulieu1[] = array(
+                                        'id'    => $row->id,
+                                        'max' => $row->max,
+                                        'price'  => $row->price,
+                                    );
+                }
+            if(isset($dulieu1))
+            {
+                $this->data['gialike'] = $dulieu1;
+            }
+            foreach($query1->result() as $row)
+                {
+
+                    $dulieu2[] = array(
+                                        'id'    => $row->id,
+                                        'max' => $row->max,
+                                        'price'  => $row->price,
+                                    );
+                }
+            if(isset($dulieu2))
+            {
+                $this->data['giacmt'] = $dulieu2;
+            }
+            foreach($query2->result() as $row)
+                {
+
+                    $dulieu3[] = array(
+                                        'id'    => $row->id,
+                                        'max' => $row->max,
+                                        'price'  => $row->price,
+                                    );
+                }
+            if(isset($dulieu3))
+            {
+                $this->data['giareac'] = $dulieu3;
+            }
+            $this->load->view('header',$this->data);
+            $this->load->view('banggia',$this->data);
+            $this->load->view('footer');
+    }
 }

@@ -20,6 +20,8 @@ class Viplike extends CI_Controller {
 	    	$this->data['count_cmt'] = $this->login_model->countcmtexp($this->session->userdata['logged_in']['userid']);
 	    	$this->data['count_reaction'] = $this->login_model->countreactionexp($this->session->userdata['logged_in']['userid']);
 	    	$this->data['idctv'] = $this->session->userdata['logged_in']['userid'];
+        }
+        if(isset($this->session->userdata['logged_in']) && $this->session->userdata['logged_in']['rule'] =='admin'){
             $this->data['count_gift'] = $this->login_model->countgift($this->session->userdata['logged_in']['rule'],$this->session->userdata['logged_in']['userid']);
             $this->data['count_cou'] = $this->login_model->countcou();
             $this->data['count_agency'] = $this->login_model->countagency($this->session->userdata['logged_in']['rule'],$this->session->userdata['logged_in']['userid']);
@@ -355,30 +357,64 @@ class Viplike extends CI_Controller {
                 $query = $this->db->select('id,user_id, name, han, likes, max_like, start, end, pay,type')
                                 ->where('id_ctv',$this->session->userdata['logged_in']['userid'])
                                 ->get('vip');
-
+                foreach($query->result() as $row)
+                {
+                    $dulieu[] = array(
+                                        'id'    => $row->id,
+                                        'start' => $row->start,
+                                        'han'   => $row->han,
+                                        'type'  => $row->type,
+                                        'end'   => $row->end,
+                                        'pay'   => $row->pay,
+                                        //'ctv_name'  => $row->ctv_name,
+                                        'likes' => $row->likes,
+                                        'max_like'  => $row->max_like,
+                                        'name'  => $row->name,
+                                       // 'user_name' => $row->user_name,
+                                        'user_id'   => $row->user_id,
+                                    );
+                }
             }elseif($rule == 'admin' && $this->session->userdata['logged_in']['userid'] !=1){
-                $query = $this->db->from('vip')->join('member','vip.id_ctv = member.id_ctv')->where('vip.id_ctv' > 0)->get();
+                $query = $this->db->select('id, user_id, vip.name, han, likes, max_like, start, end, pay,type,member.rule, member.name AS ctv_name,member.user_name,rule')->from('vip')->join('member','vip.id_ctv = member.id_ctv')->where('vip.id_ctv >', 1)->get();
+                foreach($query->result() as $row)
+                {
+                    $dulieu[] = array(
+                                        'id'    => $row->id,
+                                        'start' => $row->start,
+                                        'han'   => $row->han,
+                                        'type'  => $row->type,
+                                        'end'   => $row->end,
+                                        'pay'   => $row->pay,
+                                        'ctv_name'  => $row->ctv_name,
+                                        'likes' => $row->likes,
+                                        'max_like'  => $row->max_like,
+                                        'name'  => $row->name,
+                                        'user_name' => $row->user_name,
+                                        'user_id'   => $row->user_id,
+                                    );
+                }
             }else{
-                $query = $this->db->from('vip')->join('member','vip.id_ctv = member.id_ctv')->get();
+                $query = $this->db->select('id, user_id, vip.name, han, likes, max_like, start, end, pay,type,member.rule, member.name AS ctv_name,member.user_name,rule')->from('vip')->join('member','vip.id_ctv = member.id_ctv')->get();
+                foreach($query->result() as $row)
+                {
+                    $dulieu[] = array(
+                                        'id'    => $row->id,
+                                        'start' => $row->start,
+                                        'han'   => $row->han,
+                                        'type'  => $row->type,
+                                        'end'   => $row->end,
+                                        'pay'   => $row->pay,
+                                        'ctv_name'  => $row->ctv_name,
+                                        'likes' => $row->likes,
+                                        'max_like'  => $row->max_like,
+                                        'name'  => $row->name,
+                                        'user_name' => $row->user_name,
+                                        'user_id'   => $row->user_id,
+                                    );
+                }
             }
             //print_r($query->result());
-            foreach($query->result() as $row)
-            {
-                $dulieu[] = array(
-                                    'id'    => $row->id,
-                                    'start' => $row->start,
-                                    'han'   => $row->han,
-                                    'type'  => $row->type,
-                                    'end'   => $row->end,
-                                    'pay'   => $row->pay,
-                                    'ctv_name'  => $row->name,
-                                    'likes' => $row->likes,
-                                    'max_like'  => $row->max_like,
-                                    'name'  => $row->name,
-                                    'user_name' => $row->user_name,
-                                    'user_id'   => $row->user_id,
-                                );
-            }
+            
             if(isset($dulieu))
             {
                 $this->data['dulieu'] = $dulieu;
@@ -484,7 +520,6 @@ class Viplike extends CI_Controller {
         $this->data['pakagecheck']=$this->login_model->pakagecheck();
         $this->form_validation->set_rules('user_id', 'ID Facebook', 'trim|required|min_length[4]|xss_clean');
         $this->form_validation->set_rules('type[]', 'Cảm xúc', 'trim|required|xss_clean');
-        
         $this->form_validation->set_rules('name', 'Họ Tên', 'trim|required|xss_clean');
         $this->form_validation->set_rules('likes', 'Số CX/Cron', 'trim|required|xss_clean');
         //$this->form_validation->set_rules('max_like', 'Gói cảm xúc', 'trim|required|xss_clean');

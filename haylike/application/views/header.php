@@ -157,7 +157,7 @@
                         <li class="wow fadeInUp" data-wow-duration="1.5s"><a href="index.php?vip=Register"><i class="glyphicon glyphicon-new-window"></i> <span>Đăng kí</span></a></li>
                         <li class="wow fadeInUp" data-wow-duration="2s"><a href="dangky"><i class="glyphicon glyphicon-lock"></i> <span>Quên mật khẩu?</span></a></li>
                         <li class="wow fadeInUp" data-wow-duration="2.5s"><a href="napthe"><i class="glyphicon glyphicon-shopping-cart"></i> <span>Thanh toán</span></a></li>
-                        <li class="wow fadeInUp" data-wow-duration="3s"><a data-toggle="modal" href="#price"><i class="glyphicon glyphicon-usd" id="showModal"></i> <span>Bảng giá</span></a></li>
+                        <li class="wow fadeInUp" data-wow-duration="3s"><a data-toggle="modal" href="<?php echo base_url('banggia'); ?>"><i class="glyphicon glyphicon-usd" id="showModal"></i> <span>Bảng giá</span></a></li>
                         <li class="wow fadeInUp" data-wow-duration="3.5s"><a href=""><i class="glyphicon glyphicon-list-alt"></i> <span>Quản trị viên / Đại lí</span></a></li>
                         
                         
@@ -207,7 +207,7 @@
                             <li class="header">#MEMBER PANEL</li>
                             <li><a href="<?php echo base_url('napthe'); ?>"><i class="glyphicon glyphicon-gift"></i> <span>Nạp Tiền</span></a></li>
 
-                            <li><a href="index.php?vip=GiftCode"><i class="glyphicon glyphicon-gift"></i> <span>GIFT CODE</span></a></li>
+                            <li><a href="<?php echo base_url('giftcode'); ?>"><i class="glyphicon glyphicon-gift"></i> <span>GIFT CODE</span></a></li>
                    <li><a href="<?php echo base_url('history'); ?>"><i class="glyphicon glyphicon-retweet"></i> <span>Lịch sử hoạt động</span> <span class="pull-right-container"><span class="label label-warning"><?php echo $count_his; ?></span></span></a></li>
                             <li class="treeview">
                                 <a href="#"><i class="glyphicon glyphicon-wrench"></i> <span>Cá nhân </span>

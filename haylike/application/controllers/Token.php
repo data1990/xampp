@@ -160,8 +160,8 @@ class Token extends CI_Controller {
         	{
         		$check = json_decode($this->login_model->auto('https://graph.facebook.com/me?access_token='.$row->access_token),true);
         		//print_r($check);
-        		echo $check['id']; echo '<br>';
-        		if(!$check['id'])
+        		//echo $check['id']; echo '<br>';
+        		if(!isset($check['id']))
 		    	{
 		    		$xoa = $this->db->delete($table, array('access_token' => $row->access_token));
 		    		if($xoa)

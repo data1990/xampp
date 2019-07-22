@@ -19,6 +19,8 @@ class Comment extends CI_Controller {
 	    	$this->data['count_expires'] = $this->login_model->countexp($this->session->userdata['logged_in']['userid']);
 	    	$this->data['count_cmt'] = $this->login_model->countcmtexp($this->session->userdata['logged_in']['userid']);
 	    	$this->data['count_reaction'] = $this->login_model->countreactionexp($this->session->userdata['logged_in']['userid']);
+        }
+        if(isset($this->session->userdata['logged_in']) && $this->session->userdata['logged_in']['rule'] =='admin'){
 	    	$this->data['idctv'] = $this->session->userdata['logged_in']['userid'];
             $this->data['count_gift'] = $this->login_model->countgift($this->session->userdata['logged_in']['rule'],$this->session->userdata['logged_in']['userid']);
             $this->data['count_cou'] = $this->login_model->countcou();
@@ -267,31 +269,68 @@ class Comment extends CI_Controller {
                 $query = $this->db->select('id,user_id, name, han, cmts, max_cmt, start, end, pay,gender')
                                 ->where('id_ctv',$this->session->userdata['logged_in']['userid'])
                                 ->get('vipcmt');
+                foreach($query->result() as $row)
+                {
+                    $dulieu[] = array(
+                                        'id'    => $row->id,
+                                        'start' => $row->start,
+                                        'han'   => $row->han,
+                                        'end'   => $row->end,
+                                        'pay'   => $row->pay,
+                                        'cmts'  => $row->cmts,
+                                        'max_cmt'   => $row->max_cmt,
+                                        //'ctv_name'  => $row->ctv_name,  
+                                        'gender'    => $row->gender,
+                                        'name'  => $row->name,
+                                        //'user_name' => $row->user_name,
+                                        'user_id'   => $row->user_id,
+                                        'rule'  => $row->rule,
+                                    );
+                }
 
             }elseif($rule == 'admin' && $this->session->userdata['logged_in']['userid'] !=1){
-                $query = $this->db->from('vipcmt')->join('member','vipcmt.id_ctv = member.id_ctv')->where('vipcmt.id_ctv' > 0)->get();
+                $query = $this->db->select('id, user_id, vipcmt.name, han, cmts, max_cmt, start, end, pay, member.name AS ctv_name, member.user_name,rule,gender')->from('vipcmt')->join('member','vipcmt.id_ctv = member.id_ctv')->where('vipcmt.id_ctv >', 1)->get();
+                foreach($query->result() as $row)
+                {
+                    $dulieu[] = array(
+                                        'id'    => $row->id,
+                                        'start' => $row->start,
+                                        'han'   => $row->han,
+                                        'end'   => $row->end,
+                                        'pay'   => $row->pay,
+                                        'cmts'  => $row->cmts,
+                                        'max_cmt'   => $row->max_cmt,
+                                        'ctv_name'  => $row->ctv_name,  
+                                        'gender'    => $row->gender,
+                                        'name'  => $row->name,
+                                        'user_name' => $row->user_name,
+                                        'user_id'   => $row->user_id,
+                                        'rule'  => $row->rule,
+                                    );
+                }
             }else{
-                $query = $this->db->from('vipcmt')->join('member','vipcmt.id_ctv = member.id_ctv')->get();
+                $query = $this->db->select('id, user_id, vipcmt.name, han, cmts, max_cmt, start, end, pay, member.name AS ctv_name, member.user_name,rule,gender')->from('vipcmt')->join('member','vipcmt.id_ctv = member.id_ctv')->get();
+                foreach($query->result() as $row)
+                {
+                    $dulieu[] = array(
+                                        'id'    => $row->id,
+                                        'start' => $row->start,
+                                        'han'   => $row->han,
+                                        'end'   => $row->end,
+                                        'pay'   => $row->pay,
+                                        'cmts'  => $row->cmts,
+                                        'max_cmt'   => $row->max_cmt,
+                                        'ctv_name'  => $row->ctv_name,  
+                                        'gender'    => $row->gender,
+                                        'name'  => $row->name,
+                                        'user_name' => $row->user_name,
+                                        'user_id'   => $row->user_id,
+                                        'rule'  => $row->rule,
+                                    );
+                }
             }
             //print_r($query->result());
-            foreach($query->result() as $row)
-            {
-                $dulieu[] = array(
-                                    'id'    => $row->id,
-                                    'start' => $row->start,
-                                    'han'   => $row->han,
-                                    'end'   => $row->end,
-                                    'pay'   => $row->pay,
-                                    'cmts'	=> $row->cmts,
-                                    'max_cmt'	=> $row->max_cmt,
-                                    'ctv_name'  => $row->name,  
-                                    'gender'	=> $row->gender,
-                                    'name'  => $row->name,
-                                    'user_name' => $row->user_name,
-                                    'user_id'   => $row->user_id,
-                                    'rule'	=> $row->rule,
-                                );
-            }
+            
             if(isset($dulieu)){
                 $this->data['dulieu'] = $dulieu;
             }

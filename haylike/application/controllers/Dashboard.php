@@ -8,7 +8,7 @@ class Dashboard extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('login_model');
-        if(isset($this->session->userdata['logged_in']))
+        if(isset($this->session->userdata['logged_in']) && $this->session->userdata['logged_in']['rule'] =='admin')
         {
         	$this->data['count_gift'] = $this->login_model->countgift($this->session->userdata['logged_in']['rule'],$this->session->userdata['logged_in']['userid']);
             $this->data['count_cou'] = $this->login_model->countcou();
