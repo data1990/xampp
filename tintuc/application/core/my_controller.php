@@ -9,14 +9,15 @@ class My_controller extends CI_Controller
 	private function ktdangnhap()
 	{
 		$controller =$this->uri->segment(2);
+		
 		$user = $this->session->userdata('login');
-		if($controller !='login' && !$user)
+		if($controller !='dangnhap.html' && !$user)
 		{
-			redirect(quantri_url('login/index'));
+			redirect(quantri_url('dangnhap.html'));
 		}
-		if($controller =='login' && $user)
+		if($controller =='dangnhap.html' && $user)
 		{
-			redirect(quantri_url('home/index'));
+			redirect(quantri_url('index.html'));
 		}
 	}
 }

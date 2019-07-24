@@ -11,7 +11,7 @@ class Home extends My_baiviet
 	public function index()
 	{
 		$data = array();
-
+		$data['title'] = 'Thiên Kiếm';
 		$list = $this->baiviet_model->get_list_limit(6);
 		$data['list'] = $list;
 		$data['temp'] ='trangchu/main';
@@ -28,6 +28,7 @@ class Home extends My_baiviet
 		$list = $this->baiviet_model->get_list();
 		$data['list'] = $list;
 		$data['chuyenmuc'] = $listcm->tencm;
+		$data['title'] = $row->tieude;
 		$data['row'] = $row;
 		$data['temp'] ='trangchu/xembai';
 		$this->load->view('trangchu/index',$data);	
@@ -45,6 +46,7 @@ class Home extends My_baiviet
 		//print_r($list);
 		$data['list'] = $list;
 		$data['chuyenmuc'] = $listcm->tencm;
+		$data['title'] = $list->tieude;
 		//$data['row'] = $list;
 		$data['temp'] ='trangchu/tintuc';
 		$this->load->view('trangchu/index',$data);	
@@ -76,6 +78,13 @@ class Home extends My_baiviet
 			redirect(base_url());
 
 		
+	}
+	function register()
+	{
+		$data = array();
+		$data['title'] = 'Đăng ký';
+		$data['temp'] ='trangchu/dangky';
+		$this->load->view('trangchu/index',$data);
 	}
 }
 ?>

@@ -9,6 +9,7 @@ class Danhmuc extends MY_controller
 	function themdm()
 	{
 		$data[]=array();
+		$data['title'] = 'Thêm chuyên mục';
 		$data['temp']='quantri/danhmuc/themdanhmuc';
 
 		if($this->input->post())
@@ -29,6 +30,7 @@ class Danhmuc extends MY_controller
 	function xemchuyenmuc()
 	{
 		$data = array();
+		$data['title'] = 'Xem chuyên mục';
 		$data['temp'] ='quantri/danhmuc/xemdanhmuc';
 		$list = $this->danhmuc_model->get_list();
 		$data['list'] = $list;
@@ -37,7 +39,8 @@ class Danhmuc extends MY_controller
 	function suachuyenmuc()
 	{
 		$data = array();
-		$id = $this->uri->segment(4);
+		$data['title'] = 'Sửa chuyên mục';
+		$id = $this->uri->segment(3);
 
 		$row = $this->danhmuc_model->get_info($id);
 		
@@ -63,11 +66,12 @@ class Danhmuc extends MY_controller
 	function xoachuyenmuc()
 	{
 		
-		$id = $this->uri->segment(4);
+		$id = $this->uri->segment(3);
+		$data['title'] = 'Xoá chuyên mục';
 		$this->danhmuc_model->delete($id);
 		
 		$this->session->flashdata('thongbao','Xoá thành công !');
-		redirect(quantri_url('danhmuc/xemchuyenmuc'));
+		redirect(quantri_url('xemdanhmuc.html'));
 	}
 }
 ?>

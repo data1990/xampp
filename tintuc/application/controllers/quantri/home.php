@@ -10,6 +10,7 @@ class Home extends MY_controller
 	function index()
 	{
 		$data = array();
+		$data['title'] = 'Admin';
 		$data['temp'] ='quantri/main';
 		$this->load->view('quantri/index',$data);
 	}

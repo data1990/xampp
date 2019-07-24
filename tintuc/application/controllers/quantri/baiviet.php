@@ -9,6 +9,7 @@ class Baiviet extends My_controller
 	function thembaiviet()
 	{
 		$this->load->model('danhmuc_model');
+		$data['title'] = 'Thêm bài viết';
 		$listcm = $this->danhmuc_model->get_list();
 		$data =array();
 		$data['temp'] = 'quantri/baiviet/thembai';
@@ -37,6 +38,7 @@ class Baiviet extends My_controller
 	function xembaiviet()
 	{
 		$data = array();
+		$data['title'] = 'Danh sách bài viết';
 		$data['temp'] ='quantri/baiviet/xembaiviet';
 		$list = $this->baiviet_model->get_list();
 		$data['list'] = $list;
@@ -45,10 +47,11 @@ class Baiviet extends My_controller
 	function suabaiviet()
 	{
 		$data = array();
+		$data['title'] = 'Sửa bài viết';
 		$this->load->model('danhmuc_model');
 		$listcm = $this->danhmuc_model->get_list();
 		$data['listcm'] = $listcm;
-		$idbv = $this->uri->segment(4);
+		$idbv = $this->uri->segment(3);
 		$row = $this->baiviet_model->get_info($idbv);
 		if($this->input->post())
 		{
@@ -77,10 +80,10 @@ class Baiviet extends My_controller
 	}
 	function xoabaiviet()
 	{
-		$id = $this->uri->segment(4);
+		$id = $this->uri->segment(3);
 		$this->baiviet_model->delete($id);
 		$this->session->flashdata('thongbao','Xoá thành công !');
-		redirect(quantri_url('baiviet/xembaiviet'));
+		redirect(quantri_url('xembaiviet.html'));
 	}
 }
 ?>

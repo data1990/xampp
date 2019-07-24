@@ -25,8 +25,8 @@
                           <tr role="row" class="odd">
                             <td class="sorting_1"><?php echo $row->id; ?></td>
                             <td><?php echo $row->tencm; ?></td>
-                            <td><a href="<?php echo quantri_url('danhmuc/suachuyenmuc/'.$row->id) ?>">Sửa</a></td>
-                            <td><a href="<?php echo quantri_url('danhmuc/xoachuyenmuc/'.$row->id) ?>">Xoá</a></td>
+                            <td><a href="<?php echo quantri_url('suachuyenmuc/'.$row->id) ?>">Sửa</a></td>
+                            <td><a href="<?php echo quantri_url('xoachuyenmuc/'.$row->id) ?>">Xoá</a></td>
                             
                           </tr>
                           <?php } ?>

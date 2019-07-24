@@ -8,14 +8,15 @@ class Login extends My_controller
 	}
 	function index()
 	{
+		$data['title'] = 'Đăng nhập';
 		if($this->input->post())
 		{
 			$this->form_validation->set_rules('login','Đăng nhập','callback_checklogin');
 			if($this->form_validation->run()) {
-				echo '12312312';
+				//echo '12312312';
 				$username=$this->input->post('username');
 				$this->session->set_userdata('login',$username);
-				redirect(quantri_url('home'));
+				redirect(quantri_url('index.html'));
 			}else{
 				$this->session->flashdata('thongbao','Sai tên đăng nhập hoặc mật khẩu !');
 			}

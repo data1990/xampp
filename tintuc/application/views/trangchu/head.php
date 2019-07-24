@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://img.f.360game.vn/landing/nth360/thumbnail-1537424344495.png">
 <meta name="description" content="Nghịch Thủy Hàn – webgame bom tấn thuộc thể loại nhập vai MMORPG. Sở hữu đồ họa sống động, được thiết kế tỉ mỉ, trau chuốt từ phong cảnh, nhân vật đến hiệu ứng kỹ năng. Bên cạnh đó, game còn có nhiều tính năng mới lạ như 4 loại thần binh Băng – Hỏa – Lôi – Độc cực mạnh, Khinh Công 4 bước vượt mọi địa hình, hệ thống Hiệp Khách và Mỹ Nữ đồng hành với các vai trò, kỹ năng đa dạng. Cùng với đó là loạt trang bị đặc sắc như Cánh, Thú Cưng, Thú Cưỡi, Thời Trang, Cước Ấn… và hệ thống chiến trường, hoạt động cực đông vui. Hứa hẹn sẽ mang đến những trải nghiệm mới lạ và đặc sắc cho game thủ.">
 <meta name="keywords" content="Game hay,webgame hay,Game hot,game hot 2018,webgame hot,webgame hot 2018,game mới,game moi,game mới 2018,game moi 2018,webgame mới,webgame moi,webgame moi 2018,webgame mới 2018,game nhập vai,game nhap vai,webgame nhap vai,game MMO,game MMORPG,game RPG,game kiếm hiệp,game kiem hiep,game tien hiep,game tiên hiệp,game online,game new,game PK,Nghich Thuy Han,Nghịch Thủy Hàn,webgame Nghich Thuy Han,webgame Nghịch Thủy Hàn,game Nghich Thuy Han,game Nghịch Thủy Hàn, choi Nghich Thuy Han,chơi Nghịch Thủy Hàn,choi game Nghich Thuy Han,chơi game Nghịch Thủy Hàn,Nghịch Thủy Hàn 360game,Nghich Thuy Han 360game,NTH,NTH 360game,">
-<title>Nghịch Thủy Hàn_Nhất Kiếm Định Giang Sơn</title>
+<title><?php echo $title ?></title>
 
 
 
